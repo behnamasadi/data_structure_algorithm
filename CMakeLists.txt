@@ -41,26 +41,17 @@ target_link_libraries(heap)
 add_executable(matrices src/matrices/matrices.cpp)
 target_link_libraries(matrices)
 
-add_executable(tree_main src/trees/main.cpp)
-target_link_libraries(tree_main)
-
 add_executable(tree_representation src/trees/tree_representation.cpp)
 target_link_libraries(tree_representation)
 
 add_executable(avl_tree src/trees/avl_tree.cpp)
 target_link_libraries(avl_tree)
 
-add_executable(tree_creation src/trees/tree_creation.cpp)
-target_link_libraries(tree_creation)
-
 add_executable(queue_main src/queue/main.cpp)
 target_link_libraries(queue_main)
 
 add_executable(binary_search_tree src/trees/binary_search_tree.cpp)
 target_link_libraries(binary_search_tree)
-
-add_executable(tree_print_binary_tree src/trees/print_binary_tree.cpp)
-target_link_libraries(tree_print_binary_tree)
 
 add_executable(graph_main src/graphs/main.cpp)
 target_link_libraries(graph_main)
@@ -91,6 +82,12 @@ target_link_libraries(array_main)
 
 add_executable(B_B+_tree src/trees/B_B+_tree.cpp)
 target_link_libraries(B_B+_tree)
+
+add_executable(red_black_tree src/trees/red_black_tree.cpp)
+target_link_libraries(red_black_tree)
+
+add_executable(2_3_trees src/trees/2_3_trees.cpp)
+target_link_libraries(2_3_trees)
 
 ################################ Algorithms ################################
 add_executable(greedy_methods src/algorithms/src/Greedy_method/greedy_methods.cpp)

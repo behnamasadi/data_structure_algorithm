@@ -473,7 +473,7 @@ not complete, not strict
 
 
 
-## B-tree
+## B/B+ Trees
 The B-tree generalizes the binary search tree, allowing for nodes with more than two children. Unlike other self-balancing binary search trees, 
 the B-tree is well suited for storage systems that read and write relatively large blocks of data, such as discs.
 In most of the self-balancing search trees it is assumed that everything is in main memory. 
@@ -924,13 +924,46 @@ T2   T3                           T3   T4
 
 
 
-# B/B+ Tree
+# Red-Black Tree
+Red-Black Tree is a self-balancing Binary Search Tree (BST). Most of operations on BST (e.g., search, max, min,... ) take `O(h)` time where `h`
+ is the height of the BST. The expense of these activities may become `O(n)`  for a unbalanced (skewed) Binary tree. 
+If we balance the BST cost of operations has upper bound of `O(Logn)`.
+
+The AVL trees are more balanced compared to Red-Black Trees, but they may cause more rotations during insertion and deletion. 
+So if your application involves many frequent insertions and deletions, then Red Black trees should be preferred.
+
+Most of the self-balancing BST library functions like map and set in C++ use Red Black Tree
+It is used to implement CPU Scheduling Linux. Completely Fair Scheduler uses it.
+
+
+## Properties of Red-Black Tree
+
+1) Every node has a color either red or black.
+
+2) Root of tree is always black.
+
+3) There are no two adjacent red nodes (A red node cannot have a red parent or red child).
+
+4) Every path from a node (including root) to any of its descendant NULL node has the same number of black nodes.
+
+
+
+```
+          B(20)                               B(20) 
+       /         \                        /         \
+     R(10)      R(30)                   R(10)       R(30)  
+    /    \     /     \                 /    \      /     \
+ NULL  NULL    NULL NULL             NULL   NULL  NULL   NULL
+
+```
+## Operations
+To balance a Red-Black tree, we use the following operations:
+1) Recoloring
+2) Rotation
 
 
 
 Online visualization for [B-tree](https://www.cs.usfca.edu/~galles/visualization/BTree.html)
-
-
 Refs: [1](https://www.tutorialspoint.com/cplusplus-program-to-implement-avl-tree),
       [2](https://www.geeksforgeeks.org/avl-tree-set-1-insertion/),
       [3](https://gist.github.com/Harish-R/097688ac7f48bcbadfa5)
