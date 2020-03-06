@@ -474,6 +474,22 @@ not complete, not strict
 
 
 ## B/B+ Trees
+
+```
+    _ _______ _
+   /  \_____/  \ 
+  /  / \ _ / \  \
+ /  /  /   \  \  \
+/__/__/     \__\__\
+\  \  \     /  /  /
+ \  \  \ _ /  /  /
+  \  \ /___\ /  /
+   \_ /_____\_ / 
+            
+```
+
+
+
 The B-tree generalizes the binary search tree, allowing for nodes with more than two children. Unlike other self-balancing binary search trees, 
 the B-tree is well suited for storage systems that read and write relatively large blocks of data, such as discs.
 In most of the self-balancing search trees it is assumed that everything is in main memory. 
