@@ -250,7 +250,7 @@ void BTreeNode::splitChild(int i, BTreeNode* y)
 // Driver program to test above functions 
 int main()
 {
-	BTree t(3); // A B-Tree with minium degree 3 
+	BTree t(3); // A B-Tree with minimum degree 3 
 	t.insert(10);
 	t.insert(20);
 	t.insert(5);
@@ -260,7 +260,7 @@ int main()
 	t.insert(7);
 	t.insert(17);
 
-	cout << "Traversal of the constucted tree is ";
+	cout << "Traversal of the constructed tree is ";
 	t.traverse();
 
 	int k = 6;
