@@ -64,7 +64,10 @@ void huffmanCoding()
         std::cout<<inputList[first_min->first+second_min->first] <<std::endl;
 }
 
+void jobSequenceWithDeadlines()
+{
 
+}
 int main()
 {
     huffmanCoding();

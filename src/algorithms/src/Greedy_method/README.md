@@ -23,18 +23,36 @@ An objective function, which assigns a value to a solution, or a partial solutio
 A solution function, which will indicate when we have discovered a complete solution
 
 
-## Knapsack problem
-0-1 knapsack problem
-bounded knapsack problem (BKP)
-unbounded knapsack problem (UKP) 
 
-## Job Sequencing Problem
+## Example 1: Job Sequence With Deadlines Problem 
 
-## Huffman Coding
+| Jobs     | J1  | J2  | J3  | J4 | J5 |
+| ---      | --- | --- | --- |--- |--- |
+| Profit   | 20  |  15 |  10 | 5  | 1  |
+| Deadline |  2  |  2  |  1  | 3  | 3  | 
 
-## Minimum Spanning Trees
-### Prims 
-### Kruskals
+
+Each job take 1 unit of time and should be finished before the deadline. For instance if we start with `J2`, one unite of time will be spent, so we can not take `J3` as the deadline has gone.
+
+
+
+
+
+
+
+## Example 2: Knapsack problem
+### 0-1 knapsack problem
+### bounded knapsack problem (BKP)
+### unbounded knapsack problem (UKP) 
+
+
+## Example 3: Huffman Coding
+
+## Example 4: Minimum Spanning Trees
+
+## Example 5: Prims 
+
+## Example 6: Kruskals
 
 
 Refs: [1](https://www.geeksforgeeks.org/greedy-algorithms/)

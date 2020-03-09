@@ -40,5 +40,4 @@ you should a subset of them such that total sum is exactly 30.
 ## Example 4: Graph Coloring Problem
 
 
-# Branch and Bound
-In this approach we use BFS traverse to create the ** state space tree**. 
+

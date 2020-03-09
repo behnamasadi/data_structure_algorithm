@@ -96,8 +96,11 @@ target_link_libraries(greedy_methods)
 add_executable(dynamic_programming src/algorithms/src/Dynamic_programming/dynamic_programming.cpp)
 target_link_libraries(dynamic_programming)
 
-add_executable(set_algorithms src/algorithms/src/Backtracking_Brute_Force_Approach/set_algorithms.cpp)
-target_link_libraries(set_algorithms)
+add_executable(backtracking src/algorithms/src/Backtracking/backtracking.cpp)
+target_link_libraries(backtracking)
+
+add_executable(branch_and_bound src/algorithms/src/Branch_and_bound/branch_and_bound.cpp)
+target_link_libraries(branch_and_bound)
 
 add_executable(dijkstra src/algorithms/src/Shortest_Path_Algorithms_Dijkstra_and_Bellman-Ford/dijkstra.cpp)
 target_link_libraries(dijkstra)
