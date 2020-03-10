@@ -6,6 +6,18 @@
 #include <queue>
 #include <cassert>
 
+//https://www.geeksforgeeks.org/0-1-knapsack-using-branch-and-bound/
+//https://www.geeksforgeeks.org/branch-and-bound-algorithm/
+//https://www.geeksforgeeks.org/implementation-of-0-1-knapsack-using-branch-and-bound/
+namespace KnapsackProblem
+{
+	void zeroOneKnapsackProblem()
+	{
+
+	}
+}
+
+
 template
 <typename T>
 void printArray(T arr[], std::size_t size)

@@ -14,7 +14,27 @@ Strategies for solving optimisation problem:
 3) Branch and Bound.
 
 
-greedy algorithms have five components:
+Greedy Algorithm makes the optimal choice at each step as it attempts to find the overall optimal way to solve the entire problem. 
+Greedy algorithms are quite successful in some problems, such as Huffman encoding Dijkstra's algorithm, which is used to find the 
+shortest path through a graph.
+However, in many problems, a greedy strategy does not produce an optimal solution.
+
+Path with the largest sum:
+
+```
+                  7
+               /     \                  
+              3      12 
+            /   \   /   \  
+           99   8   5    6
+
+```
+Greedy algorithms solution: `7,12,6`.  
+Optimal Solution: `7,3,99`.
+
+
+
+Greedy algorithms have five components:
 
 A candidate set, from which a solution is created
 A selection function, which chooses the best candidate to be added to the solution
@@ -34,19 +54,99 @@ A solution function, which will indicate when we have discovered a complete solu
 
 Each job take 1 unit of time and should be finished before the deadline. For instance if we start with `J2`, one unite of time will be spent, so we can not take `J3` as the deadline has gone.
 
+Solution:
+First sort the jobs by the profit (descendingly), then try to fit the jobs in the schedule as late as possible, conditioning that time slot is still free.
 
 
 
 
 
 
-## Example 2: Knapsack problem
-### 0-1 knapsack problem
-### bounded knapsack problem (BKP)
-### unbounded knapsack problem (UKP) 
+## Example 2: knapsack Problem
+
+Collect a set of items such that total weight is not more than the size of the bag and the value is maximized.
+
+| Object| 1  | 2 | 3  | 4 | 5 | 6  | 7 | 
+| ---   |--- |---|--- |---|---|--- |---|
+| Value | 10 | 5 | 15 | 7 | 6 | 18 | 3 |
+| Weight| 2  | 3 | 5  | 7 | 1 | 4  | 1 |
+
+
+┌       ┐
+|       |
+|  15   |
+|  KG   |
+|       |
+|       |
+└       ┘
+
+There are various version of this problem:
+1) Items are divisible or not divisible.
+2) More than one instance of an item could be selected.
+
+The Greedy approach works only for fractional knapsack problem and may not produce correct result for 0/1 knapsack.
+### Fractional Knapsack Problem
+
+With the greedy algorithm, we divide the value by weight and we start adding from highest profitable until the bag reaches its limit.
+
+| Object| 1  | 2   | 3  | 4 | 5 | 6    | 7 | 
+| ---   |--- |---  |--- |---|---|---   |---|
+| Value | 10 | 5   | 15 | 7 | 6 | 18   | 3 |
+| Weight| 2  | 3   | 5  | 7 | 1 | 4    | 1 |
+|Ratio:V/W| 5  | 1.6 | 3  | 1 | 6 | 4.5  | 3 |
+|       |  1 |  0  | 1  | 0 | 1 | 1    | 1 |
+|   X   | x1 | x2  | x3 | x4|x5 | x6   |x7 |
+
+### 0-1 Knapsack Problem
+Restricts the number of copies of each kind of item to zero or one. Items are **NOT** divisible and you can only carry one instance of an item.
+
+
+### Bounded knapsack Problem (BKP)
+
+Removes the restriction that there is only one of each item, but restricts the number of copies of each kind of item to a maximum non-negative 
+integer value `c`.
+
+### Unbounded Knapsack Problem (UKP) 
+places no upper bound on the number of copies of each kind of item and can be formulated as above except for that the only restriction
+ on is that it is a non-negative integer.
+
 
 
 ## Example 3: Huffman Coding
+
+Suppose you use 8-bit data to store a character and you want to send the following message:  
+`BCCABBDDAECCBBAEDDCC`  
+So you need to send `20x8` bits of data since you have only 5 symbols, and you can count them with 3 bits of data you can represent your characters with 3  bits, so then you can send only `20x3` bits. 
+
+In Huffman coding first, we count the frequency of characters in the string, then we sort them based on their frequency and we build the tree
+by pairing the two most smallest items:
+
+```
+
+
+
+        20 
+      /   \
+     /     \ 
+    9       \
+   / \       \
+  5   \       11
+/   \  \    /   \
+2   3   4   5    6
+E   A   D   B    C   
+```
+
+
+| Char| count | code |
+| --- | ---   | ---  |
+| A   |  3    |  001 |
+| B   |  5    |  10  |
+| C   |  6    |  11  |
+| D   |  4    |  01  |
+| E   |  2    |  000 |
+
+
+
 
 ## Example 4: Minimum Spanning Trees
 

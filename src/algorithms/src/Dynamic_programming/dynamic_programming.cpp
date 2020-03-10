@@ -3,67 +3,58 @@
 #include <math.h>
 #include <vector>
 #include <algorithm>
+#include <limits>
 
-//The following examples are taken from "Competitive Programmer's Handbook" written by Antti Laaksonen https://cses.fi/book.html
-/*
-Coin problem
-In this problem we are interdted to make a sum of money x with set of coins values {c1,c2,...ck} by using the minimum nuber of coins
+//https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/
+namespace KnapsackProblem
+{
+    void zeroOneKnapsackProblem() 
+    {
 
-*/
+    }
+}
+
+
 
 int c[]={1,3,4}; // value of coins
-int k=3; //number of cpins that we have
+int k=3; //number of coins that we have
 
 /*
-The d[20] array is for memorization, for instance if we computed f_coin_problem_memo(3),
-we put this value in d[3] and we don't compute it again, we just use d[3] instead of f_coin_problem_memo(3)
+The d[20] array is for memorization, for instance if we computed minimumNumberOfCoins(3),
+we put this value in d[3] and we don't compute it again, we just use d[3] instead of minimumNumberOfCoins(3)
 */
 int d[20];
-int f_coin_problem_memo(int x)
+int minimumNumberOfCoins(int x)
 {
-    if (x < 0) return 1e9;
+    if (x < 0) return std::numeric_limits<int>::max();//INT_MAX;//;
     if (x == 0) return 0;
     if (d[x]) return d[x];
-    int u = 1e9;
-    int u_old = 1e9;
+    int u = std::numeric_limits<int>::max();
+    int u_old = std::numeric_limits<int>::max();
     for (int i = 0; i < k; i++)
     {
         u_old=u;
-        u = std::min(u, f_coin_problem_memo(x-c[i]) +1);
+        u = std::min(u, minimumNumberOfCoins(x-c[i]) +1);
     }
     d[x] = u;
     return d[x];
 }
 
-
-/***************************** Paths in a grid *****************************/
 /*
-
-finding a path in an n × n grid from the upper-left corner to the lower-right corner. We are only allowed
- to move right or down.
-
-1,1  1,2 .... 1,X
-2,1  2,2 .... 2,X
-.
-.
-.
-Y,1  Y,2 .... Y,X
-
-
 3 7 9 2 7
 9 8 3 5 5
 1 7 9 8 5
 3 8 6 4 10
 6 3 9 7 8
-
 */
+
 
 int grid[5][5]={{3,7, 9, 2, 7},{9, 8, 3 ,5 ,5},{1, 7 ,9 ,8 ,5},{3, 8, 6 ,4 ,10},{6, 3 ,9 ,7 ,8}};
 int memo[5][5]{{-1,-1,-1,-1,-1},{-1,-1,-1,-1,-1},{-1,-1,-1,-1,-1},{-1,-1,-1,-1,-1},{-1,-1,-1,-1,-1}};
 
 std::vector<int>x_solution,y_solution;
 
-int f_paths_in_grid(int y,int x)
+int optimalPathOnCostMap(int y,int x)
 {
     if((x==0)&& (y==0))
     {
@@ -73,19 +64,19 @@ int f_paths_in_grid(int y,int x)
     {
         if(memo[y][x]<0)
         {
-            memo[y][x] =f_paths_in_grid(y-1,x) +grid[y][x];
+            memo[y][x] =optimalPathOnCostMap(y-1,x) +grid[y][x];
         }
     }
     else if(y==0)
     {
        if(memo[y][x]<0)
        {
-            memo[y][x]=f_paths_in_grid(y,x-1) +grid[y][x];
+            memo[y][x]=optimalPathOnCostMap(y,x-1) +grid[y][x];
        }
     }
    else if(memo[y][x]<0)
    {
-        memo[y][x]=std::max(f_paths_in_grid(y,x-1)  ,f_paths_in_grid(y-1,x)  )+grid[y][x];
+        memo[y][x]=std::max(optimalPathOnCostMap(y,x-1)  ,optimalPathOnCostMap(y-1,x)  )+grid[y][x];
     }
     return  memo[y][x];
 }
@@ -115,9 +106,9 @@ int LevenshteinDistance(const char *s, int len_s, const char *t, int len_t)
 
 //Levenshtein distance in c++
 
-int LevenshteinDistance(std::string s, std::string t )
+size_t LevenshteinDistance(std::string s, std::string t )
 {
-  int cost;
+    size_t cost;
 
   /* base case: empty strings */
   if (s.length() == 0) return t.length();
@@ -137,19 +128,12 @@ int LevenshteinDistance(std::string s, std::string t )
 
 //seam carving
 
-int main(int argc, char** argv)
+int main()
 {
-
-
-
-/******************************** Coin Example ********************************/
     std::cout<<"******************************** Coin Example ********************************"<<std::endl;
     std::cout<<"The minimum number of coins from the set {1,3,4} to sum up value of 12 is:"<<std::endl;
-    std::cout<<f_coin_problem_memo(12)<<std::endl;
+    std::cout<<minimumNumberOfCoins(12)<<std::endl;
 
-
-
-/******************************** Levenshtein Distance ********************************/
     std::cout<<"******************************** Levenshtein Distance ********************************"<<std::endl;
 
 //  calling c-style string function
@@ -162,13 +146,12 @@ int main(int argc, char** argv)
     std::cout<<"The Levenshtein distance between "<<s <<" and "<< t<<" is:"<<std::endl;
     std::cout<<LevenshteinDistance( s, t )<<std::endl;
 
-/******************************** The Most Costly Path on a Grid ********************************/
 
-    std::cout<<"******************************** Most Costly Path on a Grid ********************************"<<std::endl;
+    std::cout<<"******************************** Optimal Path On Cost Map ********************************"<<std::endl;
     std::cout<<"maximum sum on a path from the upper-left corner to the lower-right corner is:" <<std::endl;
-    std::cout<< f_paths_in_grid(4,4)<<std::endl;
+    std::cout<< optimalPathOnCostMap(4,4)<<std::endl;
 
-    std::cout<<"******************************** Cost on the Grid ********************************"<<std::endl;
+    std::cout<<"******************************** Costs On Cost Map ********************************"<<std::endl;
     for(std::size_t y=0;y<5;y++)
     {
         for(std::size_t x=0;x<5;x++)
