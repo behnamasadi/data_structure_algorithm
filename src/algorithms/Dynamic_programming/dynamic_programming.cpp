@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <iostream>
 #include <math.h>
 #include <vector>
@@ -20,20 +20,46 @@ int c[]={1,3,4}; // value of coins
 int k=3; //number of coins that we have
 
 /*
+
+solve(x) = min(solve(x−1)+1, solve(x−3)+1, solve(x−4)+1)
+
 The d[20] array is for memorization, for instance if we computed minimumNumberOfCoins(3),
 we put this value in d[3] and we don't compute it again, we just use d[3] instead of minimumNumberOfCoins(3)
 */
-int d[20];
+
+
+std::vector<int> d(20,0);
+
 int minimumNumberOfCoins(int x)
 {
-    if (x < 0) return std::numeric_limits<int>::max();//INT_MAX;//;
-    if (x == 0) return 0;
-    if (d[x]) return d[x];
-    int u = std::numeric_limits<int>::max();
-    int u_old = std::numeric_limits<int>::max();
+    /*
+    since we have +1 in {minimumNumberOfCoins(x-c[i]) +1} if we return std::numeric_limits<int>::max() then 
+    std::numeric_limits<int>::max()+1 will overflow and it will give us a minus number
+    */
+
+    if (x < 0) 
+        return std::numeric_limits<int>::max()-1;
+    if (x == 0) 
+        return 0;
+    if (d[x]) 
+        return d[x];
+    int u = std::numeric_limits<int>::max()-1;
+
+    /*
+        Tip: the min of several items in a list can be written as follows;
+
+        c[]={c1,c2,...ck}
+        min_value=min(c1,c2,...ck)
+
+        u=INF
+        for (c<sub>i</sub> in c)
+	        u=min(c<sub>i</sub>,u)
+        min_value=u
+    */
+
+    
     for (int i = 0; i < k; i++)
     {
-        u_old=u;
         u = std::min(u, minimumNumberOfCoins(x-c[i]) +1);
     }
     d[x] = u;
@@ -126,10 +152,78 @@ size_t LevenshteinDistance(std::string s, std::string t )
 }
 
 
+size_t fibonacciRecursiveTabular(size_t n)
+{
+	std::vector<size_t> f;
+    f.resize(n+1, 0);
+    f[0] = 0;
+    f[1] = 1;
+    for (size_t i = 2; i < n+1; i++)
+    {
+        f[i] = f[i - 1] + f[i - 2];
+    }
+    return f[n];
+}
+
+std::vector<size_t> fibonacci(20, 0);
+size_t fibonacciRecursiveMemoization(size_t n)
+{
+    if (n <= 1) 
+    {
+        fibonacci[0] = 0;
+        fibonacci[1] = 1;
+        return fibonacci[n];
+    }
+    if (fibonacci[n]) 
+    {
+        return fibonacci[n];
+    }
+
+    fibonacci[n] = fibonacciRecursiveMemoization(n - 1) + fibonacciRecursiveMemoization(n - 2);
+    return fibonacci[n];
+	
+}
+
+size_t factorielRecursiveTabular(size_t n)
+{
+    std::vector<size_t> f;
+    f.resize(n+1, 0);
+    f[0] = 1;
+    for (size_t i = 1; i < n+1; i++) 
+    {
+        f[i] = f[i - 1] * i;
+    }
+    return f[n ];
+}
+
+
+std::vector<size_t> factoriel(20,0);
+size_t factorielRecursiveMemoization(size_t n)
+{
+    if(n==0)
+        return 1;
+    if (factoriel[n])
+        return factoriel[n];
+    factoriel[n] = factorielRecursiveMemoization(n - 1) * n;
+	return factoriel[n];
+}
+
 //seam carving
 
 int main()
 {
+    size_t n = 10;
+	std::cout << "******************************** Factoriel ********************************" << std::endl;
+	std::cout << n<<"!="<< factorielRecursiveTabular(n) << std::endl;
+
+    std::cout << n << "!=" << factorielRecursiveMemoization(n) << std::endl;
+
+	std::cout << "******************************** Fibonacci ********************************" << std::endl;
+	std::cout << "fibonacci("<<n << ")=" << fibonacciRecursiveTabular(10) << std::endl;
+	std::cout << "fibonacci("<<n << ")=" << fibonacciRecursiveMemoization(10) << std::endl;
+
+    
+    
     std::cout<<"******************************** Coin Example ********************************"<<std::endl;
     std::cout<<"The minimum number of coins from the set {1,3,4} to sum up value of 12 is:"<<std::endl;
     std::cout<<minimumNumberOfCoins(12)<<std::endl;

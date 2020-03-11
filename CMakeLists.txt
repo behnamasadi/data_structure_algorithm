@@ -90,20 +90,17 @@ add_executable(2_3_trees src/trees/2_3_trees.cpp)
 target_link_libraries(2_3_trees)
 
 ################################ Algorithms ################################
-add_executable(greedy_methods src/algorithms/src/Greedy_method/greedy_methods.cpp)
+add_executable(greedy_methods src/algorithms/Greedy_method/greedy_methods.cpp)
 target_link_libraries(greedy_methods)
 
-add_executable(dynamic_programming src/algorithms/src/Dynamic_programming/dynamic_programming.cpp)
+add_executable(dynamic_programming src/algorithms/Dynamic_programming/dynamic_programming.cpp)
 target_link_libraries(dynamic_programming)
 
-add_executable(backtracking src/algorithms/src/Backtracking/backtracking.cpp)
+add_executable(backtracking src/algorithms/Backtracking/backtracking.cpp)
 target_link_libraries(backtracking)
 
-add_executable(branch_and_bound src/algorithms/src/Branch_and_bound/branch_and_bound.cpp)
+add_executable(branch_and_bound src/algorithms/Branch_and_bound/branch_and_bound.cpp)
 target_link_libraries(branch_and_bound)
 
-add_executable(dijkstra src/algorithms/src/Shortest_Path_Algorithms_Dijkstra_and_Bellman-Ford/dijkstra.cpp)
+add_executable(dijkstra src/algorithms/Shortest_Path_Algorithms_Dijkstra_and_Bellman-Ford/dijkstra.cpp)
 target_link_libraries(dijkstra)
-
-
-

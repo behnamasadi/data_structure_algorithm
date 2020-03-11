@@ -2,7 +2,6 @@
 This repository contains my tutorial code for my Data Structure and Algorithm projects. 
 
 ## Algorithm Design with C++
-[Algorithms](src/algorithms) 
 
 [Analysis of Algorithms](src/algorithms/Analysis_of_algorithms)  
 [Backtracking](src/algorithms/Backtracking)  

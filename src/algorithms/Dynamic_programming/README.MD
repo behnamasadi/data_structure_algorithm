@@ -2,10 +2,90 @@
 Dynamic Programming is an optimization over plain recursion by using memorization. Basically, if we have already computed the value of the function for
 the sub-problem, we use it and don't recompute it again. There are two main approaches for storing sub-problem solutions: tabulation and memoization.
 
+
+For example, for computing Fibonacci Numbers,
+Simple recursion:
+
+```
+int fibonacci(int n)
+{
+    if(n<=1)
+        return n;
+    return (fibonacci(n-1)+fibonacci(n-2));
+}
+```            
+Here we compute values two times, if we store them we don't need to call the function again. 
+ 
+With Dynamic Programming
+
+```
+int fibonacci(size_t n)
+{
+	std::vector<size_t> f;
+    f.resize(n, 0);
+    f[0] = 0;
+    f[1] = 1;
+    for (size_t i = 2; i < n; i++)
+    {
+        f[i] = f[i - 1] + f[i - 2];
+    }
+    return f[n-1];
+}
+```  
+
+
+
 ## Tabulation vs Memoization
 
 1) Tabulation: Bottom Up
 2) Memoization: Top Down
+### Tabulation (Bottom Up)
+```
+size_t fibonacciRecursiveTabular(size_t n)
+{
+	std::vector<size_t> f;
+    f.resize(n+1, 0);
+    f[0] = 0;
+    f[1] = 1;
+    for (size_t i = 2; i < n+1; i++)
+    {
+        f[i] = f[i - 1] + f[i - 2];
+    }
+    return f[n];
+}
+```
+### Memoization (Top Down)
+```
+std::vector<size_t> fibonacci(20, 0);
+size_t fibonacciRecursiveMemoization(size_t n)
+{
+    if (n <= 1) 
+    {
+        fibonacci[0] = 0;
+        fibonacci[1] = 1;
+        return fibonacci[n];
+    }
+    if (fibonacci[n]) 
+    {
+        return fibonacci[n];
+    }
+
+    fibonacci[n] = fibonacciRecursiveMemoization(n - 1) + fibonacciRecursiveMemoization(n - 2);
+    return fibonacci[n];
+}
+```
+
+
+|                     | Tabulation  | Memoization  |
+| -------------       |-------------| -----|
+| State               |             |      |
+| Code                |             |      |
+| Speed               |             |      |
+| Sub-problem solving |             |      |
+| Table Entries       |             |      |
+
+
+
 
 
 
@@ -50,7 +130,16 @@ solve(x) =0                          if x=0
 solve(x) =min(u, solve(x-c[i]) +1)   if x>0
 ```
 
+Tip: the min of several items in a list can be written as follows;
+```
+c[]={c1,c2,...ck}
+min_value=min(c1,c2,...ck)
 
+u=INF
+for (c<sub>i</sub> in c)
+    u=min(c<sub>i</sub>,u)
+min_value=u
+```
 
 
 ## 0-1 Knapsack Problem
@@ -80,4 +169,5 @@ Example of the costs map:
 
 ## Levenshtein Distance
 
-Refs: [1](https://cses.fi/book.html)
+Refs: [1](https://cses.fi/book.html),
+      [2](https://www.geeksforgeeks.org/tabulation-vs-memoization/)
