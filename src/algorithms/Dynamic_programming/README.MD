@@ -76,8 +76,8 @@ Example of the costs map:
 3 8 6 4 10
 6 3 9 7 8
 ```
-*/
+
 
 ## Levenshtein Distance
 
-Refs (1)[https://cses.fi/book.html]
+Refs: [1](https://cses.fi/book.html)

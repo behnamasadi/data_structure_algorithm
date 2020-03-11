@@ -71,7 +71,7 @@ Collect a set of items such that total weight is not more than the size of the b
 | Value | 10 | 5 | 15 | 7 | 6 | 18 | 3 |
 | Weight| 2  | 3 | 5  | 7 | 1 | 4  | 1 |
 
-
+```
 ┌       ┐
 |       |
 |  15   |
@@ -79,7 +79,7 @@ Collect a set of items such that total weight is not more than the size of the b
 |       |
 |       |
 └       ┘
-
+```
 There are various version of this problem:
 1) Items are divisible or not divisible.
 2) More than one instance of an item could be selected.
