@@ -155,4 +155,44 @@ E   A   D   B    C
 ## Example 6: Kruskals
 
 
-Refs: [1](https://www.geeksforgeeks.org/greedy-algorithms/)
+## Example 5: Dijkstra and A Star
+In BFS search we visit all the nodes level by level, until we find the goal node, so it is kind of bruteforce. 
+We use a queue and begin from start node. We insert children ofthat node in the queue, we pop the first element from the head of queue and we continue
+until we reach the goal. Since we might have loops in graph we also have to check if a node has been visited earlier so we don't insert it again.
+
+```
+  procedure BFS(G, start_v) is
+      let Q be a queue
+      label start_v as discovered
+      Q.enqueue(start_v)
+      while Q is not empty do
+          v := Q.dequeue()
+          if v is the goal then
+              return v
+          for all edges from v to w in G.adjacentEdges(v) do
+             if w is not labeled as discovered then
+                 label w as discovered
+                 w.parent := v
+                 Q.enqueue(w)
+```
+In Dijkstra, we use priority queue instead and we don't queit once we found goal node (because there might be a better path to the goal) but we 
+stop once the queu is empty. 
+
+     6        3
+   A ----- B ----- C
+   |       |       |
+   |       |       |   
+  3|      1|      1|  
+   |       |       |
+   D ----- E ----- F
+   |   1   |  7    |
+  9|       |       |7
+   |      4|       | 
+   |       |       | 
+   G ----- H ----- I
+      2       5
+   
+
+Refs: [1](https://www.geeksforgeeks.org/greedy-algorithms/),
+      [2](https://www.youtube.com/watch?v=bRvs8rOQU-Q),
+      [3](https://web.stanford.edu/class/archive/cs/cs106x/cs106x.1192/lectures/Lecture23/Lecture23.pdf)
