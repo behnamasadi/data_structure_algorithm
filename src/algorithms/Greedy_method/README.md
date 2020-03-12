@@ -177,7 +177,7 @@ until we reach the goal. Since we might have loops in graph we also have to chec
 ```
 In Dijkstra, we use priority queue instead and we don't queit once we found goal node (because there might be a better path to the goal) but we 
 stop once the queu is empty. 
-
+```
      6        3
    A ----- B ----- C
    |       |       |
@@ -191,7 +191,7 @@ stop once the queu is empty.
    |       |       | 
    G ----- H ----- I
       2       5
-   
+```   
 
 Refs: [1](https://www.geeksforgeeks.org/greedy-algorithms/),
       [2](https://www.youtube.com/watch?v=bRvs8rOQU-Q),
