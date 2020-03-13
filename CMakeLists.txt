@@ -101,6 +101,3 @@ target_link_libraries(backtracking)
 
 add_executable(branch_and_bound src/algorithms/Branch_and_bound/branch_and_bound.cpp)
 target_link_libraries(branch_and_bound)
-
-add_executable(dijkstra src/algorithms/Shortest_Path_Algorithms_Dijkstra_and_Bellman-Ford/dijkstra.cpp)
-target_link_libraries(dijkstra)

@@ -11,7 +11,6 @@ This repository contains my tutorial code for my Data Structure and Algorithm pr
 [Graph Algorithms](src/algorithms/Graph_Algorithms)  
 [Greedy Method](src/algorithms/Greedy_method)  
 [NP-Hard and NP-Complete](src/algorithms/NP-Hard_and_NP-Complete)  
-[Shortest Path Algorithms (Dijkstra and Bellman-Ford)](src/algorithms/Shortest_Path_Algorithms_Dijkstra_and_Bellman-Ford)  
 [String Matching (Knuth-Morris-Pratt, Rabin-Karp)](src/algorithms/String_Matching_(Knuth-Morris-Pratt_Rabin-Karp))  
 
 

@@ -8,8 +8,40 @@
 //https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/
 namespace KnapsackProblem
 {
+    struct item 
+    {
+        double weight;
+        double value;
+        std::string name;
+    };
+    
+    
+	double knapSackNaiveRecursive(int bagCapacity, std::vector<item> &items, int n)
+	{
+
+		// Base Case  
+		if (n == 0 || bagCapacity == 0)
+			return 0;
+
+		// If weight of the nth item is more  
+		// than Knapsack capacity W, then  
+		// this item cannot be included 
+		// in the optimal solution  
+		if (items[n - 1].weight > bagCapacity)
+			return knapSackNaiveRecursive(bagCapacity, items, n - 1);
+
+		// Return the maximum of two cases:  
+		// (1) nth item included  
+		// (2) not included  
+		else return std::max( items[n - 1].value + knapSackNaiveRecursive(bagCapacity - items[n - 1].weight, items, n - 1),
+            knapSackNaiveRecursive(bagCapacity,items, n - 1));
+	}
+
     void zeroOneKnapsackProblem() 
     {
+        std::vector<item> items = { {1,10,"A"} ,{1,20,"B"} ,{1,30,"C"} };
+        double bagCapacity = 8;
+        knapSackNaiveRecursive(bagCapacity, items, items.size());
 
     }
 }
@@ -52,8 +84,8 @@ int minimumNumberOfCoins(int x)
         min_value=min(c1,c2,...ck)
 
         u=INF
-        for (c<sub>i</sub> in c)
-	        u=min(c<sub>i</sub>,u)
+        for (ci in c)
+	        u=min(ci,u)
         min_value=u
     */
 
@@ -65,6 +97,11 @@ int minimumNumberOfCoins(int x)
     d[x] = u;
     return d[x];
 }
+
+void MultiStageGraph()
+{
+}
+
 
 /*
 3 7 9 2 7
@@ -210,6 +247,23 @@ size_t factorielRecursiveMemoization(size_t n)
 
 //seam carving
 
+
+namespace SingleSourceShortestPath 
+{
+    void BellmanFord() 
+    {
+
+    }
+}
+
+namespace AllPairsShortestPath
+{
+    void FloydWarshall() 
+    {
+    }
+}
+
+
 int main()
 {
     size_t n = 10;
@@ -256,6 +310,9 @@ int main()
         std::cout<< "---------------"<<std::endl;
     }
 
+    {
+        KnapsackProblem::zeroOneKnapsackProblem();
+    }
 
     return 0;
 }

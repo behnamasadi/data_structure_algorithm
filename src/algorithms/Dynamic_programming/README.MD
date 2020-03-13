@@ -78,11 +78,11 @@ size_t fibonacciRecursiveMemoization(size_t n)
 
 |                     | Tabulation  | Memoization  |
 | -------------       |-------------| -----|
-| State               |             |      |
-| Code                |             |      |
-| Speed               |             |      |
-| Sub-problem solving |             |      |
-| Table Entries       |             |      |
+| State               | State transition is difficult to think.| State transition is difficult to think.     |
+| Code                | When code has lot of conditions it gets complicated. | Code is less complicated.     |
+| Speed               | Fast as we directly states via table          | Slow, since lots of recursions are required to get the previous state     |
+| Sub-problem solving | If all sub-problems must be solved, tabulation outperforms  a top-down memoized by a constant factor. | If some sub-problem needs not to be solved at all, the memoized solution has the advantage of solving only those sub0problems that are required.|
+| Table Entries       | All entries are filled one by one | Not all entries are necessarily filled. The table is filled on demand.|
 
 
 
@@ -144,6 +144,11 @@ min_value=u
 
 ## 0-1 Knapsack Problem
 Restricts the number of copies of each kind of item to zero or one. Items are **NOT** divisible and you can only carry one instance of an item.
+In the optiml solution either an item would be included or excluded. 
+Therefore, the maximum value that can be obtained from n items is max of following two values:
+1) Maximum value obtained by n-1 items and W weight (excluding nth item).
+2) Value of nth item plus maximum value obtained by n-1 items and W minus weight of the nth item (including nth item).
+
 
 ## Paths in the grid
 Finding a path in an `Y × X` grid from the upper-left corner to the lower-right corner. We are only allowed  to move right or down.
@@ -158,16 +163,97 @@ Every cell in the grid has a cost, the goal is to find the most costly path.
 Y,1  Y,2 .... Y,X
 ```
 Example of the costs map:
-```
-3 7 9 2 7
-9 8 3 5 5
-1 7 9 8 5
-3 8 6 4 10
-6 3 9 7 8
-```
 
+| 3 | 7 | 9 | 2 | 7 |
+|---|---|---|---|---|
+| 9 | 8 | 3 | 5 | 5 |
+| 1 | 7 | 9 | 8 | 5 |
+| 3 | 8 | 6 | 4 | 10|
+| 6 | 3 | 9 | 7 | 8 |
+
+
+## MultiStage Graph
+
+## Floyd Warshall Algorithm (All Pairs Shortest Path )
+
+## Bellman Ford Algorithm (Single Source Shortest Path )
 
 ## Levenshtein Distance
 
+## Matrix Chain Multiplication
+Suppose we need to calculate the following matrix multiplication:
+
+A<sub>5x4</sub>B<sub>4x6</sub>C<sub>6x2</sub>D<sub>6x2</sub>  
+
+We know that the total number of multiplications that we have to do to calculate 
+
+A<sub>5x4</sub>B<sub>4x6</sub>C<sub>6x2</sub> is `5x4x6=120`.
+
+We can do it in different orders:  
+`((AxB)xC)xD` or `(AxB)x(CxD)`
+
+
+
+If we show it in the form of binary tree with three node (because of three) multipication:
+```
+     O
+   /   \
+  O     O
+ / \   / \
+A   B C   D
+```
+or 
+
+```
+        O
+      /   \
+     O     O
+   /   \
+  O     C
+ / \  
+A   B 
+```
+For `n` nodes tottal number of trees:
+
+`(2n)!/((n+1)!n!)` or `C(2n,n)/(n+1)`
+
+to solve the best order for multipication, we create two tables:
+
+
+1)Multipication table
+
+M[1,2]=A<sub>1</sub> x A<sub>2</sub>
+
+M[1,3]=min ( (A<sub>1</sub> x A<sub>2</sub>)x A<sub>2</sub>  ,  A<sub>1</sub> x (A<sub>2</sub> x A<sub>2</sub> ) )
+
+
+M[1,3]=min (  M[1,1] + M[2,3] +5x4x2 , M[1,2] + M[3,3] + 5*6*2 )      
+
+
+M[1,3]=min (0,48+40, 120+0+60)=88
+
+
+M[2,4]=min ( A<sub>2</sub> x (A<sub>3</sub> x A<sub>4</sub> ) , (A<sub>2</sub> x A<sub>3</sub>)x A<sub>4</sub>  )
+
+
+M[2,4]=min (  M[2,2] + M[3,4] +4x6x7 , M[2,3] + M[4,4] + 4*2*7 )     
+
+M[2,4]=min (  0+84+168 , 48+0+56) = 104
+
+
+|   | 1 | 2 | 3 | 4 |
+|---|---|---|---|---|
+| 1 | 0 |120|   |   |
+| 2 | x | 0 | 48|   | 
+| 3 | x | x | 0 | 84| 
+| 4 | x | x | x | 0 | 
+
+
+
+
+
+
+
 Refs: [1](https://cses.fi/book.html),
       [2](https://www.geeksforgeeks.org/tabulation-vs-memoization/)
+      [3](https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/)
