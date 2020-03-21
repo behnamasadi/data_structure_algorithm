@@ -101,3 +101,6 @@ target_link_libraries(backtracking)
 
 add_executable(branch_and_bound src/algorithms/Branch_and_bound/branch_and_bound.cpp)
 target_link_libraries(branch_and_bound)
+
+add_executable(strassen_matrix_multiplication src/algorithms/Divide_and_conquer/strassen_matrix_multiplication.cpp)
+target_link_libraries(strassen_matrix_multiplication)

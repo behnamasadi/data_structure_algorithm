@@ -39,5 +39,80 @@ you should a subset of them such that total sum is exactly 30.
 
 ## Example 4: Graph Coloring Problem
 
+## 0/1 Knapsack problem
+Brute Force solution will give us all possible solution but we can use Backtracking to optimize the Brute Force solution.
+Knapsack capacity is 10.
+
+| Item name | Weight  | Value |
+| ----------|---------| ----- |
+| A         | 2       | 40    |
+| B         | 3.14    | 50    | 
+| C         | 1.98    | 100   | 
+| D         | 5       | 95    |
+| E         | 3       | 30    |
+
+
+Brute force Tree:
+
+```
+                                         A
+                                   /          \
+                                  /            \
+                                 /              \
+                                /                \
+                               /                  \
+                              B                    B
+                            /  \                 /  \
+                           C    C               C     C
+                         /  \  /  \           /  \   /  \
+                        D   D  D  D           D   D  D   D
+                       /\  /\ /\  /\         /\  /\ /\   /\
+                      E E E E E E E E       E E E E E E  E E
+                     /\/\/\/\/\/\/\ /\     /\/\/\/\/\/\ /\ /\   
+
+```  
+In the tree representation, we can do DFS of tree. If we reach a point where a solution no longer is feasible, there is no need to continue exploring. 
+
+
+Backtracking Tree:
+
+```
+                                         A
+                                   /          \
+                                  /            \
+                                 /              \
+                                /                \
+                               /                  \
+                              B                    B
+                            /  \                 /  \
+                           C    C               C     C
+                         /  \  /  \           /  \   /  \
+                        D   D  D  D           D   D  D   D
+                       /\  /\ /\  /\         /\  /\ /\   /\
+                        E   E E E E E         E E E E E  E E
+                        \  /\ \/\/\ /\       /\  \/\/\/\ /\ /\   
+
+```  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

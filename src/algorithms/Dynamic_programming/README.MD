@@ -178,6 +178,72 @@ Example of the costs map:
 
 ## Bellman Ford Algorithm (Single Source Shortest Path )
 
+## Traveling Salesman Problem
+Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city and returns to the origin city.
+
+```
+		 1←---→2
+		 ↑ ↖ ↗ ↑
+		 |  X  |
+		 ↓↙  ↘ ↓
+		 4←---→3
+
+ 1  2  3  4
+┌           ┐
+|0  10 15 20| 1
+|5  0  9  10| 2
+|6  13 0  12| 3
+|8  8  9  0 | 4
+└           ┘
+```
+
+`Cost(1,{2,3,4})=min{dist<sub>1K<sub> +Cost(K,{2,3,4}-{K} )  }`  
+or in general form:
+
+`Cost(i,S)=min{dist<sub>iK<sub> +Cost(K,S-{K} )  }` 
+
+
+```
+                                    1
+                               /    |    \
+                              2     3      4
+                            /  \   / \    /  \  
+                           3   4  2   4   2   3
+                           |   |  |   |   |   |
+                           4   3  4   2   3   2
+                           |   |  |   |   |   |
+                           1   1  1   1   1   1 
+```
+If we solve the problem from botton (from most left hand side node):
+
+Cost(3,{∅})=6  
+Cost(4,{∅})=8  
+Cost(2,{∅})=5  
+
+If we go one level higher:
+
+Cost(3,{4})=dist<3_4>+ Cost(4,{∅})=12+8=20  
+Cost(4,{3})=dist<4_3>+ Cost(3,{∅})=9+6=15  
+
+Cost(2,{4})=dist<2_4>+ Cost(4,{∅})=10+8=18  
+Cost(4,{2})=dist<4_2>+ Cost(2,{∅})=8+5=13  
+
+Cost(2,{3})=dist<2_3>+ Cost(3,{∅})=9+6=15  
+Cost(3,{2})=dist<3_2>+ Cost(2,{∅})=13+5=18  
+
+one level higher:
+
+Cost(2,{3,4})=min( dist<2_3> + Cost(3,{4}) +  dist<2_4> + Cost(4,{3}) )=min( 9+20, 10+15 )=25
+
+Cost(3,{2,4})=min( dist<3_2> + Cost(2,{4}) +  dist<3_4> + Cost(4,{2}) )=min( 13+18, 12+13 )=25
+
+Cost(4,{2,3})=min( dist<4_2> + Cost(2,{3}) +  dist<4_3> + Cost(3,{2}) )=min( 8+15, 9+18  )=23
+
+one level higher:
+
+Cost(1,{2,3,4})=min( dist<1_2> + Cost(2,{3,4}) +  dist<1_3> + Cost(3,{2,4}) ,  dist<1_4> + Cost(4,{2,3})  )=min(10+25,15+25,20+25 )=35
+
+
 ## Levenshtein Distance
 
 ## Matrix Chain Multiplication

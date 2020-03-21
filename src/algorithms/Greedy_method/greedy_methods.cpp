@@ -5,7 +5,7 @@
 #include <map>
 #include <queue>
 #include <vector>
-
+#include<bits/stdc++.h>
 namespace Huffman
 {
     class node
