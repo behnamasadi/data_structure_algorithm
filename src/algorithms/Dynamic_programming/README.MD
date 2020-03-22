@@ -215,13 +215,13 @@ or in general form:
                            1   1  1   1   1   1 
 ```
 If we solve the problem from botton (from most left hand side node):
-
+```
 Cost(3,{∅})=6  
 Cost(4,{∅})=8  
 Cost(2,{∅})=5  
-
+```
 If we go one level higher:
-
+```
 Cost(3,{4})=dist<3_4>+ Cost(4,{∅})=12+8=20  
 Cost(4,{3})=dist<4_3>+ Cost(3,{∅})=9+6=15  
 
@@ -230,19 +230,19 @@ Cost(4,{2})=dist<4_2>+ Cost(2,{∅})=8+5=13
 
 Cost(2,{3})=dist<2_3>+ Cost(3,{∅})=9+6=15  
 Cost(3,{2})=dist<3_2>+ Cost(2,{∅})=13+5=18  
-
+```
 one level higher:
-
+```
 Cost(2,{3,4})=min( dist<2_3> + Cost(3,{4}) +  dist<2_4> + Cost(4,{3}) )=min( 9+20, 10+15 )=25
 
 Cost(3,{2,4})=min( dist<3_2> + Cost(2,{4}) +  dist<3_4> + Cost(4,{2}) )=min( 13+18, 12+13 )=25
 
 Cost(4,{2,3})=min( dist<4_2> + Cost(2,{3}) +  dist<4_3> + Cost(3,{2}) )=min( 8+15, 9+18  )=23
-
+```
 one level higher:
-
+```
 Cost(1,{2,3,4})=min( dist<1_2> + Cost(2,{3,4}) +  dist<1_3> + Cost(3,{2,4}) ,  dist<1_4> + Cost(4,{2,3})  )=min(10+25,15+25,20+25 )=35
-
+```
 
 ## Levenshtein Distance
 

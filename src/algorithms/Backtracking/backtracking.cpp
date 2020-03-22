@@ -92,6 +92,64 @@ std::string digit_in_binary_form(unsigned x)
     return s;
 }
 
+template
+<typename T>
+class Matrix
+{
+public:
+    size_t m,n;
+    std::vector<std::vector<T> >data;
+    Matrix(size_t m,size_t n)
+    {
+        data=std::vector(m,std::vector<T>(n,0));
+    }
+    void print()
+    {
+        for(size_t i=0;i<data.size();i++)
+        {
+            for(size_t j=0;j<data[i].size();j++)
+            {
+                std::cout<< data[i][j]<<" ";
+
+            }
+            std::cout<<std::endl;
+        }
+
+
+    }
+};
+
+void hamiltonCycle()
+{
+    size_t m,n;
+    m=5;
+    n=5;
+    Matrix<int> mat(5,5);
+    mat.data[0]=std::vector<int>{0,1,1,0,1};
+    mat.data[1]=std::vector<int>{1,0,1,1,1};
+    mat.data[2]=std::vector<int>{1,1,0,1,0};
+    mat.data[3]=std::vector<int>{0,1,1,0,1};
+    mat.data[4]=std::vector<int>{1,1,0,1,0};
+    mat.print();
+    std::vector<int> X(m,0);
+    X[0]=0;// this is fixed and point to the first node (element) in the graph
+
+
+    //nextVertex(size_t k, std::vector<int> X);
+
+}
+
+void nextVertex(size_t k, std::vector<int> X)
+{
+    int n=X.size();
+    do
+    {
+        X[k]=(X[k]+1)%(n+1);
+        //if(X[])
+
+    }while(1);
+}
+
 int main()
 {
     std::vector<char> vc{ 'A', 'B', 'C', 'D' };
@@ -105,5 +163,10 @@ int main()
     powerSet(vc);
     std::cout << "------Binary----------"<<std::endl;
     std::cout << digit_in_binary_form(25)<<std::endl;
+
+    {
+
+
+    }
     return 0;
 }

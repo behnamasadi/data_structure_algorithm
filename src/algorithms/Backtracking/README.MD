@@ -39,7 +39,7 @@ you should a subset of them such that total sum is exactly 30.
 
 ## Example 4: Graph Coloring Problem
 
-## 0/1 Knapsack problem
+## Example 5: 0/1 Knapsack problem
 Brute Force solution will give us all possible solution but we can use Backtracking to optimize the Brute Force solution.
 Knapsack capacity is 10.
 
@@ -94,14 +94,49 @@ Backtracking Tree:
 
 ```  
 
+## Example 6: Hamiltonian Cycle
+Hamiltonian cycle is a graph cycle (i.e., closed loop) through a graph that visits each node exactly once. It is a NP hard problem.
+If there is a articulation point in a graph then hamiltonian cycle doesn't exist in that graph. If there is also pendant vertex 
+the hamiltonian cycle doesn't exist.
+
+```
+              1       5                        a  
+            /   \   / |                      /   \ 
+           /     \ /  |                     /     \
+          2       3   |                    b       c 
+           \     / \  |                     \     /   
+            \   /   \ |                      \   /
+              4       6                        d
+                                              / \
+                                             e   f
+```
+1) 3 is an articulation point
+2) `e`and `f` are pendant vertices.
 
 
 
+Graph
+```
+|-----------|
+|           |
+|           |
+0-------1\  |
+|       | \ |
+|       |  2
+|       | /
+4-------3/
+```
 
-
-
-
-
+Adjacency Matrix
+```
+┌                    ┐
+|0   1   1   0   1   |
+|1   0   1   1   1   |
+|1   1   0   1   0   |
+|0   1   1   0   1   |
+|1   1   0   1   0   |
+└                    ┘
+```
 
 
 

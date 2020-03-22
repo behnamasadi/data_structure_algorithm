@@ -31,6 +31,9 @@ This repository contains my tutorial code for my Data Structure and Algorithm pr
 ![alt text](https://img.shields.io/badge/license-BSD-blue.svg)
 
 
+To find all unfinished/ halfway done code, in qt-creator, go to Help > About Plugins and enable the todo plugin. Then After compilation, under todo entries window
+next to compiler output you can find un-completed tasks (click on active project).
+
 
 References:[1](https://www.geeksforgeeks.org/data-structures/), 
 	[2](https://www.udemy.com/course/datastructurescncpp/l),

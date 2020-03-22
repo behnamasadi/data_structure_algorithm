@@ -309,8 +309,33 @@ Directed graph with loop and self edges.
 Degree: number of edges connected to a vertex.  
 ### Non-connected Graph
 graph with more than component.  
-**Articulation point:** the vertices that if you remove them (along the connected edges connected),
+**Articulation point(cut vertex):** the vertices that if you remove them (along the connected edges connected),
 the graph became a non-connected graph.
+
+3 and 0 are articulation points.
+```
+1---0-----3
+|  /      |
+| /       |
+|/        |
+2         4
+```
+
+1 is an articulation points.
+```
+0\         /3\ 
+|  \     /     \
+|    \1/         \5
+|    /|\         /
+|  /  |  \     /
+2/    |    \4/
+      |
+      |
+      6
+```
+
+
+
 ### Connected graph Bi-Connecte Component
 It can not be divided into components if you remove any edges.
 ### Strongly Connected Graph 

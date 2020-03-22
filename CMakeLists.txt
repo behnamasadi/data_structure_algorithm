@@ -89,6 +89,14 @@ target_link_libraries(red_black_tree)
 add_executable(2_3_trees src/trees/2_3_trees.cpp)
 target_link_libraries(2_3_trees)
 
+add_executable(articulation_point src/graphs/articulation_point.cpp)
+target_link_libraries(articulation_point)
+
+add_executable(recursion_into_iterative src/recursion/recursion_into_iterative.cpp)
+target_link_libraries(recursion_into_iterative)
+
+
+
 ################################ Algorithms ################################
 add_executable(greedy_methods src/algorithms/Greedy_method/greedy_methods.cpp)
 target_link_libraries(greedy_methods)
@@ -104,3 +112,5 @@ target_link_libraries(branch_and_bound)
 
 add_executable(strassen_matrix_multiplication src/algorithms/Divide_and_conquer/strassen_matrix_multiplication.cpp)
 target_link_libraries(strassen_matrix_multiplication)
+
+
