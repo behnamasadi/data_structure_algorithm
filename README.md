@@ -35,11 +35,13 @@ To find all unfinished/ halfway done code, in qt-creator, go to Help > About Plu
 next to compiler output you can find un-completed tasks (click on active project).
 
 
-References:[1](https://www.geeksforgeeks.org/data-structures/), 
-	[2](https://www.udemy.com/course/datastructurescncpp/l),
-	[3](https://www.tutorialspoint.com/data_structures_algorithms),
-	[4](https://brilliant.org/wiki/sorting-algorithms/),
-    [5](https://www.cs.usfca.edu/~galles/visualization/Algorithms.html),
-    [6](https://www.geeksforgeeks.org/must-do-coding-questions-for-companies-like-amazon-microsoft-adobe/),
-    [7](https://www.youtube.com/watch?v=0IAPZzGSbME&list=PLDN4rrl48XKpZkf03iYFl-O29szjTrs_O)
+References:
+[1](https://www.geeksforgeeks.org/data-structures/), 
+[2](https://www.udemy.com/course/datastructurescncpp/l),
+[3](https://www.tutorialspoint.com/data_structures_algorithms),
+[4](https://brilliant.org/wiki/sorting-algorithms/),
+[5](https://www.cs.usfca.edu/~galles/visualization/Algorithms.html),
+[6](https://www.geeksforgeeks.org/must-do-coding-questions-for-companies-like-amazon-microsoft-adobe/),
+[7](https://www.youtube.com/watch?v=0IAPZzGSbME&list=PLDN4rrl48XKpZkf03iYFl-O29szjTrs_O),
+[8](https://www.youtube.com/channel/UCD8yeTczadqdARzQUp29PJw)
 

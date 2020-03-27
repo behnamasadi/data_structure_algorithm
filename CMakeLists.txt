@@ -89,12 +89,11 @@ target_link_libraries(red_black_tree)
 add_executable(2_3_trees src/trees/2_3_trees.cpp)
 target_link_libraries(2_3_trees)
 
-add_executable(articulation_point src/graphs/articulation_point.cpp)
-target_link_libraries(articulation_point)
+add_executable(articulation_point_bridge src/graphs/articulation_point_bridge.cpp)
+target_link_libraries(articulation_point_bridge)
 
 add_executable(recursion_into_iterative src/recursion/recursion_into_iterative.cpp)
 target_link_libraries(recursion_into_iterative)
-
 
 
 ################################ Algorithms ################################

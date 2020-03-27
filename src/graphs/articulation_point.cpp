@@ -1,6 +1,0 @@
-//TODO
-//FIXME
-int main()
-{
-
-}

@@ -309,7 +309,7 @@ Directed graph with loop and self edges.
 Degree: number of edges connected to a vertex.  
 ### Non-connected Graph
 graph with more than component.  
-**Articulation point(cut vertex):** the vertices that if you remove them (along the connected edges connected),
+**Articulation point(Cut Vertex):** The vertices that if you remove them (along the connected edges connected),
 the graph became a non-connected graph.
 
 3 and 0 are articulation points.
@@ -332,6 +332,49 @@ the graph became a non-connected graph.
       |
       |
       6
+```
+
+**Bridge:** The edges that if you remove them, the graph became a non-connected graph.
+
+**Bridge Algorithm:**  
+Start DFS traverse at any arbitrary node. DFS search will transform ur undirected edge into directed edges.   
+Assign two variable to each node: `ID` and `Lowest Link`.  
+`ID` is a unique number that increase after visitig each node.  
+`Lowest Link` is the smallest value of node ID rechable from that node (including the ID of the node itself).  
+During DFS search, bridges will be found where the ID of the node your edge is coming from is less than the `Lowest Link` value of the node your edge is going to.
+That means there is no way back to the node that you came from.
+
+`A (IDs: Lowest Link values)  -----> B(IDs: Lowest Link values)`
+
+If (A.ID< B.Lowest Link) Then A->B is a bidge.
+
+Our Graph is:  
+
+```
+                  A
+                /   \
+               B----- C
+                   /   \
+                  F     D
+                 / \     \
+                /   G     E
+               /     \
+              I-------H
+```
+
+
+The values written in the node is (Assigned IDs: Lowest Link values)  
+
+```
+                  0:0
+                ↙   ↖
+               1:0--→ 2:0
+                   ↙   ↘
+                  5:5   3:3
+                 ↗ ↘     ↘
+                /   6:5    4:4
+               /     ↘
+              8:5←----7:5
 ```
 
 
