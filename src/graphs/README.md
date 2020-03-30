@@ -266,6 +266,7 @@ Cost:10
 Cost:14
 ```
 ### Algorithm for Finding Minimum Spanning Tree 
+<<<<<<< Updated upstream
 **1) Prim's lazy MST Algorithm.**  
 **2) Prim's eager MST Algorithm.**  
 **3) Kruskal's MST Algorithm.** 
@@ -274,6 +275,17 @@ Cost:14
 ### Kruskal's MST Algorithm
 1) Select a minimum cost edge from graph.  
 2) Select a minimum cost edge from graph such that it connected to the previously selected edge.  
+=======
+**1)Prim's Algorithm.**  
+It is and geedy algorithm. Lazy version of Prim's algorithm has a runtime of `O(E*log(E))` but the eager version has time complexity of `O(E*Log(V))`.
+
+In this algorithm we keep the edges in a priority queue.
+
+
+**2)Kruskal's Algorithm.**  
+1)Select a minimum cost edge from graph.  
+2)Select a minimum cost edge from graph such that it connected to the previously selected edge.  
+>>>>>>> Stashed changes
 Time complexity: `(|V|-1)*|E|=n*e=O(N^2)`   
 If you use a heap for finding the minimum, time complexity would be `(|V|-1)*log(|E|) =O(NLog(n))`  
 Vertices: `1,2,3,4,5,6,7`
@@ -396,11 +408,39 @@ You can reach any vertexes from any other one.
 Directed graph without any cycles.
 We can arrange all vertices of a directed acyclic graph linearly in asingle line such that the edge are going only in forward direction topological ordering of vertices.
 
-### Shortest Path (Floyd-Warshall)
- 
-### Cycle detection (Brent's algorithm)
 
-▲ ▼ ► ◄ ↘ ↖ ↙ ↗ ↑ ↓ ← → ↗ ↖ ↘ ↙ ↖ ➚ ➘  ⤸ ⤹ ⤺ ⤻ ⤶ ⤷ ↷ ↶ ↻ ↺
-Arrow key ascii list: https://www.alt-codes.net/arrow_alt_codes.php
+## Shortest Path Problem Algorithms
+
+### Single Pair Shortest Path (A*)
+A* search algorithm solves for single pair shortest path using heuristics to try to speed up the search.
 
 
+###  Single Source Shortest Path to All (Dijkstra) 
+This algorithm finds the shortest path between a single source to all other vetices for non-negative edge weight.
+Dijkstra’s algorithm is a Greedy algorithm and time complexity is `O((V+E)LogV)` when using binary heap priority queue.
+
+
+
+
+### Single Source Shortest Path to All (Bellman–Ford)
+This algorithm finds the shortest path between a single source to all other vetices (edges could be non-negative). 
+Time complexity of Bellman-Ford is `O(VE)`, which is more than Dijkstra. We use it when  Dijkstra failes with negative edges.
+
+
+### All Pairs Shortest Path (Floyd-Warshall)
+Floyd–Warshall algorithm solves all pairs shortest paths.
+
+### All Pairs Shortest Path (Johnson)
+solves all pairs shortest paths, and may be faster than Floyd–Warshall on sparse graphs.
+
+
+### Shortest Stochastic Path (Viterbi)
+solves the shortest stochastic path problem with an additional probabilistic weight on each node.
+
+
+## Cycle Detection 
+### Floyd's Algorithm
+
+### Brent's Algorithm
+
+List of ascii arrows: [1](https://www.alt-codes.net/arrow_alt_codes.php) ▲ ▼ ► ◄ ↘ ↖ ↙ ↗ ↑ ↓ ← → ↗ ↖ ↘ ↙ ↖ ➚ ➘  ⤸ ⤹ ⤺ ⤻ ⤶ ⤷ ↷ ↶ ↻ ↺ 
