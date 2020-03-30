@@ -1,9 +1,9 @@
 
 # Graph Representation
-**1)Adjacency Matrix**  
-**2)Adjacency List**  
-**3)Compact List**  
-### Adjacency Matrix (Undirected Graph)
+**1) Adjacency Matrix**  
+**2) Adjacency List**  
+**3) Compact List**  
+### 1-a) Adjacency Matrix (Undirected Graph)
 ```
 G=(V,E)
 |V|=5
@@ -25,7 +25,7 @@ G=(V,E)
 |0 0 1 1 0 | 5
 └          ┘
 ```
-### Adjacency Matrix (Directed Graph)
+### 1-b) Adjacency Matrix (Directed Graph)
 ```
 		 1----→2
 		 | ↖   |
@@ -43,15 +43,15 @@ G=(V,E)
 
 
 #### Pros
-1)Representation is easier to implement and follow.
-2)Removing an edge takes O(1) time.
-3)Queries like whether there is an edge from vertex ‘u’ to vertex ‘v’ are efficient and can be done O(1).
+1) Representation is easier to implement and follow.  
+2) Removing an edge takes `O(1)` time.  
+3) Queries like whether there is an edge from vertex ‘u’ to vertex ‘v’ are efficient and can be done `O(1)`.  
 #### Cons
-1)Consumes more space O(V^2). Even if the graph is sparse(contains less number of edges), it consumes the same space. Adding a vertex is O(V^2) time.
+1) Consumes more space `O(V^2)`. Even if the graph is sparse(contains less number of edges), it consumes the same space. Adding a vertex is `O(V^2)` time.
 
 Number of elements `N^2`
-Any algorithm on a graph in matrix form has O(N^2)
-### Cost Adjacency Matrix
+Any algorithm on a graph in matrix form has `O(N^2)`
+### 1-c) Cost Adjacency Matrix
 ```
             9
          1-----2
@@ -71,9 +71,9 @@ Any algorithm on a graph in matrix form has O(N^2)
 |0 0 1 1 0 | 5
 └          ┘
 ```
-Number of elements N^2
-Any algorithm on a graph in matrix form has O(N^2)
-### Adjacency List (Undirected Graph)
+Number of elements `N^2`
+Any algorithm on a graph in matrix form has `O(N^2)`
+### 2-a) Adjacency List (Undirected Graph)
 ```
 1 -> 2 -> 3 -> 4
 2 -> 1 -> 3
@@ -81,9 +81,9 @@ Any algorithm on a graph in matrix form has O(N^2)
 4 -> 1 -> 4 -> 5
 5 -> 3 -> 4
 ```
-Number of elements |V|+2|E|=N+2e
-Time Complexity: O(N).
-### Adjacency List (Directed Graph)
+Number of elements `|V|+2|E|=N+2e`  
+Time Complexity: `O(N)`.
+### 2-b) Adjacency List (Directed Graph)
 ```
 		 1----→2
 		 | ↖   |
@@ -105,7 +105,7 @@ To have in going edges, we create an inverse adjacency list:
 3 -> 2 -> 4
 4 -> 1
 ```
-### Cost Adjacency List
+### 2-c) Cost Adjacency List
 In the list alongside the edge we store the weight
 ```
 1 -> 2|9 -> 3|4 -> 4|6
@@ -114,7 +114,7 @@ In the list alongside the edge we store the weight
 4 -> 1| -> 4| -> 5|
 5 -> 3| -> 4|
 ```
-### Compact List
+### 3) Compact List
 ```
          1-----2
          | \   |
@@ -179,11 +179,11 @@ BFS Spanning Tree:
 **BFS**: Level order traversal: `1,4,2,6,3,5,7,6`  
 **DFS**: In-order traversal: `1,4,5,7,6,2,3`  
 #### BFS Terms
-**1)Visiting:** Going to a particular vertex.  
-**2)Exploring:** Visiting all adjacent vertices.  
+**1) Visiting:** Going to a particular vertex.  
+**2) Exploring:** Visiting all adjacent vertices.  
 #### DFS Terms
-**1)Visited:** If all neighbors of a vertex has been visited.  
-**2)Exploring:** Visiting all adjacent vertices.  
+**1) Visited:** If all neighbors of a vertex has been visited.  
+**2) Exploring:** Visiting all adjacent vertices.  
 Time taken: O(N)
 
 
@@ -198,9 +198,9 @@ Total number of edges is  number of vertices -1.
 By this definition, we can draw a conclusion that every connected and undirected Graph G has at least one spanning tree. 
 A disconnected graph does not have any spanning tree, as it cannot be spanned to all its vertices.
 Spanning tree is basically used to find a minimum path to connect all nodes in a graph. Common application of spanning trees are −
-1)Civil Network Planning
-2)Computer Network Routing Protocol
-3)Cluster Analysis
+1) Civil Network Planning  
+2) Computer Network Routing Protocol  
+3) Cluster Analysis  
 ```
 |V|=4
 |E|=6
@@ -266,10 +266,10 @@ Cost:10
 Cost:14
 ```
 ### Algorithm for Finding Minimum Spanning Tree 
-**1)Prim's Algorithm.**  
-**2)Kruskal's Algorithm.**  
-1)Select a minimum cost edge from graph.  
-2)Select a minimum cost edge from graph such that it connected to the previously selected edge.  
+**1) Prim's Algorithm.**  
+**2) Kruskal's Algorithm.**  
+1) Select a minimum cost edge from graph.  
+2) Select a minimum cost edge from graph such that it connected to the previously selected edge.  
 Time complexity: `(|V|-1)*|E|=n*e=O(N^2)`   
 If you use a heap for finding the minimum, time complexity would be `(|V|-1)*log(|E|) =O(NLog(n))`  
 Vertices: `1,2,3,4,5,6,7`
