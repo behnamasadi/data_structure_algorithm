@@ -266,8 +266,12 @@ Cost:10
 Cost:14
 ```
 ### Algorithm for Finding Minimum Spanning Tree 
-**1) Prim's Algorithm.**  
-**2) Kruskal's Algorithm.**  
+**1) Prim's lazy MST Algorithm.**  
+**2) Prim's eager MST Algorithm.**  
+**3) Kruskal's MST Algorithm.** 
+### Prim's lazy MST Algorithm
+### Prim's eager MST Algorithm
+### Kruskal's MST Algorithm
 1) Select a minimum cost edge from graph.  
 2) Select a minimum cost edge from graph such that it connected to the previously selected edge.  
 Time complexity: `(|V|-1)*|E|=n*e=O(N^2)`   
@@ -379,13 +383,14 @@ The values written in the node is (Assigned IDs: Lowest Link values)
 
 
 
-### Connected graph Bi-Connecte Component
+### Connected Graph Bi-Connecte Component
 It can not be divided into components if you remove any edges.
 ### Strongly Connected Graph 
-You can reach any vertexes from any other one.
-Connected VS Strongly connected.
-**Path:** Set of all vertices between two vertices.
-**Cycle:** Path from a vertex to itself.
+You can reach any vertexes from any other one. 
+### Connected VS Strongly connected.
+**Path:** Set of all vertices between two vertices.  
+**Cycle:** Path from a vertex to itself.  
+
 ### Directed Acyclic Graph DAG
 Directed graph without any cycles.
 We can arrange all vertices of a directed acyclic graph linearly in asingle line such that the edge are going only in forward direction topological ordering of vertices.
