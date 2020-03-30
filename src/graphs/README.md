@@ -302,11 +302,12 @@ Costs:
 └                   ┘ 7
 ```
 ### Directed Graph
-**Self loop:** If a vertex has an edge from itself to itself.
-####Parallel edges
-**Indegree:** number of edges come into graph. 
-**Outdegree:** number of edges come out of graph. 
+**Self loop:** If a vertex has an edge from itself to itself.  
+**Parallel edges**  
+**Indegree:** number of edges come into graph.  
+**Outdegree:** number of edges come out of graph.  
 **Adjacent Vertices:** If two vertices are connected via an edge.  
+
 ### Simple Digraph
 Directed graph with loop and self edges.  
 ### Non-directed (undirected) Graph
