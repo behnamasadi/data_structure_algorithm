@@ -92,9 +92,14 @@ target_link_libraries(2_3_trees)
 add_executable(articulation_point_bridge src/graphs/articulation_point_bridge.cpp)
 target_link_libraries(articulation_point_bridge)
 
+add_executable(bellman_ford src/graphs/bellman_ford.cpp)
+target_link_libraries(bellman_ford)
+
+add_executable(floyd_warshall src/graphs/floyd_warshall.cpp)
+target_link_libraries(floyd_warshall)
+
 add_executable(recursion_into_iterative src/recursion/recursion_into_iterative.cpp)
 target_link_libraries(recursion_into_iterative)
-
 
 ################################ Algorithms ################################
 add_executable(greedy_methods src/algorithms/Greedy_method/greedy_methods.cpp)

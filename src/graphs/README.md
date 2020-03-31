@@ -415,6 +415,8 @@ We can arrange all vertices of a directed acyclic graph linearly in asingle line
 A* search algorithm solves for single pair shortest path using heuristics to try to speed up the search.
 
 
+###  Single Source Shortest Path to All (BFS) 
+
 ###  Single Source Shortest Path to All (Dijkstra) 
 This algorithm finds the shortest path between a single source to all other vetices for non-negative edge weight.
 Dijkstra’s algorithm is a Greedy algorithm and time complexity is `O((V+E)LogV)` when using binary heap priority queue.
@@ -426,9 +428,145 @@ Dijkstra’s algorithm is a Greedy algorithm and time complexity is `O((V+E)LogV
 This algorithm finds the shortest path between a single source to all other vetices (edges could be non-negative). 
 Time complexity of Bellman-Ford is `O(VE)`, which is more than Dijkstra. We use it when  Dijkstra failes with negative edges.
 
+We have the following variables and data structures:
+`E`: Number of edges.  
+`V`: Number of vertices.
+`S`: id of teh starting vertex.
+`D`: array of size `V` that track the best distance from `S` to each node. `D[S]=0` and for the rest: `D[rest]=∞`
 
-### All Pairs Shortest Path (Floyd-Warshall)
-Floyd–Warshall algorithm solves all pairs shortest paths.
+The algorithm takes at most `V-1` iteration. In every iteration we have to visit all edges, therefore we pick vertices one by one 
+and we check if cost of reaching its neighbour (`D[vertex]+vertex.edge.weigth`) is smaller than the cost that neighbour already has (`D[vertex.edge.to]`):
+
+```
+class edge
+{
+        size_t to,from;
+        double weight
+};
+```
+
+```
+for( i=0; i<V-1; i++)
+{
+        for(vertex in vertices)
+                for(edge in vertex.edges)
+                {
+                        if(D[vertex]+vertex.edge.weight < D[vertex.edge.to])
+                        {
+                                D[vertex.edge.to]=D[vertex]+vertex.edge.weight
+                        }
+                }
+}
+```
+
+### All Pairs Shortest Path (Floyd-Warshall)  
+
+Floyd–Warshall algorithm can find the shortest path between all pairs of nodes. time complexity is `O(V^3)`. Optimal way to represent a graph is 2D adjacency matrix. If there is no edge between nodes, the distance between them is `∞`. Since there is no self loop the distance from each node to itself is 0.This algorithm is based on dynamic programing. Basically the shortest path between
+node `i` and `j` might be the direct edge between them or it might be from `i` to `k` and them from `1` to `k`, for `k=1,2 , ..n`.
+Again this could be reapted, untill we test all nodes between two nodes.
+Let say we have the following graph:
+
+```
+          ◄----8------
+         1-------3--►2
+        | ▲⬉         |       
+        | |  \       |2 
+        | 2    5     |
+        7 |      \   |
+        ▼ ▼       \  ▼  
+         4◄---1----- 3
+```
+The adjacency matrix for this graph is the following, we call it A<sup>0</sup>:
+
+```
+   1  2  3  4 
+  ┌            ┐
+1 |0  3  ∞  7  |
+2 |8  0  2  ∞  |
+3 |5  ∞  0  1  |
+4 |2  ∞  ∞  0  |
+  └            ┘
+```
+
+If we for every two node `i` and `j`, we examine the minimum distance by going directly from `i` to `j` or through node `1`, we would get the following matrix which we call it A<sup>1</sup>:
+
+```
+   1  2  3  4 
+  ┌            ┐
+1 |0  3  ∞  7  |
+2 |8  0  2  15 |
+3 |5  8  0  1  |
+4 |2  8  ∞  0  |
+  └            ┘
+```
+Example:  
+A<sup>1</sup>[2,4]= min( A<sup>0</sup>[2,4] , A<sup>0</sup>[2,1]+A<sup>0</sup>[1,4]  )
+A<sup>1</sup>[2,4]= min( ∞ , 7+8  )
+A<sup>1</sup>[2,4]= 15
+
+
+Now if we include node `2` and we examine the minimum distance between `i` to `j` (which might go through node 1), we would get the following matrix, which we call it A<sup>2</sup>:
+
+```
+   1  2  3  4 
+  ┌            ┐
+1 |0  3  5  7  |
+2 |8  0  2  15 |
+3 |5  8  0  1  |
+4 |2  5  7  0  |
+  └            ┘
+```
+Example:  
+
+A<sup>2</sup>[1,3]= min( A<sup>1</sup>[1,3] , A<sup>1</sup>[1,2]+A<sup>1</sup>[2,3]  )
+A<sup>2</sup>[1,3]= min( ∞ , 3+2  )
+A<sup>2</sup>[1,3]=5
+
+
+Now if we include node `3` and we examine the minimum distance between `i` to `j` (which might go through node 2 itself and that might go through node 1 as well), we would get the following matrix, which we call it A<sup>3</sup>:
+
+
+```
+   1  2  3  4 
+  ┌            ┐
+1 |0  3  5  6  |
+2 |7  0  2  3  |
+3 |5  8  0  1  |
+4 |2  5  7  0  |
+  └            ┘
+```
+
+
+Now if we include node `4`, we would get the following matrix, which we call it A<sup>4</sup>:
+
+```
+   1  2  3  4 
+  ┌            ┐
+1 |0  3  5  6  |
+2 |5  0  2  3  |
+3 |3  6  0  1  |
+4 |2  5  7  0  |
+  └            ┘
+```
+If we stack these matrices, we will get a `3x3` matrix. To get any element such as `A[i,j,k]`, we need to have `A[i,j,k-1]`.
+
+A<sup>k</sup>[i,j]= min( A<sup>k-1</sup>[i,j] , A<sup>k-1</sup>[i,k]+A<sup>k-1</sup>[k,j]  )
+
+
+```
+             ┌            ┐ 
+          ┌            ┐  | 
+        ┌            ┐ |  |
+     ┌            ┐  | |  |
+  ┌            ┐  |  | |  |
+  |            |  |  | |  ┘ <------A[i,j,4]
+  |            |  |  | ┘ <------A[i,j,3]
+  |            |  |  ┘ <------A[i,j,2]
+  |            |  ┘  <------A[i,j,1]
+  └            ┘   <------A[i,j,0]
+```
+
+
 
 ### All Pairs Shortest Path (Johnson)
 solves all pairs shortest paths, and may be faster than Floyd–Warshall on sparse graphs.
