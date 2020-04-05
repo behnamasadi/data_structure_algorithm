@@ -26,6 +26,11 @@ This repository contains my tutorial code for my Data Structure and Algorithm pr
 [Sort Algorithms](src/sort_algorithms/)   
 [Binary Trees, AVL Tree, B/B+ Trees, Search Trees, Tree Traversal](src/trees)  
 
+## Theory of Computation
+[Regular Languages and Finite Automata](theory_of_computation/regular_languages_and_finite_automata/README.md)
+[Context Free Grammar and Context Free Languages](theory_of_computation/context_free_grammar_and_context_free_languages/README.md)
+[Pushdown Automata](theory_of_computation/pushdown_automata/README.md)
+[Turing Machine](theory_of_computation/turing_machine/README.md)
 
 [![Build Status](https://travis-ci.org/behnamasadi/data_structure_algorithm.svg?branch=master)](https://travis-ci.com/behnamasadi/data_structure_algorithm)
 ![alt text](https://img.shields.io/badge/license-BSD-blue.svg)
@@ -43,5 +48,7 @@ References:
 [5](https://www.cs.usfca.edu/~galles/visualization/Algorithms.html),
 [6](https://www.geeksforgeeks.org/must-do-coding-questions-for-companies-like-amazon-microsoft-adobe/),
 [7](https://www.youtube.com/watch?v=0IAPZzGSbME&list=PLDN4rrl48XKpZkf03iYFl-O29szjTrs_O),
-[8](https://www.youtube.com/channel/UCD8yeTczadqdARzQUp29PJw)
+[8](https://www.youtube.com/channel/UCD8yeTczadqdARzQUp29PJw),
+[9](https://github.com/williamfiset/algorithms)
+[10](https://www.geeksforgeeks.org/theory-of-computation-automata-tutorials)
 

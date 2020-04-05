@@ -101,6 +101,10 @@ target_link_libraries(floyd_warshall)
 add_executable(recursion_into_iterative src/recursion/recursion_into_iterative.cpp)
 target_link_libraries(recursion_into_iterative)
 
+add_executable(hamiltonian_path src/graphs/hamiltonian_path.cpp)
+target_link_libraries(hamiltonian_path)
+
+
 ################################ Algorithms ################################
 add_executable(greedy_methods src/algorithms/Greedy_method/greedy_methods.cpp)
 target_link_libraries(greedy_methods)

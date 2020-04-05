@@ -575,10 +575,49 @@ solves all pairs shortest paths, and may be faster than Floyd–Warshall on spar
 ### Shortest Stochastic Path (Viterbi)
 solves the shortest stochastic path problem with an additional probabilistic weight on each node.
 
+## Hamiltonian Path Cycle
+a Hamiltonian path (or traceable path) is a path in an undirected or directed graph that visits each vertex exactly once. If there is an articulation point,
+hamiltonian path is not possible. If there is a pendant vertex hamiltonian path doesn't. exist.
 
+
+```
+         --------------
+        /              \
+       0-----------1     \
+       |          /|       \ 
+       |        /  |         2
+       |      /    |       /
+       |    /      |     /
+       |  /        |   /
+       |/          | /
+       4-----------3
+    
+```
+Adjacency Matrix:
+
+```
+   0  1  2  3  4 
+  ┌              ┐
+0 |0  1  1  0  1 |
+1 |1  0  1  1  1 |
+2 |1  1  0  1  0 |
+3 |0  1  1  0  1 |
+4 |1  1  0  1  0 |
+  └              ┘
+```
+
+Bounding condition:
+1) There shouldn't be any duplicate vertices.
+2) Evry time you add a vertex to the pat you must check if there is path from previous vertx in the path.
+3) If you are on the last vertex, there should be an edge to the first element in the path.
+
+
+So the main algorithm is basically DFS traversing the tree and bounding with above 3 conditions.
 ## Cycle Detection 
+
+
 ### Floyd's Algorithm
 
 ### Brent's Algorithm
 
-List of ascii arrows: [1](https://www.alt-codes.net/arrow_alt_codes.php) ▲ ▼ ► ◄ ↘ ↖ ↙ ↗ ↑ ↓ ← → ↗ ↖ ↘ ↙ ↖ ➚ ➘  ⤸ ⤹ ⤺ ⤻ ⤶ ⤷ ↷ ↶ ↻ ↺ 
+List of ascii arrows: [1](https://www.alt-codes.net/arrow_alt_codes.php) ▲ ▼ ► ◄ ↘ ↖ ↙ ↗ ↑ ↓ ← → ↗ ↖ ↘ ↙ ↖ ➚ ➘ ⤻ ⤺ ⤿ ⤹ ⤸  ⤷ ⤶ ↷ ↶ ⤴ ⤵  ⤶ ⤷ ⤼ ⤽ ↶ ↻ ↺ 
