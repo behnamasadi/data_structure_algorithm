@@ -16,15 +16,11 @@ F: Set of Final State
 
 
 ```
-           
-           ⤺ 
-    →  ◯        ◯ B      
-     A     ⤻
-             
-  ⤹  ⤴        ⤹   ⤴
-           ⤺   
-    C  ◯        ⦾   D
-           ⤻
+    →A ◯  ⤺   ◯ B      
+          ⤻
+     ↓ ↑       ↓ ↑
+     C ◯  ⤺   ⦾ D
+          ⤻
 ```
 Q: {A, b, C, D}
 q0: Start/ Initial State
@@ -46,15 +42,11 @@ In NFA, given the current state, there could be multiple next state
 
 
 ```
-           
-           1
-   A   ◯   →   ◯ B 
+          1 
+    A  ◯  →  ◯ B 
       0 ↻   
-              
-    Є  ↓   ↘0   
-    
-    C  ◯      ⦾   D
-            
+    Є  ↓  ↘0   
+    C  ◯     ⦾   D
 ```
 
 
