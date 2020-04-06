@@ -18,27 +18,27 @@ F: Set of Final State
 ```
            
            ⤺ 
-  →    ◯            ◯ B      
+    →  ◯        ◯ B      
      A     ⤻
              
-       ⤹  ⤴            ⤹   ⤴
-            ⤺   
-    C  ◯           ⦾   D
-            ⤻
+  ⤹  ⤴        ⤹   ⤴
+           ⤺   
+    C  ◯        ⦾   D
+           ⤻
 ```
 Q: {A, b, C, D}
 q0: Start/ Initial State
 Σ: {0,1}
 F: {D}
 𝛿:  
-```
+ 
 |   | 0 | 1 |
 |---|---|---|
 | A | C | B |
 | B | D | A |
 | C | A | D |
 | D | B | C |
-```
+ 
 
 
 2) NFA: Non Deterministic Finite Automata
