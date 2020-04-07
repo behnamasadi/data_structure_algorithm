@@ -56,3 +56,6 @@ With output
 1) Moore Machine
 2) Mealy Machine
 
+
+
+Refs: [1](https://en.wikipedia.org/wiki/Deterministic_finite_automaton)

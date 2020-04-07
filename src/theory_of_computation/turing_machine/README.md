@@ -17,4 +17,5 @@ Infinite long tape, broken up into cells which contains `0`, `1` or blank symbol
   |  └           ┘  |
   └                 ┘
 ```
-
+Refs: [1](https://www.youtube.com/watch?v=D9eF_B8URnw),
+      [2](https://www.youtube.com/watch?v=GPSk9tRsK2I)

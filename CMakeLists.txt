@@ -121,4 +121,8 @@ target_link_libraries(branch_and_bound)
 add_executable(strassen_matrix_multiplication src/algorithms/Divide_and_conquer/strassen_matrix_multiplication.cpp)
 target_link_libraries(strassen_matrix_multiplication)
 
+################################ Practice ################################
 
+IF(IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/src/practice")
+        ADD_SUBDIRECTORY(src/practice)
+ENDIF()
