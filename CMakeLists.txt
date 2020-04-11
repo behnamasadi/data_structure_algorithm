@@ -27,6 +27,11 @@ endif()
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
+################################ information about the project ################################
+
+
+
+
 ################################ Data Structure ################################
 
 add_executable(hashing_main src/hashing/hashing_main.cpp)

@@ -268,10 +268,7 @@ In the following array `50` is at sorted position.
 `40 30 20 50 90 70 80`
 
 
-Like Merge Sort, QuickSort is a Divide and Conquer algorithm. It picks an element as pivot and partitions the given array around the picked pivot.
-In quick sort all the major work is done while dividing the array into subarrays, while in case of merge sort, 
-all the real work happens during merging the subarrays. In case of quick sort, the combine step does absolutely nothing.
-
+Like Merge Sort, QuickSort is a Divide and Conquer algorithm. It picks an element as pivot and put elements that are smaller than the pivot before the pivot and elements that are larger after the pivot.
 
 There are many different versions of quickSort that pick pivot in different ways.
 
@@ -280,10 +277,13 @@ There are many different versions of quickSort that pick pivot in different ways
 3) Pick a random element as pivot.
 4) Pick median as pivot.
 
+In quick sort all the major work is done while dividing the array into subarrays (during partitioning), while in case of merge sort, 
+all the real work happens during merging the subarrays. In case of quick sort, the combine step does absolutely nothing.
+
 
 ### Algorithm
-We pick a pivot, we partition the array around the pivot such that the elements on the elft are smaller than 
-the pivotand the elements on the right side are bigger than the pivot. The we call quick sort on the left and right hand side sub arrays.
+We pick a pivot, we partition the array around the pivot such that the elements on the left are smaller than 
+the pivot and the elements on the right side are bigger than the pivot. The we call quick sort on the left and right hand side sub arrays.
 
 ```
 quickSort(arr[], low, high)
@@ -299,8 +299,107 @@ quickSort(arr[], low, high)
 In `partitioning` we find the new location for pivot and we put elemets smaller than pivot on the left and larger elements on right.
 
 
-`9, 7, 5, 11, 12, 2, 14, 3, 10, 6`
+```
+partitioning(arr[],  low,  high)
+{
+    //we pick the first element as pivot.
+    pivot=arr[low];
+    
+    i=low;
+    j=high;
 
+    /*
+	The most exterier loop checks if lower bound if smaller than the higher bound
+    */	
+    do
+    {
+        /*
+              In this loop we go forward untill the left element of the pivot are smaller than the pivot.
+        */
+        do
+        {
+            i++;
+        }while (arr[i] <=pivot);
+
+        /*
+              In this loop we go backward untill the right element of the pivot are bigger than the pivot.
+        */
+        do
+        {
+            j--;
+        }while (arr[j] >pivot);
+       /*
+              We reach here if there is an element on the left side of pivot is bigger than pivot or there is an element on the right
+              side of pivot is smaller than pivot 
+       */
+        if(i<j)
+               swap(arr[i],arr[j]);
+
+    }while(i<j);
+
+    swap(arr[low],arr[j]);
+    return j;
+}
+```
+For example partitioning `9, 7, 5, 11, 6, 2, 14, 3, 10, 12`:
+
+```
+We can pick any element as pivot, here we pick the first element as pivot:
+
+pivot=9
+
+9, 7, 5, 11, 6, 2, 14, 3, 10, 12
+↑                                            ↑
+i                              j
+
+First this loop will give us this:
+do
+{
+    i++;
+}while (arr[i] <=pivot);
+
+9, 7, 5, 11, 6, 2, 14, 3, 10, 12
+         ↑                             ↑
+         i                    j
+
+This loop will give us the following
+do
+{
+    j--;
+}while (arr[j] >pivot);
+
+9, 7, 5, 11, 6, 2, 14, 3, 10, 12
+         ↑                  ↑
+         i             j
+
+now we swap(arr[i],arr[j])
+9, 7, 5, 3, 6, 2, 14, 11, 10, 12
+         ↑                 ↑
+         i            j
+
+since still i<j (in while(i<j)), we go back to the first part and repeat forwarding i:
+9, 7, 5, 3, 6, 2, 14, 11, 10, 12
+                  ↑    ↑
+                  i    j
+
+backwarding j
+9, 7, 5, 3, 6, 2, 14, 11, 10, 12
+               ↑  ↑
+               j   i
+
+since i<j is false we cant swap(arr[i],arr[j]) and we exit the main loop and we swap(arr[low],arr[j])
+9, 7, 5, 3, 6, 2, 14, 11, 10, 12
+↑                    ↑
+low            j
+
+2, 7, 5, 3, 6, 9, 2, 11, 10, 12
+↑                    ↑
+low            j
+
+2, 7, 5, 3, 6, 9, 2, 11, 10, 12
+
+and the location of pivot is at 5 (arr[5]=9 ).
+```
 
 
 

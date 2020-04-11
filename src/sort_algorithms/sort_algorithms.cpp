@@ -4,21 +4,21 @@
 
 template
 <typename T>
-void printArray(T arr[], std::size_t size, std::size_t start=0)
+void printArray(T arr[], size_t size, size_t start=0)
 {
-    for (std::size_t i= start; i < size; i++)
+    for (size_t i= start; i < size; i++)
         std::cout<<arr[i]<<" ";
     std::cout<<std::endl;
 }
 
 template
 <typename T>
-void bubleSortAlgorithm(T arr[], std::size_t size)
+void bubleSortAlgorithm(T arr[], size_t size)
 {
 
-    for(std::size_t i=0;i<size-1;i++)
+    for(size_t i=0;i<size-1;i++)
     {
-        for(std::size_t j=i+1;j<size;j++)
+        for(size_t j=i+1;j<size;j++)
             if(arr[i] >arr[j] )
                 std::swap(arr[i],arr[j] );
     }
@@ -27,12 +27,12 @@ void bubleSortAlgorithm(T arr[], std::size_t size)
 
 template
 <typename T>
-void insertionSortAlgorithm(T arr[], std::size_t size)
+void insertionSortAlgorithm(T arr[], size_t size)
 {
-    for(std::size_t i=1;i<size;i++)
+    for(size_t i=1;i<size;i++)
     {
         T key=arr[i];
-        std::size_t j=i-1;
+        size_t j=i-1;
         while(arr[j]>key && j>=0)
         {
             arr[j+1]=arr[j];
@@ -93,18 +93,18 @@ void shellSortAlgoritm(T A[],size_t n)
 
 template
 <typename T>
-void selectionSortAlgorithm(T arr[], std::size_t size)
+void selectionSortAlgorithm(T arr[], size_t size)
 {
 /*
     i is pointing to the index of the point in the array which should be i'th min element
     j is variable that search for the i'th min element
     k is pointing to the latest i'th min element found by j
 */
-    std::size_t k;
-    for(std::size_t i=0;i<size-1;i++)
+    size_t k;
+    for(size_t i=0;i<size-1;i++)
     {
         k=i;
-        for(std::size_t j=i;j<size;j++)
+        for(size_t j=i;j<size;j++)
         {
             if(arr[k]>arr[j])
             {
@@ -118,11 +118,11 @@ void selectionSortAlgorithm(T arr[], std::size_t size)
 
 template
 <typename T>
-std::size_t partitioning(T arr[], std::size_t low, std::size_t high)
+size_t partitioning(T arr[], size_t low, size_t high)
 {
     //we pick the first element as pivot.
     T pivot=arr[low];
-    std::size_t i,j;
+    size_t i,j;
 
     i=low;
     j=high;
@@ -133,12 +133,17 @@ std::size_t partitioning(T arr[], std::size_t low, std::size_t high)
         {
             i++;
         }while (arr[i] <=pivot);
+        std::cout<<"arr["<<i<<"] is :"<<arr[i]<<std::endl;
         do
         {
             j--;
         }while (arr[j] >pivot);
+        std::cout<<"arr["<<j<<"] is :"<<arr[j]<<std::endl;
         if(i<j)
+        {
             std::swap(arr[i],arr[j]);
+            printArray(&arr[0],high);
+        }
 
     }while(i<j);
 
@@ -148,9 +153,9 @@ std::size_t partitioning(T arr[], std::size_t low, std::size_t high)
 
 template
 <typename T>
-void quickSort(T arr[], std::size_t low, std::size_t high)
+void quickSort(T arr[], size_t low, size_t high)
 {
-    std::size_t j;
+    size_t j;
     if (low < high)
     {
         
@@ -163,10 +168,10 @@ void quickSort(T arr[], std::size_t low, std::size_t high)
 
 template
 <typename T>
-void quickSortAlgorithm(T arr[], std::size_t size)
+void quickSortAlgorithm(T arr[], size_t size)
 {
-    std::size_t low=0;
-    std::size_t high=size;
+    size_t low=0;
+    size_t high=size;
     quickSort(arr, low, high);
 }
 
@@ -174,7 +179,7 @@ void quickSortAlgorithm(T arr[], std::size_t size)
 
 template
 <typename T>
-void merging(T* first, std::size_t firstSize, T* second, std::size_t secondSize, T* final)
+void merging(T* first, size_t firstSize, T* second, size_t secondSize, T* final)
 {
     size_t i, j, k;
     i = 0;
@@ -292,9 +297,9 @@ template
 <typename T>
 void heapSortAlgorithm(std::vector<T>& array)
 {
-    std::size_t size = array.size();
+    size_t size = array.size();
     std::make_heap(array.begin(), array.end());
-    for (std::size_t i = 0;i < size; i++) 
+    for (size_t i = 0;i < size; i++)
     {
         std::pop_heap(array.begin(), array.end());// moves the largest to the end
         std::cout << array[array.size()-1]   <<" ";
@@ -351,7 +356,7 @@ void radixSortAlgorithm(T* array, size_t size)
 int main()
 {
     std::vector<int> unsorted_array={4,3,2,10,12,1,5,14,19};
-    std::size_t n = sizeof(unsorted_array)/sizeof(unsorted_array[0]);
+    size_t n = sizeof(unsorted_array)/sizeof(unsorted_array[0]);
 
     std::cout<<"Unsorted Array: "<<std::endl;
     std::cout<<"Array size: "<<n  <<std::endl;
@@ -366,8 +371,19 @@ int main()
 
     {
         std::cout<<"**************** Quick Sort Algorithm **************** "<<std::endl;
-        std::vector<int> vec(unsorted_array);
+        std::cout<<"Partitioning array: ";
+        std::vector<int> arr={9, 7, 5, 11, 6, 2, 14, 3, 10, 12};
+        size_t low=0;
+        size_t high=10;
+        printArray(&arr[0], high);
+        size_t pivot= partitioning( &arr[0], low, high);
 
+        //std::cout<<"After Partitioning: ";
+        printArray(&arr[0], high);
+        //std::cout<<"partition index is: "<<pivot <<std::endl;
+
+        std::cout<<"**************************************" <<std::endl;
+        std::vector<int> vec(unsorted_array);
         quickSortAlgorithm(&vec[0], vec.size());
         printArray(&vec[0], vec.size());
     }
