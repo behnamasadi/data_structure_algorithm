@@ -349,7 +349,7 @@ We can pick any element as pivot, here we pick the first element as pivot:
 pivot=9
 
 9, 7, 5, 11, 6, 2, 14, 3, 10, 12
-↑                                            ↑
+↑                              ↑
 i                              j
 
 First this loop will give us this:
@@ -359,7 +359,7 @@ do
 }while (arr[i] <=pivot);
 
 9, 7, 5, 11, 6, 2, 14, 3, 10, 12
-         ↑                             ↑
+         ↑                    ↑
          i                    j
 
 This loop will give us the following
@@ -369,12 +369,12 @@ do
 }while (arr[j] >pivot);
 
 9, 7, 5, 11, 6, 2, 14, 3, 10, 12
-         ↑                  ↑
+         ↑             ↑
          i             j
 
 now we swap(arr[i],arr[j])
 9, 7, 5, 3, 6, 2, 14, 11, 10, 12
-         ↑                 ↑
+         ↑            ↑
          i            j
 
 since still i<j (in while(i<j)), we go back to the first part and repeat forwarding i:
@@ -384,18 +384,15 @@ since still i<j (in while(i<j)), we go back to the first part and repeat forward
 
 backwarding j
 9, 7, 5, 3, 6, 2, 14, 11, 10, 12
-               ↑  ↑
+               ↑   ↑
                j   i
 
 since i<j is false we cant swap(arr[i],arr[j]) and we exit the main loop and we swap(arr[low],arr[j])
 9, 7, 5, 3, 6, 2, 14, 11, 10, 12
-↑                    ↑
+↑              ↑
 low            j
 
-2, 7, 5, 3, 6, 9, 2, 11, 10, 12
-↑                    ↑
-low            j
-
+after swap we have:
 2, 7, 5, 3, 6, 9, 2, 11, 10, 12
 
 and the location of pivot is at 5 (arr[5]=9 ).
