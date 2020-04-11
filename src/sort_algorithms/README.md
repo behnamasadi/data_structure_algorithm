@@ -18,11 +18,11 @@
 ```
 ### Criteria of Analysis
 
-1)Number of comparisons.  
-2)Number of swaps.  
-3)Adaptive: if any algorithm takes less time or minimum time on an already sorted data, we called it adaptive.  
-4)Stable:  
-5)Extra Memory: Extra spaces required beside teh data that we need to sort.  
+1) Number of comparisons.  
+2) Number of swaps.  
+3) Adaptive: if any algorithm takes less time or minimum time on an already sorted data, we called it adaptive.  
+4) Stable:  
+5) Extra Memory: Extra spaces required beside teh data that we need to sort.  
 
 
 ## Buble Sort
@@ -147,7 +147,7 @@ k is pointing to the latest i'th min element found by j.
 Example:
 initial array:
 ```
-8 6 3 2 5 4`
+8 6 3 2 5 4
 ↑ 
 i
 j
