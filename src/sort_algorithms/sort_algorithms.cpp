@@ -1,6 +1,8 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+#include <list>
+#include <cmath>
 
 template
 <typename T>
@@ -133,12 +135,12 @@ size_t partitioning(T arr[], size_t low, size_t high)
         {
             i++;
         }while (arr[i] <=pivot);
-        std::cout<<"arr["<<i<<"] is :"<<arr[i]<<std::endl;
+        //std::cout<<"arr["<<i<<"] is :"<<arr[i]<<std::endl;
         do
         {
             j--;
         }while (arr[j] >pivot);
-        std::cout<<"arr["<<j<<"] is :"<<arr[j]<<std::endl;
+        //std::cout<<"arr["<<j<<"] is :"<<arr[j]<<std::endl;
         if(i<j)
         {
             std::swap(arr[i],arr[j]);
@@ -310,27 +312,31 @@ void heapSortAlgorithm(std::vector<T>& array)
 
 template
 <typename T>
-void countSortAlgorithm(T* array, size_t size)
+void countSortAlgorithm(std::vector<T>& A )
 {
-    T *max_value=std::max_element( array, array+size);
+    size_t A_size=A.size();
+    T max_value=(*std::max_element( A.begin(), A.end()));
 
 
-    std::vector<T> count_vec(*max_value+1,0);
-    for(size_t i=0;i<size;i++)
+    std::vector<T> C(max_value+1,0);
+    std::vector<T> B(A_size,0);
+    for(size_t i=0;i<A_size;i++)
     {
-       count_vec[array[i]]++;
+       C[A[i]]++;
     }
-    size_t i=0,j=0;
-    while(j<(*max_value)+1)
+
+    for(size_t i=1;i<A_size;i++)
     {
-        if(count_vec[j]>0)
-        {
-            array[i++]=j;
-            count_vec[j]--;
-        }
-        else
-            j++;
+       C[i]=C[i]+C[i-1];
     }
+
+    for(int i=A_size-1;i>=0;i--)
+    {
+       C[A[i]]--;
+       B[C[A[i]]]=A[i];
+    }
+    A=B;
+
 }
 
 void stdSort(int* array, int array_size)
@@ -338,17 +344,44 @@ void stdSort(int* array, int array_size)
     std::sort(array,array+array_size);
 }
 
-template
-<typename T>
-void bucketSortAlgorithm(T* array, size_t size)
-{
 
-}
 
 template
 <typename T>
-void radixSortAlgorithm(T* array, size_t size)
+void radixSortAlgorithm(std::vector<T>& A )
 {
+    T max_value=(*std::max_element( A.begin(), A.end()));
+    T numberOfReaptingCountSortAlgorithm=log10(max_value)+1;
+    std::vector<T> nthDigit=A;
+    for(size_t i=0;i<=numberOfReaptingCountSortAlgorithm;i++)
+    {
+        for(size_t j=0;j<A.size();j++)
+        {
+            nthDigit[j]=(A[j]/ int(pow(10,i)))% 10;
+        }
+
+        /////////////// Count Sort /////////////////
+        size_t nthDigit_size=nthDigit.size();
+        T max_value=(*std::max_element( nthDigit.begin(), nthDigit.end()));
+        std::vector<T> C(max_value+1,0);
+        std::vector<T> B(nthDigit_size,0);
+        for(size_t i=0;i<nthDigit_size;i++)
+        {
+           C[nthDigit[i]]++;
+        }
+        for(size_t i=1;i<nthDigit_size;i++)
+        {
+           C[i]=C[i]+C[i-1];
+        }
+        for(int i=nthDigit_size-1;i>=0;i--)
+        {
+           C[nthDigit[i]]--;
+           B[C[nthDigit[i]]]=A[i];
+        }
+        A=B;
+
+
+    }
 
 }
 
@@ -471,14 +504,33 @@ int main()
 
     {
         std::cout<<"**************** Count Sort Algorithm **************** "<<std::endl;
-        std::vector<int> vec(unsorted_array);
-        countSortAlgorithm(&vec[0], vec.size());
+        std::vector<int> vec={4, 0, 0, 1, 0, 2, 4, 5, 1};
         printArray(&vec[0], vec.size());
+        countSortAlgorithm(vec);
+        printArray(&vec[0], vec.size());
+
+        vec={20,23, 26, 23, 6, 21, 14, 22, 28, 21, 3, 10, 3, 6, 27, 0, 13, 21, 3, 0, 25,11, 28, 24, 13, 28, 23, 21, 29, 4};
+        printArray(&vec[0], vec.size());
+        countSortAlgorithm(vec);
+        printArray(&vec[0], vec.size());
+
     }
+
+    {
+        std::cout<<"**************** Radix Sort Algorithm **************** "<<std::endl;
+        std::vector<int> vec = {0,33,100,2,17,27,101,104,8};
+        printArray(&vec[0], vec.size());
+        radixSortAlgorithm(vec );
+        printArray(&vec[0], vec.size());
+
+    }
+
+
 
 
     {
         std::cout<<"**************** Bucket/Bin Sort Algorithm **************** "<<std::endl;
+        std::vector<int> array = {6, 8, 3, 10, 15, 6, 9, 12, 6, 3};
 
     }
 

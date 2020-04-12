@@ -13,146 +13,30 @@ void printArray(T arr[], size_t size, size_t start=0)
     std::cout<<std::endl;
 }
 
-template <typename T>
-void mergeSortedArrays(T* first, std::size_t firstSize, T* second, std::size_t secondSize, T* final)
-{
-    size_t i,j,k;
-    i=0;
-    j=0;
-    k=0;
-    while( (i<firstSize )&& (j<secondSize))
-    {
-        if(first[i]<second[j] )
-        {
-            final[k]=first[i];
-            i++;
-        }
-        else
-        {
-            final[k]=second[j];
-            j++;
-        }
-        k++;
-    }
-    while(i<firstSize)
-    {
-        final[k]=first[j];
-        i++;
-        k++;
-    }
-    while(j<secondSize)
-    {
-        final[k]=second[j];
-        j++;
-        k++;
-    }
-}
-
 
 template <typename T>
-void mergeSortedArrays(T* array, size_t low, size_t mid, size_t high)
+void countSort(std::vector<T> &array)
 {
-    size_t i,j,k;
-    i=low;
-    j=mid+1;
-    k=0;
-    std::vector<T> final;
-    final.resize(high-low+1);
-    while( (i<=mid )&& (j<=high))
+    size_t tempArraySize=*(std::max_element(array.begin(),array.end()))+1;
+
+    std::vector<T> tempArray(tempArraySize,-1);
+    for(size_t i=0;i<array.size();i++)
     {
-        if(array[i]<array[j] )
+        tempArray[array[i]]=1;
+    }
+    size_t j=0;
+    for(size_t i=0;i<tempArraySize;i++)
+    {
+        if(tempArray[i]>0)
         {
-            final[k]=array[i];
-            i++;
-        }
-        else
-        {
-            final[k]=array[j];
+            array[j]=i;
             j++;
         }
-        k++;
-    }
-    while(i<=mid)
-    {
-        final[k]=array[j];
-        i++;
-        k++;
-    }
-    while(j<=high)
-    {
-        final[k]=array[j];
-        j++;
-        k++;
+
     }
 
 
-    i=low;
-    while(i<=high)
-    {
-        array[i]=final[i-low];
-        i++;
-    }
 
-
-}
-
-
-template
-<typename T>
-void merging(T* array,  size_t low, size_t mid, size_t high)
-{
-    size_t i, j, k;
-    i = low;
-    j = mid+1;
-    k = 0;
-    std::vector<T> B;
-    size_t arraySize = high - low + 1;
-    B.resize(arraySize);
-    while (i <= mid && j <= high)
-    {
-        if (array[i] < array[j])
-        {
-            B[k] = array[i];
-            i++;
-        }
-        else
-        {
-            B[k] = array[j];
-            j++;
-        }
-        k++;
-    }
-    while (i <= mid)
-    {
-        B[k] = array[i];
-        i++;
-        k++;
-    }
-    while (j <= high)
-    {
-        B[k] = array[j];
-        j++;
-        k++;
-    }
-    for (i=low;i<=high;i++)
-    {
-        array[i] = B[i- low];
-    }
-}
-
-
-template <typename T>
-void mergeSort(T* array, size_t low, size_t high)
-{
-    size_t mid=(low+high)/2;
-    if(low<high)
-    {
-        mergeSort(array, low,mid );
-        mergeSort(array, mid+1, high);
-        //std::cout<<"low: "  << low<<" mid: "<<mid<<" high: "<<high  <<std::endl;
-        //mergeSortedArrays(array, low, mid, high  );
-        merging(array, low, mid, high  );
-    }
 }
 
 int main()
@@ -165,8 +49,9 @@ int main()
     printArray(&final[0],final.size());
     */
 
-    /**/
+
     std::vector<int> array={2,5,7,9,11 ,6,8,15,18};
+    /*
     size_t low=0;
     size_t mid=4;
     size_t high=8;
@@ -180,6 +65,11 @@ int main()
     std::shuffle(array.begin(),array.end(),g);
     printArray(&array[0],array.size());
     mergeSort(&array[0], 0, array.size()-1);
+    printArray(&array[0],array.size());
+    */
+
+    printArray(&array[0],array.size());
+    countSort(array);
     printArray(&array[0],array.size());
 
     return 0;

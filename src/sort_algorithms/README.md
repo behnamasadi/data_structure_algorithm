@@ -39,6 +39,7 @@ It is adaptive.
 It is suitable for linkedlists.  
 
 ## Insertion
+Insertion sort is the best sort for an array that is almost sorted.  
 
 Number of comparison:
 `Min  O(N), Max`
@@ -426,5 +427,144 @@ Gap size is:1
 
 ```
 
-Refs: [1](https://brilliant.org/wiki/sorting-algorithms/)
+## Count Sort
+Count sort is an integer sort algorithm. While any comparison based sorting algorithm requires `Ω(nlogn)` comparisons, counting sort has a running time of `Θ(n)` when the length of the input list is not much smaller than the max value, `k`, in the list.
+Counting sort uses three lists: the input list, `A[0,1,…,n]`, the output list, `B[0,1,…,n],` and a list that serves as temporary memory, `C[0,1,…,k]`.
+
+Counting sort starts by going through `A`, and for each element `A[i]`, it goes to the index of `C` that has the same value as `A[i]` (so it goes to `C[A[i]]`) and increments the value of it by one.  `C` keeps track of how many elements in `A` there are that have the same value of a particular index in `C`.
+Next we accumulate the values in `C`,  `C[i] =C[i]+C[i−1]`. Then, starting at the end of `A`, add elements to `B` to From `C`. We check the 
+value of `A[i]`, then find the corresponding index at `C` ( `C[A[i]]` ), decrease the value of `C[A[i]]=C[A[i]]-1` and the insert this value
+in B, `B[C[A[i]]]=A[i]`
+
+
+```
+countSort(A)
+{
+    max_value=max( A);
+
+
+    array C(max_value+1,0);
+    array B(A_size,0);
+    for(i=0;i<A_size;i++)
+    {
+       C[A[i]]++;
+    }
+
+    for(i=1;i<A_size;i++)
+    {
+       C[i]=C[i]+C[i-1];
+    }
+
+    for(i=A_size-1;i>=0;i--)
+    {
+       C[A[i]]--;
+       B[C[A[i]]]=A[i];
+    }
+    A=B;
+}
+
+```
+For example for the following array: `4, 0, 0, 1, 0, 2, 4, 5, 1`
+
+```
+A:
+4, 0, 0, 1, 0, 2, 4, 5, 1
+max value is 5 so we create array C of size 6, initialized with 0:
+C:
+┌-----------------┐
+|0 |0 |0 |0 |0 |0 |
+└-----------------┘
+and array B of size A (9) initialized with 0:
+
+B:
+┌--------------------------┐
+|0 |0 |0 |0 |0 |0 |0 |0 |0 |
+└--------------------------┘
+
+
+And then we iterate through our initial array we insert them in the corresponding cell:
+C:
+┌-----------------┐
+|3 |2 |1 |0 |2 |1 |
+└-----------------┘
+And then we accumulate the values:
+
+C:
+┌-----------------┐
+|3 |5 |6 |6 |8 |9 |
+└-----------------┘
+
+Now we go backward in A and do the followings:
+C[A[i]]--
+B[C[A[i]]]=A[i]
+
+so i=8, A[i]=1, C[1]=5,then we have:
+C[1]=4
+B[4]=1
+
+C:
+┌-----------------┐
+|3 |4 |6 |6 |8 |9 |
+└-----------------┘
+B:
+┌--------------------------┐
+|0 |0 |0 |0 |1 |0 |0 |0 |0 |
+└--------------------------┘
+
+The next is i=7, A[7]=5, C[5]=9, then we have:
+C[5]=8
+B[8]=5
+
+C:
+┌-----------------┐
+|3 |4 |6 |6 |8 |8 |
+└-----------------┘
+B:
+┌--------------------------┐
+|0 |0 |0 |0 |1 |0 |0 |0 |5 |
+└--------------------------┘
+
+Untill We have:
+B:
+┌--------------------------┐
+|0 |0 |0 |1 |1 |2 |4 |4 |5 |
+└--------------------------┘
+```
+
+## Bucket Sort
+
+## Radix Sort
+We take only 10 bins since our numbers are in decimal representation. Radix sort works by sorting each digit from least significant digit to most significant digit. So in decimal base, radix sort would sort by the digits in the 1's place, then the 10’s place, and so on. 
+Radix sort uses counting sort as a subroutine to sort the digits in each place value. This means that for a three-digit number in base 10, counting sort will be called to sort the 1's place, then it will be called to sort the 10's place, and finally, it will be called to sort the 100's place
+
+# Comparison of Different Sort Algorithm
+
+|Algorithm/Data | Insertion | Selection | Bubble | Shell | Merge | Heap | Quick | Quick3 |
+|----------     |-----------|-----------|--------|-------|-------|------|-------|--------|
+|Random         |    5      |     7     |   6    |   2   |   3   |   1  |   4   |   4    |
+|Nearly Sorted  |    1      |     8     |   2    |   3   |   6   |   5  |   7   |   4    |
+|Reversed       |    5      |     6     |   5    |   1   |   3   |   2  |   4   |   3    |
+|few Unique     |    4      |     8     |   7    |   3   |   5   |   2  |   6   |   1    |
+
+    
+
+|Algorithm     | Best-case | Worst-case | Average-case | Space Complexity |Stable?|
+|-----------   |-----------|------------|--------------|------------------|-------|
+|Merge Sort    | O(nlogn)  |  O(nlogn)  |   O(nlogn)   |      O(n)        |  Yes  |
+|Insertion Sort|   O(n)    |   O(n^2)   |     O(n^2)   |      O(1)        |  Yes  |
+|Bubble Sort   |   O(n)    |   O(n^2)   |     O(n^2)   |      O(1)        |  Yes  |
+|Quick Sort    | O(nlogn)  |   O(n^2)   |   O(nlogn)   |logn best, n avg  |  *    |
+|Heap Sort     | O(nlogn)  |  O(nlogn)  |   O(nlogn)   |      O(1)        |  No   |
+|Counting Sort |           |            |              |      O(k+n)      |  Yes  |
+
+*Most quicksort implementations are not stable, though stable implementations do exist.
+
+![](images/few_unique.gif)
+![](images/nearly_sorted.gif)
+![](images/random.gif)
+![](images/reversed.gif)
+
+Refs: [1](https://brilliant.org/wiki/sorting-algorithms/),
+      [2](https://www.toptal.com/developers/sorting-algorithms),
+      [3](https://www.cs.usfca.edu/~galles/visualization/Algorithms.html)
 
