@@ -4,3 +4,4 @@ src/temp/*
 *.kdev4
 .vs/*
 out/*
+src/practice/src/main.cpp

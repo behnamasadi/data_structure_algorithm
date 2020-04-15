@@ -325,7 +325,7 @@ void countSortAlgorithm(std::vector<T>& A )
        C[A[i]]++;
     }
 
-    for(size_t i=1;i<A_size;i++)
+    for(size_t i=1;i<=max_value;i++)
     {
        C[i]=C[i]+C[i-1];
     }
@@ -339,9 +339,29 @@ void countSortAlgorithm(std::vector<T>& A )
 
 }
 
-void stdSort(int* array, int array_size)
+template
+<typename T>
+void stdSort(T* array, size_t array_size)
 {
     std::sort(array,array+array_size);
+}
+
+
+struct Employee
+{
+    int age;
+    std::string name;  // Does not participate in comparisons
+};
+
+
+auto cmp = [](const Employee & lhs, const Employee & rhs) { return (lhs.age < rhs.age);};
+
+
+template
+<typename T>
+void stdStableSortAlgorithm(std::vector<T>& array)
+{
+    std::stable_sort(array.begin(),array.end(),cmp);
 }
 
 
@@ -549,6 +569,20 @@ int main()
         //std::sort(vec.begin(),vec.end());
         stdSort(&vec[0], vec.size());
         printArray(&vec[0], vec.size());
+    }
+
+    {
+        std::cout<<"**************** C++ STD Stable Sort Algorithm **************** "<<std::endl;
+        std::vector<Employee> vec =
+           {
+               {25, "John"},
+               {24, "Nancy"},
+               {21, "Alice"},
+               {28, "Nancy"},
+           };
+        stdStableSortAlgorithm(vec);
+        for (const Employee & e : vec)
+                std::cout << e.age << ", " << e.name << '\n';
     }
 
 

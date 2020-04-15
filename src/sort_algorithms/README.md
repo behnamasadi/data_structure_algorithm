@@ -20,8 +20,88 @@
 
 1) Number of comparisons.  
 2) Number of swaps.  
-3) Adaptive: if any algorithm takes less time or minimum time on an already sorted data, we called it adaptive.  
-4) Stable:  
+3) Adaptive: A sorting algorithm is said to be adaptive, if it takes advantage of already 'sorted' elements in the list that is to be sorted. That is, while sorting if the source list has some element already sorted, adaptive algorithms will take this into account and will try not to re-order them. In other words if order of the elements to be sorted of an input array matters (or) affects the time complexity of a sorting algorithm, then that algorithm is called “Adaptive” sorting algorithm.
+
+For example, Insertion sort is an adaptive sorting algorithm, if input is already sorted then time complexity will be `O(n)`. Therefore If input is nearly sorted then go for insertion sort, though this is not the only parameter to go for Insertion sort over other sorting algorithms.
+
+Merge Sort is an “Non-Adaptive” Sorting algorithm, because the order of the elements in the input array doesn’t matter, time complexity will always be `O(nlogn)`.
+
+Adaptive sorting algorithms:
+1) Bubble sort
+2) Insertion sort
+3) Quick sort
+4) Adaptive heap sort
+5) Adaptive merge sort
+6) Shellsort
+
+Non-adaptive sorting algorithms:
+1) Selection Sort
+2) Merge Sort
+3) Heap Sort
+
+
+4) Stable: A sorting algorithm is said to be stable if two objects with equal keys appear in the same order in sorted output as they appear in the input array to be sorted.
+For instance suppose we have the following table: 
+
+
+|name |age |
+|-----|----| 
+|John | 25 | 
+|Nancy| 24 |
+|Alice| 21 | 
+|Nancy| 28 |
+
+
+Now if we sort the records by age we get:
+
+|name |age |
+|-----|----| 
+|Alice| 21 | 
+|Nancy| 24 |
+|John | 25 | 
+|Nancy| 28 |
+
+
+If we sort them by name with a stable sort (note Nancy with age 24 came up first in the input list so it stays above Nancy with age 28):
+
+|name |age |
+|-----|----| 
+|Alice| 21 | 
+|John | 25 | 
+|Nancy| 24 |
+|Nancy| 28 |
+
+while with an unstable sort the order may not be presereved and you get the followings:
+
+|name |age |
+|-----|----| 
+|Alice| 21 | 
+|John | 25 | 
+|Nancy| 28 |
+|Nancy| 24 |
+
+
+Stable Sorting Algorithms:
+
+1) Insertion Sort
+2) Merge Sort
+3) Bubble Sort
+4) Tim Sort
+5) Counting Sort
+
+Unstable Sorting Algorithms:
+
+1) Heap Sort
+2) Selection sort
+3) Shell sort
+4) Quick Sort
+
+
+
+
+
+
+
 5) Extra Memory: Extra spaces required beside teh data that we need to sort.  
 
 
@@ -138,7 +218,9 @@ key=2
 
 ## Selection Sort
 The idea behid the this sort algorithm is that smallest element should be at `array[0]`, the second smallest element should be at 
-`array[1]` and so on. So we use three variables, `i,j,k`.
+`array[1]` and so on. In other words we try to find min element at `array[0...end]`,then min element at `array[1...end]`,... min element at `array[end-1...end]`.
+
+We use three variables, `i,j,k`.
 
 ```
 i is pointing to the index of the point in the array which should be i'th min element.
@@ -154,7 +236,7 @@ i
 j
 k
 ```
-We are looking for smallest element `(i=0)` to place it at `array[i`]`, so we increase `j`: 
+We are looking for smallest element `(i=0)` to place it at `array[i]`, so we increase `j`: 
 
 ```
 8 6 3 2 5 4
@@ -164,7 +246,7 @@ i
 k
 ``` 
 
-since `6` is smaller than `array[k]`, we move `k` so it also point at smallest element that we found so far:
+since `6` is smaller than `array[k=0]`, we move `k` so it also point at smallest element that we found so far:
 
 ```
 8 6 3 2 5 4
@@ -173,7 +255,7 @@ i
   j
   k
 ```
-Again we increase `j` and since `3` is smaller than `array[k]` we move also the `k`
+Again we increase `j` and since `3` is smaller than `array[k=1]` we move also the `k`
 
 ```
 8 6 3 2 5 4
@@ -544,7 +626,7 @@ Radix sort uses counting sort as a subroutine to sort the digits in each place v
 |Random         |    5      |     7     |   6    |   2   |   3   |   1  |   4   |   4    |
 |Nearly Sorted  |    1      |     8     |   2    |   3   |   6   |   5  |   7   |   4    |
 |Reversed       |    5      |     6     |   5    |   1   |   3   |   2  |   4   |   3    |
-|few Unique     |    4      |     8     |   7    |   3   |   5   |   2  |   6   |   1    |
+|Few Unique     |    4      |     8     |   7    |   3   |   5   |   2  |   6   |   1    |
 
     
 
@@ -555,13 +637,19 @@ Radix sort uses counting sort as a subroutine to sort the digits in each place v
 |Bubble Sort   |   O(n)    |   O(n^2)   |     O(n^2)   |      O(1)        |  Yes  |
 |Quick Sort    | O(nlogn)  |   O(n^2)   |   O(nlogn)   |logn best, n avg  |  *    |
 |Heap Sort     | O(nlogn)  |  O(nlogn)  |   O(nlogn)   |      O(1)        |  No   |
-|Counting Sort |           |            |              |      O(k+n)      |  Yes  |
+|Counting Sort | O(k+n)    |  O(k+n)    |   O(k+n)     |      O(k+n)      |  Yes  |
 
 *Most quicksort implementations are not stable, though stable implementations do exist.
-
-![](images/few_unique.gif)
-![](images/nearly_sorted.gif)
+### Random
 ![](images/random.gif)
+
+### Nearly Sorted
+![](images/nearly_sorted.gif)
+
+### Few Unique
+![](images/few_unique.gif)
+
+### Reversed
 ![](images/reversed.gif)
 
 Refs: [1](https://brilliant.org/wiki/sorting-algorithms/),
