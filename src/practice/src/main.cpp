@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <iostream>
 #include <random>
-
+#include <map>
 
 template
 <typename T>
@@ -13,64 +13,61 @@ void printArray(T arr[], size_t size, size_t start=0)
     std::cout<<std::endl;
 }
 
-
-template <typename T>
-void countSort(std::vector<T> &array)
+template
+<typename T>
+void insertionSort(T arr[], size_t size)
 {
-    size_t tempArraySize=*(std::max_element(array.begin(),array.end()))+1;
-
-    std::vector<T> tempArray(tempArraySize,-1);
-    for(size_t i=0;i<array.size();i++)
-    {
-        tempArray[array[i]]=1;
-    }
-    size_t j=0;
-    for(size_t i=0;i<tempArraySize;i++)
-    {
-        if(tempArray[i]>0)
-        {
-            array[j]=i;
-            j++;
-        }
-
-    }
-
-
 
 }
 
-int main()
+int main1()
 {
+//    std::multimap<int,int> array;
+//    std::pair<int,int> valueindex;
+//    std::vector <int> vec={34, 8, 10, 3, 2, 80, 30, 33, 1};
+//    for(int i=0;i<vec.size();i++)
+//    {
+//        valueindex.first=i;
+//        valueindex.second=vec[i];
+//        array.insert(valueindex);
+//    }
+
+//    for(std::multimap<int,int>::iterator it=array.begin();it!=array.end();it++)
+//    {
+//        std::cout<<it->first <<", " <<it->second    <<std::endl;
+//    }
+
+//    std::sort(vec.begin(),vec.end());
+
+
     /*
-    std::vector<int> first={2,5,7,9,11};
-    std::vector<int> second={6,8,15,18};
-    std::vector<int> final(first.size()+second.size());
-    mergeSortedArrays(&first[0], first.size(), &second[0],second.size() , &final[0]);
-    printArray(&final[0],final.size());
-    */
+    std::vector<int> array={6,2,5,7,18,9,11,8,15};
+    printArray(&array[0], array.size());
 
-
-    std::vector<int> array={2,5,7,9,11 ,6,8,15,18};
-    /*
-    size_t low=0;
-    size_t mid=4;
-    size_t high=8;
-    mergeSortedArrays(&array[0], low, mid, high);
-    printArray(&array[0],array.size());
-
-
+    printArray(&array[0], array.size());
 
     std::random_device rd;
     std::mt19937 g(rd());
     std::shuffle(array.begin(),array.end(),g);
-    printArray(&array[0],array.size());
-    mergeSort(&array[0], 0, array.size()-1);
-    printArray(&array[0],array.size());
     */
-
-    printArray(&array[0],array.size());
-    countSort(array);
-    printArray(&array[0],array.size());
-
     return 0;
+}
+
+int main()
+{
+}
+
+
+int main3()
+{
+    std::map<char,char> collections;
+    collections['!']='!';
+    collections['$']='$';
+    collections['#']='#';
+
+    if(collections['!']==NULL)
+        std::cout<< "xxx" <<std::endl;
+
+    //std::map::at()
+
 }

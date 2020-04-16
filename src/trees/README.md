@@ -115,53 +115,8 @@ deg(0) external node
 deg(1) deg(2) internal node
 deg(0)=deg(2)+1
 ```
-7) Strict (Proper) VS Full  tree  
- 
-**Strict (Proper):**   
-A node can have 0 or 2 children.
-
-```
-      min                        max
-       O                           O
-      / \                        /   \
-     O   O                      O     O
-    / \                        / \   / \
-   O   O                      O  O   O   O
-  / \                        / \/ \ / \ / \
- O   O                      O  OO O O O O  O
- ```
- 
-**Full:**   
-A tree with height H having maximum number of nodes.
-if n is given
-Min of height `H=log2(n+1)-1`  
-Max of height `H= ciel[n-1/2]`  
-if H is given
-Min number of node `n= 2*H+1`  
-Max number of node `n= 2^(H+1)-1`  
-Number of external nodes=Number of internal nodes + 1  
-
-8) M-ary Tree/ Strict M-ary Tree   
-M is degree of tree, degree means every node in tree can have at most M children
-3-ary Tree {0,1,2,3}
-Strict 3-ary Tree {0,3}
-for Strict M-ary:
-if n is given
-Min of height `H=logm(n*(m-1)+1)-1`  
-Max of height `H= ciel[n-1/m]`  
-if H is given
-Min number of node `n= m*H+1`  
-Max number of node `n= (m^(H+1)-1)/(m-1)`  
-External `nodes= (m-1)*(internal node)+1`  
-
-h is the height of the tree.
-```
-                       -1
-                      /  \
-                     3     7
-                    / \   / \
-                   4  1   5
-```
+7) Strict (Proper) VS Full  tree VS complete  
+Please read the corresponding section under the tree creation
 ## Binary Tree Properties:
 
 1) The maximum number of nodes at level ‘l’, `2^(l-1).`  
@@ -176,31 +131,38 @@ as is maximum number of nodes on root to leaf path
 4) Time Complexity of Tree Traversal: `O(n)`  
 
 ## Binary Search Tree
-In Binary Search Tree is a Binary Tree with following additional properties:
-    1) The left subtree of a node contains only nodes with keys less than the node’s key.
-    2) The right subtree of a node contains only nodes with keys greater than the node’s key.
-    3) The left and right subtree each must also be a binary search tree.
-## Time Complexities:
-    1)Search :  O(h)
-    2)Insertion : O(h)
-    3)Deletion : O(h)
-    4)Extra Space : O(n) for pointers
-    h: Height of BST
-    n: Number of nodes in BST
-    If Binary Search Tree is Height Balanced,
-    then h = O(Log n)
-    Self-Balancing BSTs such as AVL Tree, Red-Black
-    Tree and Splay Tree make sure that height of BST
-    remains O(Log n)
+In Binary Search Tree is a Binary Tree with following additional properties:  
+
+1) The left subtree of a node contains only nodes with keys less than the node’s key.
+2) The right subtree of a node contains only nodes with keys greater than the node’s key.
+3) The left and right subtree each must also be a binary search tree.
+
+## Time Complexities:   
+
+1) Search :  `O(h)`
+2) Insertion : `O(h)`
+3) Deletion : `O(h)`
+4) Extra Space : `O(n)` for pointers
+
+
+
+If Binary Search Tree is Height Balanced,
+then `h = O(Log n)`
+
+Examples of self-balancing BSTs are AVL Tree and Red-Black.
+In self-balancing BSTs height of BST remains O(Log n)
+
 ## Binary Heap
 A Binary Heap is a Binary Tree with following properties.
-    1) It’s a complete tree (All levels are completely filled except possibly the last level and the last level has all keys as left as possible). This property of Binary Heap makes them suitable to be stored in an array.
-    2) A Binary Heap is either Min Heap or Max Heap. In a Min Binary Heap, the key at root must be minimum among all keys present in Binary Heap. The same property must be recursively true for all nodes in Binary Tree. Max Binary Heap is similar to Min Heap. It is mainly implemented using array.
-Get Minimum in Min Heap: O(1) [Or Get Max in Max Heap]
-Extract Minimum Min Heap: O(Log n) [Or Extract Max in Max Heap]
-Decrease Key in Min Heap: O(Log n)  [Or Extract Max in Max Heap]
-Insert: O(Log n)
-Delete: O(Log n)
+1) It’s a complete tree (All levels are completely filled except possibly the last level and the last level has all keys as left as possible). This property of Binary Heap makes them suitable to be stored in an array.  
+
+2) A Binary Heap is either Min Heap or Max Heap. Every node is bigger (smaller)  than of its children. Order for letf or right child is not important (left and right child should be only smaller than the parents).  In a Min Binary Heap, the key at root must be minimum among all keys present in Binary Heap. The same property must be recursively true for all nodes in Binary Tree. Max Binary Heap is similar to Min Heap. It is mainly implemented using array.
+
+Get Minimum in Min Heap: `O(1)` [Or Get Max in Max Heap]
+Extract Minimum Min Heap: `O(Log n)` [Or Extract Max in Max Heap]
+Decrease Key in Min Heap: `O(Log n)`  [Or Extract Max in Max Heap]
+Insert: `O(Log n)`
+Delete: `O(Log n)`
 
 
 
@@ -213,6 +175,73 @@ Delete: O(Log n)
             / \  /
            0   3 1
 ```
+
+We can use an array to represent a binary heap, the children of every node is at `array[2*i]` and `array[2*i+1]`. Creating of tree is by insertion.
+
+### Insertion
+```
+place the new element at end of the array.
+element_index=array.size()-1
+
+parent_index = element_index / 2;
+while (array[parent_index] < array[element_index])
+{
+    swap(array[parent_index] , array[element_index]);
+    element_index = parent_index;
+    parent_index = element_index / 2;
+}
+```
+Example:  
+Let say we have the following number and we want to insert them into heap:  
+`6, 8, 2, 10, 0, 2, 2, 1, 0 `
+
+Inserting 6:
+
+Heap:
+┌---┐
+| 6 | 
+└---┘
+
+Inserting 8:
+
+Heap:
+┌-------┐
+| 6 | 8 |
+└-------┘
+┌-------┐
+| 8 | 5 |
+└-------┘
+
+Inserting 2:
+
+Heap:
+┌-----------┐
+| 8 | 6 | 2 |
+└-----------┘
+
+Inserting 2:
+
+Heap:
+┌----------------┐
+| 8 | 6 | 2 | 10 |
+└----------------┘
+┌----------------┐
+| 8 | 10 | 2 | 6 |
+└----------------┘
+┌----------------┐
+| 10 | 8 | 2 | 6 |
+└----------------┘
+
+Inserting 0:
+
+Heap:
+┌--------------------┐
+| 10 | 8 | 2 | 6 | 0 |
+└--------------------┘
+
+### Deletion
+We only delete from top of the heap. Then we move the last element in the array of heap to the top and we compare it with it children. We pick the max value of its children and we descend it down we repeat it recursively.
+
 # Tree Traversals
 ```
                        A
@@ -506,6 +535,52 @@ not complete, not strict
  1 2 3 4 5 6
 ```
 
+ 
+**Strict (Proper):**   
+A node can have 0 or 2 children.
+
+```
+      min                        max
+       O                           O
+      / \                        /   \
+     O   O                      O     O
+    / \                        / \   / \
+   O   O                      O  O   O   O
+  / \                        / \/ \ / \ / \
+ O   O                      O  OO O O O O  O
+ ```
+ 
+**Full:**   
+A tree with height H having maximum number of nodes.
+if n is given
+Min of height `H=log2(n+1)-1`  
+Max of height `H= ciel[n-1/2]`  
+if H is given
+Min number of node `n= 2*H+1`  
+Max number of node `n= 2^(H+1)-1`  
+Number of external nodes=Number of internal nodes + 1  
+
+8) M-ary Tree/ Strict M-ary Tree   
+M is degree of tree, degree means every node in tree can have at most M children
+3-ary Tree {0,1,2,3}
+Strict 3-ary Tree {0,3}
+for Strict M-ary:
+if n is given
+Min of height `H=logm(n*(m-1)+1)-1`  
+Max of height `H= ciel[n-1/m]`  
+if H is given
+Min number of node `n= m*H+1`  
+Max number of node `n= (m^(H+1)-1)/(m-1)`  
+External `nodes= (m-1)*(internal node)+1`  
+
+h is the height of the tree.
+```
+                       -1
+                      /  \
+                     3     7
+                    / \   / \
+                   4  1   5
+```
 
 
 ## B/B+ Trees
