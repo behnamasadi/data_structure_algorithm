@@ -31,7 +31,7 @@ For every tree n node, n-1 edge
 
 ## Binary Search Tre
 A tree with degree of 2, every node can have 0,1 or 2 child  
-1) How many binary tree from `n` unlabeled nodes
+1) How many binary tree from `n` nodes?
 ```
 T(3)=5
 n=3
@@ -59,8 +59,20 @@ O
        \
         O
 ```        
+
 T(4)=14  
 `T(n)=Catalan Number=Combinations(2*n,n)/(n+1)=(2*n)!/((n+1)!n!)`  
+Let say we have `n` distinct number to build a BST, if we choose `i'th` number as root, then there are `i-1` number smaller than that (which can form tree on left child) and `n-i` number larger than that (which can form tree on the right side), so total number of tree would be 
+```
+t(n-i)*t(i-1)
+```
+but this i could be any number so we need to sum it up for all numbers:
+
+```
+t(n)=Σt(n-i)*t(i-1)
+```
+for `i=1...n`
+
 Proof:
 first lets review geometric progression:
 ```
@@ -71,37 +83,43 @@ sum(a, ar, ar^2, ar^3, ar^4, ar^2, ... ,ar^n )
 =(a-ar^n+1)/(1-r)
 =a(1-r^n+1)/(1-r)
 ```
-Now let say we have `n` distinct number to build a BST, if we choose `i'th` number as root, then there are `i-1` number smaller than that (which can form tree on left child) and `n-i` number larger than that (which can form tree on the right side), so total number of tree would be 
-```
-t(n-i)*t(i-1)
-```
-but this i could be any number so we need to sum it up for all numbers:
 
-```
-t(n)=Σt(n-i)*t(i-1)
-```
-for i=1...n
 
-2) How many binary tree with `n` unlabeled nodes with max height? 
-Since max height for `n` node is  `n-1` and every node can only have one child (either on the left or right), then we have:
+2) How many binary tree from `n` nodes?  
+We build a binary search tree and then we have `n!` possible permutation for filling up the nodes for a binary tree, so:  
+```
+  total number of binary tree with n nodes=n!* total number of binary search tree with n nodes.
+```
+which is `n! * Combinations(2*n,n)/(n+1)`  
+
+3) How many binary tree with `n` unlabeled nodes with max height? 
+Max height for `n` node is  `n-1`. Nodes are unlabled and every node can only have one child (either on the left or right), then for every node
+we have either a left or right child, so in total:  
+
 Number of trees with max height: 2<sup>(n-1)</sup>
 
-3) How many binary tree from \<n\> unlabeled nodes
-`n! * Combinations(2*n,n)/(n+1)`  
-4) If we know height of a tree ( height=H )  find max and min number of nodes 
-Min number of node `n=H+1`  
-Max number of node `n=2^0 + 2^1 + ... 2^H=2^(H+1)-1`  
-5)  If n nodes are gives what would be min/ max height of a tree 
-Min of height `H=log2(n+1)-1`  
-Max of height `H=n-1`  
+
+4) If we know height of a tree ( height=H ) find max and min number of nodes.  
+Min number of node: only 1 node at each level: `n=H+1`  
+Max number of node: complete number of nodes at each level n=2<sup>0</sup> + 2<sup>1</sup> + ... 2<sup>H</sup>=2<sup>(H+1)</sup>-1  
+
+5)  If n nodes are gives what would be min/ max height of a tree?  
+
+Max of height: `H=n-1`  
+Min of height: `H=log2(n+1)-1`  
+
+
 6) Relation between number of external nodes and internal nodes 
 ```
 deg(0) external node
 deg(1) deg(2) internal node
 deg(0)=deg(2)+1
 ```
-7) Strict (Proper) and Full 
-Strict (Proper): A node can have 0 or 2 children.
+7) Strict (Proper) VS Full  tree  
+ 
+**Strict (Proper):**   
+A node can have 0 or 2 children.
+
 ```
       min                        max
        O                           O
@@ -113,15 +131,17 @@ Strict (Proper): A node can have 0 or 2 children.
  O   O                      O  OO O O O O  O
  ```
  
-Full: A tree with height H having maximum number of nodes.
+**Full:**   
+A tree with height H having maximum number of nodes.
 if n is given
 Min of height `H=log2(n+1)-1`  
 Max of height `H= ciel[n-1/2]`  
 if H is given
 Min number of node `n= 2*H+1`  
 Max number of node `n= 2^(H+1)-1`  
-Number of external nodes=Number of internal nodes + 1
-8) M-ary Tree/ Strict M-ary Tree 
+Number of external nodes=Number of internal nodes + 1  
+
+8) M-ary Tree/ Strict M-ary Tree   
 M is degree of tree, degree means every node in tree can have at most M children
 3-ary Tree {0,1,2,3}
 Strict 3-ary Tree {0,3}
@@ -143,14 +163,18 @@ h is the height of the tree.
                    4  1   5
 ```
 ## Binary Tree Properties:
-    1)The maximum number of nodes at level ‘l’, `2^(l-1).`  
-    Maximum number of nodes = 2^(h – 1).
-    Here h is height of a tree. Height is considered
-    as is maximum number of nodes on root to leaf path
-    2)Minimum possible height =  ceil(Log2(n+1))
-    3)In Binary tree, number of leaf nodes is always one
-    more than nodes with two children.
-    4)Time Complexity of Tree Traversal: O(n)
+
+1) The maximum number of nodes at level ‘l’, `2^(l-1).`  
+Maximum number of nodes = 2^(h – 1).
+Here h is height of a tree. Height is considered
+as is maximum number of nodes on root to leaf path  
+
+2) Minimum possible `height =  ceil(Log2(n+1))`  
+
+3) In Binary tree, number of leaf nodes is always one more than nodes with two children.  
+
+4) Time Complexity of Tree Traversal: `O(n)`  
+
 ## Binary Search Tree
 In Binary Search Tree is a Binary Tree with following additional properties:
     1) The left subtree of a node contains only nodes with keys less than the node’s key.
@@ -990,11 +1014,11 @@ To balance a Red-Black tree, we use the following operations:
 
 
 
-Online visualization for [B-tree](https://www.cs.usfca.edu/~galles/visualization/BTree.html)
+Online visualization for [B-tree](https://www.cs.usfca.edu/~galles/visualization/BTree.html)  
 Refs: [1](https://www.tutorialspoint.com/cplusplus-program-to-implement-avl-tree),
       [2](https://www.geeksforgeeks.org/avl-tree-set-1-insertion/),
       [3](https://gist.github.com/Harish-R/097688ac7f48bcbadfa5),
-      [4](https://math.stackexchange.com/questions/337842/simplifying-catalan-number-recurrence-relation)
+      [4](https://math.stackexchange.com/questions/337842/simplifying-catalan-number-recurrence-relation),
       [5](https://www.geeksforgeeks.org/total-number-of-possible-binary-search-trees-with-n-keys/)
 
 
