@@ -488,12 +488,18 @@ public:
 
 	void preOrderIteratively(std::shared_ptr<Node<T>> node)
 	{
-
-	}
-
-	void inOrderIteratively(std::shared_ptr<Node<T>> node)
-	{
-
+        std::stack<std::shared_ptr<Node<T>> > stack;
+        stack.push(node);
+        while(!stack.empty())
+        {
+            std::shared_ptr<Node<T>> processing_node=stack.top();
+            std::cout << processing_node->value << " ";
+            stack.pop();
+            if(processing_node->right!=nullptr)
+                stack.push(processing_node->right);
+            if(processing_node->left!=nullptr)
+                stack.push(processing_node->left);
+        }
 	}
 
 	void inOrderRecursively(std::shared_ptr<Node<T>> node)
@@ -505,6 +511,31 @@ public:
 			inOrderRecursively(node->right);
 		}
 	}
+
+    void inOrderIteratively(std::shared_ptr<Node<T>> node)
+    {
+//        std::stack<std::shared_ptr<Node<T>> > stack;
+//        stack.push(node);
+//        while(!stack.empty())
+//        {
+//            std::shared_ptr<Node<T>> processing_node=stack.top();
+//            stack.pop();
+//            if(processing_node->left!=nullptr)
+//            {
+//                stack.push(processing_node->left);
+//                processing_node=processing_node->left;
+//            }
+//            processing_node=stack.top();
+//            stack.pop();
+//            std::cout << processing_node->value << " ";
+
+//            if(processing_node->right!=nullptr)
+//            {
+//                stack.push(processing_node->right);
+
+//            }
+//        }
+    }
 
 	void levelOrderRecursively(std::shared_ptr<Node<T>> node)
 	{
@@ -547,7 +578,7 @@ public:
 				std::cout << node->right->value << " ";
 				queue.push(node->right);
 			}
-		}
+        }std::cout << "\n";
 	}
 
 	void heightRecursively(std::shared_ptr<Node<T>> node)
@@ -615,9 +646,8 @@ int main()
 	std::cout << bst.getBalanceFactor(bst.root->right) << std::endl;
 
 	bst.printTree();
-	std::shared_ptr<BinarySearchTree<int>> tree(new BinarySearchTree<int>);
-	tree->createTree();
 
+    std::shared_ptr<BinarySearchTree<int>> tree=std::make_shared<BinarySearchTree<int>>(bst);
 	std::cout << "Traversing Level Order" << std::endl;
 	tree->levelOrder(tree->root);
 
@@ -629,9 +659,21 @@ int main()
 	tree->preOrderRecursively(tree->root);
 	std::cout << "\n";
 
+    std::cout << "Traversing Pre-Order(Iteratively)" << std::endl;
+    tree->preOrderIteratively(tree->root);
+    std::cout << "\n";
+
+
 	std::cout << "Traversing In-Order(Recursively)" << std::endl;
 	tree->inOrderRecursively(tree->root);
 	std::cout << "\n";
+
+
+    std::cout << "Traversing In-Order(Iteratively)" << std::endl;
+    tree->inOrderIteratively(tree->root);
+    std::cout << "\n";
+
+
 
 	std::cout << "Traversing Post-Order(Recursively)" << std::endl;
 	tree->postOrderRecursively(tree->root);
@@ -644,4 +686,11 @@ int main()
 	std::cout << "The height of the tree (Recursively) is:" << std::endl;
 	tree->heightRecursively(tree->root);
 	//std::cout << tree->max_height << std::endl;
+
+
+
+
+    std::shared_ptr<BinarySearchTree<int>> tree2(new BinarySearchTree<int>);
+    tree2->createTree();
+
 }

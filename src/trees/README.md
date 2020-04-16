@@ -264,14 +264,67 @@ A,(B,D,E),(R)
 A,(B,D,E),(C,F,G)
 A,B,D,E,C,F,G
 ```
+#### Algorithm Pre-order Traverse Recursivly
+```
+preOrderRecursively( node)
+{
+	if (node != nullptr)
+	{
+		std::cout << node->value << " ";
+		preOrderRecursively(node->left);
+		preOrderRecursively(node->right);
+	}
+}
+```
+
+
+#### Algorithm Pre-order Traverse Iteratively
+
+Please note that this is Pre-order Traverse Node,L,R but first we push into stack R and then L
+```
+stack.push(root);
+while(!stack.empty())
+{
+    processing_node=stack.top();
+    std::cout << processing_node->value << " ";
+    stack.pop();
+    if(processing_node->right!=nullptr)
+        stack.push(processing_node->right);
+    if(processing_node->left!=nullptr)
+        stack.push(processing_node->left);
+}
+```
+
+
+
 ### In-order:
-perform in-order on the left subtree, Visit the node then perform in-order on the right subtree.
+Perform in-order on the left subtree, Visit the node then perform in-order on the right subtree.
 ```
 (L),A,(R)
 (D,B,E),A,(R)
 (D,B,E),A,(F,C,G)
 D,B,E,A,F,C,G
 ```
+
+#### Algorithm In-order Traverse Recursivly
+
+```
+inOrderRecursively(node)
+{
+	if (node != nullptr)
+	{
+		inOrderRecursively(node->left);
+		std::cout << node->value << " ";
+		inOrderRecursively(node->right);
+	}
+}
+
+```
+
+#### Algorithm In-order Traverse Iteratively
+
+
+
 ### Post-order:
 perform post-order on the left subtree, perform post-order on the right subtree, then visit the node.
 ```
@@ -289,10 +342,9 @@ A,B,C,D,E,F,G
 
 
 # Binary Search Tree
-It's a binary tree that all the elemnt on evry node are smaller than that node and all
-the node on the right side are bigger than that node.
-Binary search tree is usefull for searching.
-Heap is usefull for sorting.
+It's a binary tree that all the elemnt on evry node are smaller than that node and all the node on the right side are bigger than that node.
+**Binary search tree is usefull for searching.**
+**Heap is usefull for sorting.**
 #### Propeties
 1) Binary search tree shouldn't have duplicates.
 2) If we traverse the tree inorder, the output is a sorted array.
@@ -307,8 +359,7 @@ Inorder traverse:
 ```(left)30(right)
 10, 15, 20, 30, 40, 50, 60
 ```
-#### How many trees can be created for a set of number?
-Combination( 2n,n)/n+1
+
 Binary search usually represented with linked representation.  
 `log2(n) < Height of the BST < n`  
 Inorder traverse of BST will give you a sorted array.  
@@ -318,7 +369,7 @@ with the left else with the right node until the node is pinting null.
 #### Creating
 creating takes `nlog2(n)`
 #### Deletion
-Let say we have the following tree, and we want to delete somenodes:
+Let say we have the following tree, and we want to delete some nodes:
 ```
                        30
                      /     \
@@ -330,8 +381,8 @@ Let say we have the following tree, and we want to delete somenodes:
                                \
                                43
 ```                               
-If the node has no child just remove it from the tree, and make teh parent to point to null;
-Deleting 25
+If the node has no child just remove it from the tree, and make the parent to point to null.  
+Example deleting 25:
 ```
                        30
                      /     \
