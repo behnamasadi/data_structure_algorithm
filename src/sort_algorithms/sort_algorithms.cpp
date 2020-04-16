@@ -556,7 +556,7 @@ int main()
 
     {
         std::cout<<"**************** Shell Sort Algorithm **************** "<<std::endl;
-        std::vector<int> vec(unsorted_array);
+        std::vector<int> vec={9, 5, 16, 8, 13, 6, 12, 10, 4, 2, 3 };
         printArray(&vec[0], vec.size());
         shellSort(&vec[0], vec.size());
         //shellSortAlgoritm(&vec[0], vec.size());

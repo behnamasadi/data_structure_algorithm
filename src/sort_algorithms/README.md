@@ -485,27 +485,130 @@ and the location of pivot is at 5 (arr[5]=9 ).
 
 
 ## Shell Sort
-Usefull for sorting very large lists. Shellsort is a generalization of insertion sort. In insertion sort the gap size is 1 but shell sort the gapp size start with `N/2` and then `N/4` and so on.
+Usefull for sorting very large lists. Shellsort is a generalization of insertion sort. In insertion sort the gap size is 1 but shell sort the gap size start with `N/2` and then `N/4` and so on. We sort the element at the gap size.
 
 ```
 Initial array:
 
-4 3 2 10 12 1 5 14 19 
+9 5 16 8 13 6 12 10 4 2 3 
 
-Gap size is:4
+Gap size is: 5=11/2
 
-4 3 2 10 12 1 5 14 19 
+We compare elements at 0 and 4 and sort them (if it is necessary):
 
-Gap size is:2
+9 5 16 8 13 6 12 10 4 2 3 
+↑               ↑
+0           4 
 
-2 1 4 10 12 3 5 14 19 
-2 1 4 10 12 3 5 14 19 
-2 1 4 10 12 3 5 14 19 
-2 1 4 3 12 10 5 14 19 
+6 5 16 8 13 9 12 10 4 2 3 
+↑               ↑
+4           0 
 
-Gap size is:1
+and we continue by comparing 1st and 5th element:
 
-1 2 4 3 5 10 12 14 19 
+6 5 16 8 13 9 12 10 4 2 3 
+  ↑                ↑
+  1           5 
+
+comparing 2nd and 6th element:
+
+6 5 16 8 13 9 12 10 4 2 3 
+      ↑                 ↑
+    2            6 
+
+6 5 10 8 13 9 12 16 4 2 3 
+      ↑                 ↑
+    6            2 
+
+
+comparing 3rd and 7th element:
+
+6 5 10  8 13 9 12 16 4 2 3 
+        ↑                 ↑
+        3            7 
+
+6 5 10  4 13 9 12 16 8 2 3 
+        ↑                 ↑
+        7            3
+
+comparing 4th and 8th element:
+
+6 5 10  4 13 9 12 16 8 2 3 
+          ↑                 ↑
+          4            8
+
+6 5 10  4 2 9 12 16 8 13 3 
+          ↑                 ↑
+          8            4
+
+comparing 0th, 5th and 9th element:
+
+6 5 10  4 2 9 12 16 8 13 3 
+↑               ↑                 ↑
+0           5            9
+
+3 5 10  4 2 6 12 16 8 13 9 
+
+now gap size is: 2=old_gap/2
+
+3 5 10  4 2 6 12 16 8 13 9 
+↑   ↑ 
+
+
+3 5 10  4 2 6 12 16 8 13 9 
+  ↑       ↑ 
+
+3 4 10  5 2 6 12 16 8 13 9 
+  ↑       ↑ 
+
+
+
+3 4 2  5  10 6 12 16 8 13 9 
+      ↑       ↑ 
+
+Now from here we can go back at gap size untill we reach the first element of array, once you get a smaller element we don't go back further:
+
+3 4  2  5  10 6 12 16 8 13 9 
+↑    ↑       ↑ 
+
+2 4  3  5  10 6 12 16 8 13 9 
+↑    ↑       ↑ 
+
+We go further:
+
+2 4  3  5  10 6 12 16 8 13 9 
+        ↑       ↑ 
+
+Again we can go back:
+
+2 4  3  5  10 6 12 16 8 13 9 
+   ↑      ↑       ↑ 
+
+2 4  3  5  10 6 12 16 8 13 9 
+           ↑       ↑ 
+
+2 4  3  5  10 6 12 16 8 13 9 
+           ↑       ↑ 
+
+2 4  3  5  10 6 12 16 8 13 9 
+             ↑       ↑ 
+
+2 4  3  5  10 6 12 16 8 13 9 
+                ↑       ↑ 
+
+2 4  3  5  10 6 8 16  12 13 9 
+                ↑       ↑ 
+
+2 4  3  5  10 6 8 16  12 13 9 
+           ↑     ↑       ↑ 
+
+2 4  3  5  8 6 10 16  12 13 9 
+           ↑     ↑       ↑ 
+
+here since 3<8 we don't go back further
+2 4  3  5  8 6 10 16  12 13 9 
+       ↑     ↑     ↑       ↑ 
+
 
 ```
 
