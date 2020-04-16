@@ -285,7 +285,7 @@ void stdHeap()
 
 int main()
 {
-	std::vector<int> data = { 6, 6, 8, 2, 10, 0, 2, 2, 1, 0 };
+    std::vector<int> data = { 6, 8, 2, 10, 0, 2, 2, 1, 0 };
 
 	std::cout << "Input data:" << "\n";
 	for (auto i : data)

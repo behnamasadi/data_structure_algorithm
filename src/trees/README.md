@@ -195,49 +195,49 @@ Example:
 Let say we have the following number and we want to insert them into heap:  
 `6, 8, 2, 10, 0, 2, 2, 1, 0 `
 
-Inserting 6:
+Inserting 6: 
+
+Heap:  
+┌---┐  
+| 6 |   
+└---┘  
+
+Inserting 8:  
 
 Heap:
-┌---┐
-| 6 | 
-└---┘
+┌-------┐  
+| 6 | 8 |  
+└-------┘  
+┌-------┐  
+| 8 | 5 |  
+└-------┘  
 
-Inserting 8:
+Inserting 2:  
 
-Heap:
-┌-------┐
-| 6 | 8 |
-└-------┘
-┌-------┐
-| 8 | 5 |
-└-------┘
+Heap:  
+┌-----------┐  
+| 8 | 6 | 2 |  
+└-----------┘  
 
-Inserting 2:
+Inserting 2:  
 
-Heap:
-┌-----------┐
-| 8 | 6 | 2 |
-└-----------┘
+Heap:  
+┌----------------┐  
+| 8 | 6 | 2 | 10 |  
+└----------------┘  
+┌----------------┐  
+| 8 | 10 | 2 | 6 |  
+└----------------┘  
+┌----------------┐  
+| 10 | 8 | 2 | 6 |  
+└----------------┘  
 
-Inserting 2:
+Inserting 0:  
 
-Heap:
-┌----------------┐
-| 8 | 6 | 2 | 10 |
-└----------------┘
-┌----------------┐
-| 8 | 10 | 2 | 6 |
-└----------------┘
-┌----------------┐
-| 10 | 8 | 2 | 6 |
-└----------------┘
-
-Inserting 0:
-
-Heap:
-┌--------------------┐
-| 10 | 8 | 2 | 6 | 0 |
-└--------------------┘
+Heap:  
+┌--------------------┐  
+| 10 | 8 | 2 | 6 | 0 |  
+└--------------------┘  
 
 ### Deletion
 We only delete from top of the heap. Then we move the last element in the array of heap to the top and we compare it with it children. We pick the max value of its children and we descend it down we repeat it recursively.
