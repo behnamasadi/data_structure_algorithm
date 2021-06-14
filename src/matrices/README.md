@@ -82,7 +82,7 @@ Total number of elements `N+N-1+N-1=3*N-2`
 
 ### 6) Band  
  Band matrix is a sparse matrix whose non-zero entries are only on diagonal band, and zero or more diagonals on either side.
- Matrix A has lower bandwith `p` if `aij=0` for `i>j+p` and upper bandwidth q if  `aij=0` for `j>i+q`
+ Matrix A has lower bandwidth `p` if `aij=0` for `i>j+p` and upper bandwidth q if  `aij=0` for `j>i+q`
  Matrix has lower bandwidth `3` and upper bandwidth `1`
  ```
 ┌              ┐
@@ -139,7 +139,8 @@ We only need to store the first row and the first column.
 
 Its a matrix than number of zero elements are more than the number of non zero elements.
 Instead of storing all values in a matrix for we can only store non-zero elements.
-There are several approchaes:
+There are several approaches:
+
 **1) Coordinate list/ 3 column representation**  
 **2) Compressed sparse rows**  
 **3) Sparse Matrix using Linked List**  
@@ -160,7 +161,7 @@ There are several approchaes:
 ```
 First row: number of rows in matrix, number of cols in matrix, number of non-zero elements.
 ```
-row  |  column  |  elemnt
+row  |  column  |  element
  8   |    8     |    8
  1   |    8     |    3
  2   |    3     |    8
@@ -176,7 +177,7 @@ Addition of two sparse matrices in coordinate list:
 iterate over rows,   
 1) If row index in first matrix is smaller, copy it to the output matrix, increase the value of iterator for first matrix.
 2) If row index in first matrix is bigger, copy the value from the second matrix to the output matrix, increase the value of the iterator of the first matrix.
-3) If the row numbers are matching, check the clomun numbers and follow the same policy but for columns from `step 1` and `step 2`.
+3) If the row numbers are matching, check the communal numbers and follow the same policy but for columns from `step 1` and `step 2`.
 If the column number are also matching add them and put the in the output matrix.
 
 #### 2) Compressed sparse rows
