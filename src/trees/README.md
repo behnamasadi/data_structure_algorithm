@@ -365,7 +365,7 @@ Binary search usually represented with linked representation.
 Inorder traverse of BST will give you a sorted array.  
 #### Insertion
 Just compare the value of new node with value of root, if it is smaller recursively call the function
-with the left else with the right node until the node is pinting null.
+with the left else with the right node until the node is pinting nullptr.
 #### Creating
 creating takes `nlog2(n)`
 #### Deletion
@@ -381,7 +381,7 @@ Let say we have the following tree, and we want to delete some nodes:
                                \
                                43
 ```                               
-If the node has no child just remove it from the tree, and make the parent to point to null.  
+If the node has no child just remove it from the tree, and make the parent to point to nullptr.  
 Example deleting 25:
 ```
                        30
@@ -1126,7 +1126,7 @@ It is used to implement CPU Scheduling Linux. Completely Fair Scheduler uses it.
 
 3) There are no two adjacent red nodes (A red node cannot have a red parent or red child).
 
-4) Every path from a node (including root) to any of its descendant NULL node has the same number of black nodes.
+4) Every path from a node (including root) to any of its descendant nullptr node has the same number of black nodes.
 
 
 
@@ -1135,7 +1135,7 @@ It is used to implement CPU Scheduling Linux. Completely Fair Scheduler uses it.
        /         \                        /         \
      R(10)      R(30)                   R(10)       R(30)  
     /    \     /     \                 /    \      /     \
- NULL  NULL    NULL NULL             NULL   NULL  NULL   NULL
+ nullptr  nullptr    nullptr nullptr             nullptr   nullptr  nullptr   nullptr
 
 ```
 ## Operations

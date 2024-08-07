@@ -1,73 +1,58 @@
-#include <vector>
 #include <algorithm>
+#include <array>
+#include <functional>
 #include <iostream>
-#include <random>
 #include <map>
+#include <random>
+#include <vector>
 
-template
-<typename T>
-void printArray(T arr[], size_t size, size_t start=0)
-{
-    for (std::size_t i= start; i < size; i++)
-        std::cout<<arr[i]<<" ";
-    std::cout<<std::endl;
+template <typename T> void printArray(T arr[], size_t size, size_t start = 0) {
+  for (std::size_t i = start; i < size; i++)
+    std::cout << arr[i] << " ";
+  std::cout << std::endl;
 }
 
-template
-<typename T>
-void insertionSort(T arr[], size_t size)
-{
+int adder(int a, int b) { return a + b; }
 
-}
+template <typename T> void insertionSort(T arr[], size_t size) {}
 
-int main1()
-{
-//    std::multimap<int,int> array;
-//    std::pair<int,int> valueindex;
-//    std::vector <int> vec={34, 8, 10, 3, 2, 80, 30, 33, 1};
-//    for(int i=0;i<vec.size();i++)
-//    {
-//        valueindex.first=i;
-//        valueindex.second=vec[i];
-//        array.insert(valueindex);
-//    }
+typedef int (*fn_ptr)(int, int);
 
-//    for(std::multimap<int,int>::iterator it=array.begin();it!=array.end();it++)
-//    {
-//        std::cout<<it->first <<", " <<it->second    <<std::endl;
-//    }
+int some_func(int a, int b, fn_ptr fn) { return fn(a, b); }
 
-//    std::sort(vec.begin(),vec.end());
+template <typename T> struct array {
+  int m_size;
+  T *data;
+  array(size_t size) : m_size(size) { data = new T(m_size); }
+  ~array() { delete[] data; }
+};
 
+int main() {
 
-    /*
-    std::vector<int> array={6,2,5,7,18,9,11,8,15};
-    printArray(&array[0], array.size());
+  int (*myfn_ptr)(int, int);
 
-    printArray(&array[0], array.size());
+  fn_ptr myfn = adder;
 
-    std::random_device rd;
-    std::mt19937 g(rd());
-    std::shuffle(array.begin(),array.end(),g);
-    */
-    return 0;
-}
+  myfn_ptr = adder;
 
-int main()
-{
-}
+  std::cout << myfn_ptr(2, 3) << std::endl;
 
+  int a = 2;
+  int b = 3;
 
-int main3()
-{
-    std::map<char,char> collections;
-    collections['!']='!';
-    collections['$']='$';
-    collections['#']='#';
+  std::cout << some_func(2, 3, adder) << std::endl;
 
-    if(collections['!']==NULL)
-        std::cout<< "xxx" <<std::endl;
+  // std::function<int,int
 
-    //std::map::at()
+  array<int> my_array(7);
 
+  my_array.data[0] = 0;
+  my_array.data[1] = 1;
+  my_array.data[2] = 5;
+  my_array.data[4] = 7;
+  my_array.data[5] = 3;
+
+  // std::sort(my_array.data[0], my_array.data[5]);
+
+  // std::iterator
 }

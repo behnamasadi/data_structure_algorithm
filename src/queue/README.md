@@ -58,13 +58,13 @@ new pointer poistion=(pointer+1)mode (size)
 
 
 Empty:
-When both fron and rare are null.
+When both fron and rare are nullptr.
 
 After insertion of the first element, both front and rare will point at the inserted element.
 
 Full:
 There is no limit for the size of the queue unless there is no memory, so when requesting
-for new memory return NULL the the queue is full.
+for new memory return nullptr the the queue is full.
 insertion and deleteion is O(1).
 
 #### Implementing queue with linked list
