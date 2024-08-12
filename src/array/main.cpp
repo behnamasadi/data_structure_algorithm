@@ -9,7 +9,8 @@ template <typename T> void printArray(T arr[], std::size_t size) {
     std::cout << arr[i] << " ";
   std::cout << std::endl;
 }
-
+//https://www.geeksforgeeks.org/two-pointers-technique/?ref=roadmap
+//https://www.youtube.com/watch?v=On03HWe2tZM
 void arrayTwoPointer() {
 
   std::array<int, 6> arr = {10, 20, 35, 50, 75, 80};
