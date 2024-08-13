@@ -2,8 +2,10 @@
 #include <array>
 #include <functional>
 #include <iostream>
+#include <limits>
 #include <map>
 #include <random>
+#include <stack>
 #include <vector>
 
 template <typename T> void printArray(T arr[], size_t size, size_t start = 0) {
@@ -25,6 +27,13 @@ template <typename T> struct array {
   T *data;
   array(size_t size) : m_size(size) { data = new T(m_size); }
   ~array() { delete[] data; }
+};
+
+template <typename T> struct node {
+  T value = std::numeric_limits<T>::min();
+  node *left_child;
+  node *right_child;
+  void insert(T key) {}
 };
 
 int main() {
@@ -55,4 +64,53 @@ int main() {
   // std::sort(my_array.data[0], my_array.data[5]);
 
   // std::iterator
+
+  std::vector<int> arr = {-1, -14, 4, 3, 12, 5, 90, 6, 1, 11, 7, 17, 0};
+  printArray(&arr[0], arr.size());
+  for (std::size_t i = 0; i < 10; i++) {
+    std::next_permutation(arr.begin(), arr.end());
+
+    printArray(&arr[0], arr.size());
+  }
+  std::size_t half_length = arr.size() / 2;
+  std::cout << half_length << ": " << arr[half_length] << std::endl;
+
+  std::nth_element(arr.begin(), arr.begin() + half_length, arr.end(),
+                   std::greater{});
+
+  std::cout << half_length << ": " << arr[half_length] << std::endl;
+  printArray(&arr[0], arr.size());
+  auto median = arr[half_length];
+
+  node<int> *root = new node<int>;
+  root->value = median;
+  node<int> *t = root;
+  arr.erase(arr.begin() + half_length);
+  for (const auto &item : arr) {
+    if (item > t->value) {
+
+    } else {
+    }
+  }
+  std::string str = {"{(a+b)*(c-d)}/e"};
+  std::stack<char> match;
+  std::string specia_char_opening = {"{(["};
+  std::string specia_char_closing = {"})]"};
+  std::size_t last_open;
+  for (const auto &c : str) {
+    std::cout << c << " ";
+    // std::search(specia_char_opening.begin(), specia_char_opening.end(),
+    //             c.begin(), c.end());
+    std::size_t open = specia_char_opening.find(c);
+    std::size_t close = specia_char_closing.find(c);
+    if (open != std::string::npos) {
+      match.push(c);
+      last_open = open;
+
+    } else if (close != std::string::npos) {
+      if (close == last_open)
+        match.pop();
+    }
+  }
+  std::cout << match.size() << "\n";
 }

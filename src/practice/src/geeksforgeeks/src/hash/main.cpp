@@ -4,8 +4,7 @@
 
 // https://practice.geeksforgeeks.org/problems/nuts-and-bolts-problem/0
 
-int main() {
-
+void nutsAndBoltsProblem() {
   std::vector<char> collection = {'!', '#', '$', '%', '&', '*', '@', '^', '~'};
 
   int num_repeat;
@@ -47,4 +46,21 @@ int main() {
     nuts.clear();
     num_repeat--;
   }
+}
+
+int main() {
+  std::hash<int> foo;
+
+  std::cout << "." << foo(2) << std::endl;
+
+  std::hash<std::string> hasher;
+
+  // Input data (a string)
+  std::string input = "Hello, World!";
+
+  // Calculate the hash value of the input
+  size_t hashValue = hasher(input);
+
+  // Display the hash value
+  std::cout << "Hash value of '" << input << "': " << hashValue << std::endl;
 }
