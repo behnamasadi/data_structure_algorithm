@@ -18,36 +18,36 @@ for all individuals (we might violate the constraint of one job for one person, 
 Lower Bound=(lowest cost for person A)+(lowest cost for person B)+(lowest cost for person C)+(lowest cost for person D)= 2+3+1+4
 
 ```
-                                                                    2+3+1+4                                                            
+                                                                  2+3+1+4                                                            
                                                    /           |               |            \   
-                                               A <- Job 1  A <- Job 2     A <- Job 3      A <- Job 4
+Person A                                       A <- J1     A <- J2       A <- Job 3       A <- J4
                                               LB=9+3+1+4      LB=2+3+1+4   LB=7+3+1+4     LB=8+31+6
 ```
-So now we start traversing the tree by BFS search and putting the node in the priority queue.
+So now we start traversing the tree by `BFS` search and putting the node in the priority queue.
 
 ```
                                                                     2+3+1+4                                                            
                                                    /           |               |            \   
-                                               A <- Job 1    A <- Job 2   A <-Job 3      A <-Job 4
+Person A                                     A <- J1      A <- J2        A <-  J3         A <-J4
                                               LB=9+3+1+4      LB=2+3+1+4   LB=2+3+1+4     LB=8+3+1+6
                                                             /     |      \
-                                                          B<-1   B<-3    B<-4     
+Person B                                               B <- J1  B <- J3  B <- J4     
                                                         LB=13    LB=14   LB=17
 ```
 
-We expand the `A<-2` and `B<-1`
+We expand the `A <- J2` and `B <- J1`
 
 ```
                                                                     2+3+1+4                                                            
                                                    /           |               |            \   
-                                                 A<-Job 1     A<-Job 2     A<-Job 3       A<-Job 4
-                                              LB=9+3+1+4      LB=2+3+1+4   LB=2+3+1+4     LB=8+31+6
+Person A                                     A <- J1      A <- J2        A <-  J3         A <-J4
+                                              LB=9+3+1+4      LB=2+3+1+4   LB=2+3+1+4     LB=8+3+1+6
                                                             /     |      \
-                                                          B<-1   B<-3    B<-4     
+Person B                                               B <- J1  B <- J3  B <- J4     
                                                         LB=13    LB=14   LB=17
-                                                       /    \ 
-                                                      C<-3  C<-4
-                                                      D<-4  D<-3
+                                                     /         \ 
+Person C                                         C <- J3      C <- J4
+Person D                                         D <- J4      D <- J3
                                                    Cost:13  Cost:25 
 ```
 Now since we have a valid solution with cost 13, we don't continue any node with lower bound more than that.
