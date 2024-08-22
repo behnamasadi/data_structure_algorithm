@@ -3,7 +3,9 @@ In this approach, which is generally used for solving combinatorial optimization
 it is useful for solving optimization problems (only minimization problems). 
 
 
-## Example 1: Job Assignment
+## Examples
+
+### 1. Job Assignment
 
 |Person name|Cost Job 1|Cost  Job 2|Cost Job 3  |Cost Job 4 |
 | ----------|--------- | -----     | -----      | -----     | 
@@ -20,7 +22,7 @@ Lower Bound=(lowest cost for person A)+(lowest cost for person B)+(lowest cost f
 ```
                                                                   2+3+1+4                                                            
                                                    /           |               |            \   
-Person A                                       A <- J1     A <- J2       A <- Job 3       A <- J4
+Person A                                       A <- J1     A <- J2         A <- J3       A <- J4
                                               LB=9+3+1+4      LB=2+3+1+4   LB=7+3+1+4     LB=8+31+6
 ```
 So now we start traversing the tree by `BFS` search and putting the node in the priority queue.
@@ -52,7 +54,8 @@ Person D                                         D <- J4      D <- J3
 ```
 Now since we have a valid solution with cost 13, we don't continue any node with lower bound more than that.
 
-## Example 2: 0/1 Knapsack problem
+
+### 2. Zero/One Knapsack Problem
 
 
 In **Branch and Bound** we find upper bound (or lower bands) for our branches, and if they are worse than a valid solution we don't continue that branch.
@@ -90,9 +93,9 @@ Branch and Bound tree
                                D   D           D   D  D   D
                               /\              /\  /\ /\   /\
                         W=12 X W=9,V=65
-```  
+```
 
-## Example 3: Traveling Salesman Problem
+### 3. Traveling Salesman Problem
 
 
 Refs: [1](https://www.youtube.com/watch?v=zkCpOmNM-RQ)

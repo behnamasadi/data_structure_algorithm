@@ -42,8 +42,8 @@ void assigningJobsToPeople() {
   std::vector<cell<int>> min_elements(
       num_columns, cell<int>(std::numeric_limits<int>::max()));
 
-  std::min_element(table.begin(), table.end(),
-                   [](cell<int> rhs, cell<int> lhs) { return true; });
+  //   std::min_element(table.begin(), table.end(),
+  //                    [](cell<int> rhs, cell<int> lhs) { return true; });
 }
 
 int main() { return 0; }
