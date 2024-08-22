@@ -98,7 +98,7 @@ Branch and Bound tree
 Refs: [1](https://www.youtube.com/watch?v=zkCpOmNM-RQ)
 
 
-## Backtracking and Branch-N-Bound
+## Difference between Backtracking and Branch-N-Bound
 
-Ref: [1](https://www.geeksforgeeks.org/difference-between-backtracking-and-branch-n-bound-technique/)
+Ref: [1](https://www.geeksforgeeks.org/difference-between-backtracking-and-branch-n-bound-technique/), [2](https://www.javatpoint.com/branch-and-bound-vs-backtracking)
 
