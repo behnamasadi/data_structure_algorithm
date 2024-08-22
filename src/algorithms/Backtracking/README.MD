@@ -30,7 +30,7 @@ Usually, there are some constraints that limit some solutions, for instance imag
                      B            R                          
 ```
 ## Example 2: N Queen Problem
-Placing 4 Queens in 4x4 chessboard 
+Placing 4 Queens on a `4x4` chessboard 
 
 ## Example 3: Sum of Subsets
 You have the following numbers:  
@@ -140,16 +140,18 @@ Adjacency Matrix
 
 
 ## When to use Backtracking Algorithm
+
 **1. Permutation or Combination Problems:**
 When you need to generate all possible permutations or combinations of a set of elements, For example, solving puzzles like Sudoku, and N-Queens
 
-**2. Constraint Satisfaction Problems:**
+**2. Decision Problems: **
+When you need to find a feasible solution or not, rather than generating all possible solutions. Backtracking can be used to efficiently solve problems like graph coloring or finding a Hamiltonian cycle in a graph.
+
+**3. Constraint Satisfaction Problems: **
  problem that can be broken down into smaller decisions, each with constraints, where choices made need to satisfy specific conditions or constraints, like scheduling or resource allocation problems.
  - Allocating personnel to specific tasks based on their skills and availability.
  - Prioritizing tasks based on their importance and allocating resources accordingly.
 
-**3. Decision Problems: **
-When you need to find a feasible solution or not, rather than generating all possible solutions. Backtracking can be used to efficiently solve problems like graph coloring or finding a Hamiltonian cycle in a graph.
 
 [Ref](https://intellipaat.com/blog/backtracking-algorithm/#:~:text=For%20example%2C%20solving%20Sudoku%20or,problems%20by%20exploring%20solution%20spaces.)
 
