@@ -1,8 +1,8 @@
 # Backtracking 
 This strategy uses the brute force approach to eliminate undesired solutions and only pick the desired solution. It is similar to 
 dynamic programming but in dynamic programming, we were looking for an optimal solution but in "Backtracking" we are looking for all valid solutions.
-`combination` and `permutation` are examples of the problems that can be solved by backtracking and the solutions can be represented 
-in the ** state space tree**. We use DFS traverse to create the tree.
+`combination` and `permutation` are examples of the problems that can be solved by backtracking and the solutions can be represented.
+in the **state space tree**. We use DFS traverse to create the tree.
 
 ## Example 1: Three chair color
 Selecting colors red, blue, and green for three chairs:
@@ -30,12 +30,13 @@ Usually, there are some constraints that limit some solutions, for instance imag
                      B            R                          
 ```
 ## Example 2: N Queen Problem
-Placing 4 Queens on a `4x4` chessboard 
+Placing 4 Queens on a `4x4` chessboard.
 
 ## Example 3: Sum of Subsets
 You have the following numbers:  
 `5,10,12,13,15,18`  
-you should a subset of them such that the total sum is exactly 30.
+
+You should make a subset of them such that the total sum is exactly 30.
 
 ## Example 4: Graph Coloring Problem
 
@@ -96,7 +97,9 @@ Backtracking Tree:
 
 ## Example 6: Hamiltonian Cycle
 The Hamiltonian cycle is a graph cycle (i.e., closed-loop) through a graph that visits each node exactly once. It is an `NP-hard` problem.
-If there is an articulation point in a graph then the Hamiltonian cycle doesn't exist in that graph. If there is also a pendant vertex 
+If there is an articulation point in a graph then the Hamiltonian cycle doesn't exist in that graph. The articulation point in a connected graph is a single point that removing it  would split the graph into 2 or more components.
+
+If there is also a **pendant vertex**. Pendant vertices are the vertices that have degree 1 (Degree = number of edges connected to a vertex).
 The Hamiltonian cycle doesn't exist.
 
 ```
@@ -110,8 +113,8 @@ The Hamiltonian cycle doesn't exist.
                                               / \
                                              e   f
 ```
-1) 3 is an articulation point
-2) `e` and `f` are pendant vertices.
+1) The node `3` is an articulation point
+2) Nodes `e` and `f` are pendant vertices.
 
 
 
@@ -129,12 +132,13 @@ Graph
 
 Adjacency Matrix
 ```
+ 0   1   2   3   4
 ┌                    ┐
-|0   1   1   0   1   |
-|1   0   1   1   1   |
-|1   1   0   1   0   |
-|0   1   1   0   1   |
-|1   1   0   1   0   |
+|0   1   1   0   1   | 0
+|1   0   1   1   0   | 1
+|1   1   0   1   0   | 2
+|0   1   1   0   1   | 3
+|1   0   0   1   0   | 4
 └                    ┘
 ```
 
