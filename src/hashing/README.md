@@ -1,6 +1,3 @@
-- [x] Finish my changes
-- [ ] This page needs some clean up.
-
 # Hashing
 1) It is useful for searching.
 2) Linear search `O(N)`

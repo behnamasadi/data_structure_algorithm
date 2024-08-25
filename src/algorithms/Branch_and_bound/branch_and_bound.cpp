@@ -39,8 +39,8 @@ void assigningJobsToPeople() {
   size_t num_rows = table.size();
 
   // Vector to store the minimum values for each column
-  std::vector<cell<int>> min_elements(
-      num_columns, cell<int>(std::numeric_limits<int>::max()));
+  // std::vector<cell<int>> min_elements(
+  //     num_columns, cell<int>(std::numeric_limits<int>::max()));
 
   //   std::min_element(table.begin(), table.end(),
   //                    [](cell<int> rhs, cell<int> lhs) { return true; });

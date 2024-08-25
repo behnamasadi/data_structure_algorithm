@@ -86,7 +86,7 @@ void N_mostFrequentNumber() {
   std::vector<int> arr = {3, 1, 4, 4, 5, 2, 6, 1};
   int K = 2;
   std::hash<int> hash_table;
-  hash_table(0) = 5;
+  // hash_table(0) = 5;
 }
 
 int main() {
