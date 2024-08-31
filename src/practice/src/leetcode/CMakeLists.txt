@@ -14,25 +14,25 @@ set_target_properties(array_string PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY $<CONFIG>/ 
 )
 
-# add_executable(bfs  src/bfs.cpp)
+add_executable(leetcode_bfs  src/bfs.cpp)
 
-# add_executable(dfs  src/dfs.cpp)
+add_executable(leetcode_dfs  src/dfs.cpp)
 
-# add_executable(dynamic_programming  src/dynamic_programming.cpp)
+add_executable(leetcode_dynamic_programming  src/dynamic_programming.cpp)
 
-# add_executable(graphs  src/graphs.cpp)
+add_executable(leetcode_graphs  src/graphs.cpp)
 
-# add_executable(hash  src/hash.cpp)
+add_executable(leetcode_hash  src/hash.cpp)
 
-# add_executable(heap  src/heap.cpp)
+add_executable(leetcode_heap  src/heap.cpp)
 
-# add_executable(linked_list src/linked_list.cpp)
+add_executable(leetcode_linked_list src/linked_list.cpp)
 
-# add_executable(stack src/stack.cpp)
+add_executable(leetcode_stack src/stack.cpp)
 
-# add_executable(recursion src/recursion.cpp)
+add_executable(leetcode_recursion src/recursion.cpp)
 
-# add_executable(queue src/queue.cpp)
+add_executable(leetcode_queue src/queue.cpp)
 
-# add_executable(matrices src/matrices.cpp)
+add_executable(leetcode_matrices src/matrices.cpp)
 

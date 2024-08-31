@@ -229,5 +229,5 @@ int main() {
   // }
   // std::cout << match.size() << "\n";
 
-  std::vector<int> arr = {15, 30, 20, 40, 5, 6, 10, 12};
+  std::vector<int> arr = {15, 30, 20, 12, 40, 5, 6, 10};
 }
