@@ -122,14 +122,14 @@ public:
 };
 
 int main() {
-  std::vector<int> nums = {3, 2, 1, 5, 6, 4};
-  int k = 2;
+  //   std::vector<int> nums = {3, 2, 1, 5, 6, 4};
+  //   int k = 2;
 
   // nums = {3, 2, 3, 1, 2, 4, 5, 5, 6};
   // k = 4;
 
-  Solution215 s;
-  std::cout << s.findKthLargest(nums, k) << std::endl;
+  //   Solution215 s;
+  //   std::cout << s.findKthLargest(nums, k) << std::endl;
 
   return 0;
 }
