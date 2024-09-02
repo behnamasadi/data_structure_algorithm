@@ -38,5 +38,6 @@ add_executable(leetcode_matrices src/matrices.cpp)
 
 add_executable(leetcode_array_string src/array_string.cpp)
 
+add_executable(leetcode_sliding_window src/sliding_window.cpp)
 
 

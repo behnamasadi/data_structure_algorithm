@@ -2,6 +2,8 @@
 #include <iostream>
 #include <vector>
 
+using namespace std;
+
 /*
 https://leetcode.com/problems/kth-largest-element-in-an-array/description/?envType=study-plan-v2&envId=top-interview-150
 215. Kth Largest Element in an Array
@@ -118,6 +120,20 @@ public:
     }
 
     return nums[0];
+  }
+};
+
+/*
+https://leetcode.com/problems/find-k-pairs-with-smallest-sums/description/?envType=study-plan-v2&envId=top-interview-150Leetcode
+373 - Find K Pairs with Smallest Sums
+
+*/
+
+class Solution373 {
+public:
+  vector<vector<int>> kSmallestPairs(vector<int> &nums1, vector<int> &nums2,
+                                     int k) {
+    return {{}};
   }
 };
 
