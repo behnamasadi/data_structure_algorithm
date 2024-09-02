@@ -5,32 +5,6 @@
 #include <stdio.h>
 #include <vector>
 
-std::vector<int> fibonacciValus;
-
-int Fibonacci(int n) {
-  if (n <= 1) {
-
-    fibonacciValus[0] = 1;
-    fibonacciValus[1] = 1;
-    return fibonacciValus[n];
-  }
-
-  if (fibonacciValus[n] != -1) {
-    return fibonacciValus[n];
-  }
-  fibonacciValus[n] = Fibonacci(n - 1) + Fibonacci(n - 2);
-  return fibonacciValus[n];
-  //   int i = 2;
-  //   fibonacciValus = std::vector<int>(n, -1);
-  //   fibonacciValus[0] = 1;
-  //   fibonacciValus[1] = 1;
-  //   while (i < n) {
-  //     fibonacciValus[i] = fibonacciValus[i - 1] + fibonacciValus[i - 2];
-  //     i++;
-  //   }
-  //   return fibonacciValus[n - 1];
-}
-
 // https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/
 namespace KnapsackProblem {
 struct item {
@@ -330,8 +304,5 @@ int main() {
 
   { KnapsackProblem::zeroOneKnapsackProblem(); }
 
-  n = 5;
-  fibonacciValus = std::vector<int>(n, -1);
-  std::cout << Fibonacci(n) << std::endl;
   return 0;
 }

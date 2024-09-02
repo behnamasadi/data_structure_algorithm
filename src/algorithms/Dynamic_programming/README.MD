@@ -6,22 +6,23 @@ the sub-problem, we use it and don't recompute it again. There are two main appr
 For example, for computing Fibonacci Numbers,
 Simple recursion:
 
-```
+```cpp
 int fibonacci(int n)
 {
     if(n<=1)
         return n;
     return (fibonacci(n-1)+fibonacci(n-2));
 }
-```            
+```
+       
 Here we compute values two times, if we store them we don't need to call the function again. 
  
 With Dynamic Programming
 
-```
+```cpp
 int fibonacci(size_t n)
 {
-	std::vector<size_t> f;
+    std::vector<size_t> f;
     f.resize(n, 0);
     f[0] = 0;
     f[1] = 1;
@@ -31,19 +32,20 @@ int fibonacci(size_t n)
     }
     return f[n-1];
 }
-```  
-
+```
 
 
 ## Tabulation vs Memoization
 
 1) Tabulation: Bottom Up
 2) Memoization: Top Down
+
 ### Tabulation (Bottom Up)
-```
+
+```cpp
 size_t fibonacciRecursiveTabular(size_t n)
 {
-	std::vector<size_t> f;
+    std::vector<size_t> f;
     f.resize(n+1, 0);
     f[0] = 0;
     f[1] = 1;
@@ -54,7 +56,9 @@ size_t fibonacciRecursiveTabular(size_t n)
     return f[n];
 }
 ```
+
 ### Memoization (Top Down)
+
 ```
 std::vector<size_t> fibonacci(20, 0);
 size_t fibonacciRecursiveMemoization(size_t n)
@@ -74,6 +78,7 @@ size_t fibonacciRecursiveMemoization(size_t n)
     return fibonacci[n];
 }
 ```
+
 
 
 |                     | Tabulation  | Memoization  |
@@ -98,8 +103,8 @@ In the general case, the coin set can contain any coins and the greedy algorithm
 
 For example if the coins are `{1,3,4}` and the target sum is 6, the greedy algorithm produces the solution `4+1+1` while the optimal solution is `3+3`.
 
-```
-solve(amount)=min nummber of coins
+```cpp
+solve(amount)=min number of coins
 solve(0)  = 0
 solve(1)  = 1
 solve(2)  = 2
@@ -112,13 +117,14 @@ solve(8)  = 2
 solve(9)  = 3
 solve(10) = 3
 ```
+
 For instance `solve(10)` means `3+3+4`. Recursive formula to calculate the minimum number of coins:
 
-```
+```cpp
 solve(x) = min(solve(x−1)+1, solve(x−3)+1, solve(x−4)+1)
 
 ```
-The genral case for this function would be:
+The general case for this function would be:
 
 ```
 c[]={c1,c2,...ck}
@@ -162,6 +168,7 @@ Every cell in the grid has a cost, the goal is to find the most costly path.
 .
 Y,1  Y,2 .... Y,X
 ```
+
 Example of the costs map:
 
 | 3 | 7 | 9 | 2 | 7 |
@@ -187,20 +194,30 @@ Given a list of cities and the distances between each pair of cities, what is th
 		 |  X  |
 		 ↓↙  ↘ ↓
 		 4←---→3
-
- 1  2  3  4
-┌           ┐
-|0  10 15 20| 1
-|5  0  9  10| 2
-|6  13 0  12| 3
-|8  8  9  0 | 4
-└           ┘
 ```
 
-`Cost(1,{2,3,4})=min{dist<sub>1K<sub> +Cost(K,{2,3,4}-{K} )  }`  
+Adjacency matrix `M`:
+
+```
+   1  2  3  4
+  ┌           ┐
+1 |0  10 15 20| 
+2 |5  0  9  10| 
+3 |6  13 0  12| 
+4 |8  8  9  0 | 
+  └           ┘
+```
+
+
+Cost(1,{2,3,4})=min{dist<sub>1→K</sub> +Cost(K,{2,3,4}-{K} )  }
+
+- dist<sub>1→K</sub>: we get this from above matrix
+- `{2,3,4}-{K}`: means remain set minus the the vertex `K` (we have to remove `K`)
+
+
 or in general form:
 
-`Cost(i,S)=min{dist<sub>iK<sub> +Cost(K,S-{K} )  }` 
+Cost(i,S)=min{dist<sub>i→K</sub> +Cost(K,S-{K} )  }
 
 
 ```
@@ -214,22 +231,23 @@ or in general form:
                            |   |  |   |   |   |
                            1   1  1   1   1   1 
 ```
-If we solve the problem from botton (from most left hand side node):
+If we solve the problem from bottom:
 ```
-Cost(3,{∅})=6  
-Cost(4,{∅})=8  
-Cost(2,{∅})=5  
+Cost(4,{∅})= M41 =8 
+Cost(3,{∅})= M31 =6  
+Cost(2,{∅})= M21 =5  
 ```
 If we go one level higher:
+
 ```
-Cost(3,{4})=dist<3_4>+ Cost(4,{∅})=12+8=20  
-Cost(4,{3})=dist<4_3>+ Cost(3,{∅})=9+6=15  
+Cost(3,{4})=dist<3_4> + Cost(4,{∅})=12+8=20  
+Cost(4,{3})=dist<4_3> + Cost(3,{∅})=9+6=15  
 
-Cost(2,{4})=dist<2_4>+ Cost(4,{∅})=10+8=18  
-Cost(4,{2})=dist<4_2>+ Cost(2,{∅})=8+5=13  
+Cost(2,{4})=dist<2_4> + Cost(4,{∅})=10+8=18  
+Cost(4,{2})=dist<4_2> + Cost(2,{∅})=8+5=13  
 
-Cost(2,{3})=dist<2_3>+ Cost(3,{∅})=9+6=15  
-Cost(3,{2})=dist<3_2>+ Cost(2,{∅})=13+5=18  
+Cost(2,{3})=dist<2_3> + Cost(3,{∅})=9+6=15  
+Cost(3,{2})=dist<3_2> + Cost(2,{∅})=13+5=18  
 ```
 one level higher:
 ```
@@ -286,7 +304,7 @@ For `n` nodes tottal number of trees:
 to solve the best order for multipication, we create two tables:
 
 
-1)Multipication table
+1)Multiplication table
 
 M[1,2]=A<sub>1</sub> x A<sub>2</sub>
 
