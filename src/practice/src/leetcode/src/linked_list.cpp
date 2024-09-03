@@ -20,13 +20,14 @@ public:
     ListNode *slow_pointer = head;
     ListNode *fast_pointer = head;
 
-    while (slow_pointer != nullptr && slow_pointer->next != nullptr) {
+    while (fast_pointer != nullptr && fast_pointer->next != nullptr) {
 
-      fast_pointer = fast_pointer->next->next;
+      slow_pointer = slow_pointer->next;       // Move slow pointer by 1 step
+      fast_pointer = fast_pointer->next->next; // Move fast pointer by 2 steps
 
-      if (fast_pointer != nullptr && fast_pointer == slow_pointer)
-        return true;
-      slow_pointer = slow_pointer->next;
+      if (slow_pointer == fast_pointer) {
+        return true; // Cycle detected
+      }
     }
     return false;
   }
