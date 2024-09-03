@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 
+using namespace std;
 /*
 27. Remove Element
 https://leetcode.com/problems/remove-element/description/?envType=study-plan-v2&envId=top-interview-150
@@ -261,6 +262,45 @@ public:
     }
 
     return total;
+  }
+};
+
+/*
+https://leetcode.com/problems/lemonade-change/
+860. Lemonade Change
+
+*/
+
+class Solution860 {
+public:
+  bool lemonadeChange(vector<int> &bills) {
+    int fives = 0;
+    int tens = 0;
+    int twenties = 0;
+
+    for (const auto &bill : bills) {
+      if (bill == 5)
+        fives++;
+      else if (bill == 10) {
+        if (fives >= 1) {
+          tens++;
+          fives--;
+        } else {
+          return false;
+        }
+
+      } else // (bill == 20)
+      {
+        if (tens >= 1 && fives >= 1) {
+          tens--;
+          fives--;
+        } else if (fives >= 3) {
+          fives = fives - 3;
+        } else
+          return false;
+      }
+    }
+    return true;
   }
 };
 

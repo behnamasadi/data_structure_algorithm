@@ -1,3 +1,4 @@
+#include <cmath>
 #include <iostream>
 #include <map>
 #include <string>
@@ -55,6 +56,46 @@ public:
     return result;
   }
 };
+
+/*
+
+https://leetcode.com/problems/happy-number/description/?envType=study-plan-v2&envId=top-interview-150
+202. Happy Number
+*/
+
+class Solution202 {
+public:
+  int sum_of_squares(int n) {
+    int sum = 0;
+
+    while (n) {
+      sum = sum + pow((n % 10), 2);
+      n = n / 10;
+    }
+
+    return sum;
+  }
+  bool isHappy(int n) {
+
+    // std::map<int, int> table;
+    // while (table.count(n) == 0) {
+    //   if (n == 1)
+    //     return true;
+    //   auto sq = sum_of_squares(n);
+    //   table.insert(std::pair(n, sq));
+    //   n = sq;
+    // }
+    // return false;
+    auto slow = n;
+    auto fast = sum_of_squares(n);
+    while (slow != fast) {
+      slow = sum_of_squares(slow);
+      fast = sum_of_squares(sum_of_squares(fast));
+    }
+    return (slow == 1) ? true : false;
+  }
+};
+
 int main() {
 
   string str = "MCMXCIV";
@@ -65,5 +106,10 @@ int main() {
   //   std::map<string, int> numbers = {{"A", 1}, {"B", 5}};
   //   std::cout << numbers["C"] << std::endl;
 
+  //   std::cout << numbers["C"] << std::endl;
+
+  // std::cout << sum_of_squares(12) << std::endl;
+  Solution202 s202;
+  std::cout << std::boolalpha << s202.isHappy(19) << std::endl;
   return 0;
 }
