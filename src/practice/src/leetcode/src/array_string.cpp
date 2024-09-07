@@ -304,7 +304,68 @@ public:
   }
 };
 
+/*
+88. Merge Sorted Array
+https://leetcode.com/problems/merge-sorted-array/description/?envType=study-plan-v2&envId=top-interview-150
+
+
+https://www.youtube.com/watch?v=P1Ic85RarKY
+*/
+class Solutio88 {
+public:
+  void merge(vector<int> &nums1, int m, vector<int> &nums2, int n) {
+
+    int nums1_current_index = m + n - 1;
+    int num1_pointer = m - 1;
+    int num2_pointer = n - 1;
+
+    while (num1_pointer >= 0 && num2_pointer >= 0) {
+      if (nums2[num2_pointer] >= nums1[num1_pointer]) {
+        nums1[nums1_current_index] = nums2[num2_pointer];
+        num2_pointer--;
+      } else {
+        nums1[nums1_current_index] = nums1[num1_pointer];
+        num1_pointer--;
+      }
+      nums1_current_index--;
+    }
+    // fill the nums1 with leftover nums2 elements for instance for the case
+    // nums1=[2,2,3] and nums2=[1,5,6]
+    while (num2_pointer >= 0) {
+      nums1[nums1_current_index] = nums2[num2_pointer];
+      num2_pointer--;
+      nums1_current_index--;
+    }
+
+    /*
+
+     int nums1_current_index = m + n - 1;
+     int num1_pointer = m - 1;
+     int num2_pointer = n - 1;
+
+     // Traverse both arrays starting from the end
+     while (num2_pointer >= 0) {
+       // If nums1 is exhausted or nums2's element is greater, copy nums2's
+       // element
+       if (num1_pointer < 0 ||
+           (num2_pointer >= 0 && nums2[num2_pointer] >= nums1[num1_pointer])) {
+         nums1[nums1_current_index] = nums2[num2_pointer];
+         num2_pointer--;
+       } else {
+         // Otherwise, copy nums1's element
+         nums1[nums1_current_index] = nums1[num1_pointer];
+         num1_pointer--;
+       }
+       nums1_current_index--;
+     }
+ */
+  }
+};
+
 int main() {
+
+  ///////////////////////////// Solution27 /////////////////////////////
+
   Solution27 s;
   std::vector<int> nums = {0, 1, 2, 2, 3, 0, 4, 2};
   //   int counter = 3;
@@ -327,6 +388,8 @@ int main() {
   nums = {1, 2, 3, 4, 5, 6, 7};
   int k = 3;
 
+  ///////////////////////////// Solution198 /////////////////////////////
+
   Solution189 s198;
   s198.rotate(nums, k);
 
@@ -337,21 +400,46 @@ int main() {
   std::cout << "\n";
   //   nums = {2, 2, 1, 1, 1, 2, 2};
 
+  ///////////////////////////// Solution169 /////////////////////////////
+  Solution169 s169;
   nums = {3, 2, 3};
 
-  Solution169 s169;
-
   std::cout << "Majority Element is:" << s169.majorityElement(nums) << "\n";
+
+  ///////////////////////////// Solution14 /////////////////////////////
 
   Solution14 s14;
   std::vector<std::string> strs = {"flower", "flow", "flight"};
   std::cout << "longest common prefix is:" << s14.longestCommonPrefix(strs)
             << "\n";
 
+  ///////////////////////////// Solution158 /////////////////////////////
+
+  Solution58 s58;
   std::string str = "   fly me   to   the moon  ";
   str = "Hello World";
   str = "luffy";
-  Solution58 s58;
 
   std::cout << "length of last word: " << s58.lengthOfLastWord(str) << "\n";
+
+  ///////////////////////////// Solutio88 /////////////////////////////
+
+  Solutio88 s88;
+  // std::vector<int> nums1 = {1, 2, 3, 0, 0, 0};
+  //  int m = 3;
+  std::vector<int> nums1;
+  nums1.resize(1);
+  int m = 0;
+  // std::vector<int> nums2 = {2, 5, 6};
+  // int n = 3;
+  std::vector<int> nums2 = {1};
+  int n = 1;
+
+  s88.merge(nums1, m, nums2, n);
+
+  std::cout << "merged array: \n";
+  for (const auto &s : nums1) {
+    std::cout << s << " ";
+  }
+  std::cout << "\n";
 }
