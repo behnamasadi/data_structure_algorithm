@@ -1,6 +1,9 @@
 
 #include <algorithm>
 #include <iostream>
+#include <map>
+#include <sstream>
+#include <unordered_set>
 #include <vector>
 
 using namespace std;
@@ -362,6 +365,294 @@ public:
   }
 };
 
+/*
+
+https://leetcode.com/problems/permutation-in-string/description/
+567. Permutation in String
+https://www.youtube.com/watch?v=UbyhOgBN834
+
+https://www.youtube.com/watch?v=quSfR-uwkZU
+*/
+
+class Solution567 {
+public:
+  bool checkInclusion(std::string s1, std::string s2) {
+    if (s1.size() > s2.size())
+      return false;
+
+    // Arrays to store the frequency counts of characters in s1 and the current
+    // window of s2
+    std::vector<int> s1Count(26, 0), s2Count(26, 0);
+
+    // Fill frequency array for s1 and the first window of s2
+    for (int i = 0; i < s1.size(); ++i) {
+      s1Count[s1[i] - 'a']++;
+      s2Count[s2[i] - 'a']++;
+    }
+
+    // Helper function to compare the two frequency arrays
+    auto matches = [](const std::vector<int> &a, const std::vector<int> &b) {
+      for (int i = 0; i < 26; ++i) {
+        if (a[i] != b[i])
+          return false;
+      }
+      return true;
+    };
+
+    // Check the first window
+    if (matches(s1Count, s2Count))
+      return true;
+
+    // Now slide the window over s2
+    for (int i = s1.size(); i < s2.size(); ++i) {
+      // Add the new character to the window
+      s2Count[s2[i] - 'a']++;
+      // Remove the old character from the window
+      s2Count[s2[i - s1.size()] - 'a']--;
+
+      // Check if the current window matches the frequency array of s1
+      if (matches(s1Count, s2Count))
+        return true;
+    }
+
+    return false;
+  }
+};
+
+/*
+128. Longest Consecutive Sequence
+https://leetcode.com/problems/longest-consecutive-sequence/description/?envType=study-plan-v2&envId=top-interview-150
+
+*/
+
+class Solution128 {
+public:
+  int longestConsecutive(vector<int> &nums) {
+
+    if (nums.empty())
+      return 0;
+
+    std::unordered_set<int> nums_set(nums.begin(), nums.end());
+
+    int longest_consecutive_sequence = 0;
+    int current_consecutive_sequence = 0;
+
+    // for (const auto &num : nums)
+    for (const auto &num : nums_set)
+
+    {
+      // check if i is the start of series:
+      if (nums_set.find(num - 1) == nums_set.end()) {
+        int start = num;
+        current_consecutive_sequence = 1;
+
+        /*
+        This woulnd't work if the size of array is 1 i.e. nums={0}
+        The condition check and the increment (start++) happen almost
+        simultaneously due to the use of the postfix increment operator ++.
+        */
+        // while (nums_set.find(++start) != nums_set.end()) {
+
+        while (nums_set.find(++start) != nums_set.end()) {
+          current_consecutive_sequence++;
+        }
+
+        longest_consecutive_sequence = std::max(current_consecutive_sequence,
+                                                longest_consecutive_sequence);
+      }
+    }
+    return longest_consecutive_sequence;
+  }
+
+  /*
+    int longestConsecutive(vector<int> &nums) {
+      if (nums.empty())
+        return 0;
+
+      unordered_set<int> numSet(nums.begin(), nums.end());
+      int longestStreak = 0;
+
+      for (int num : numSet) {
+        // Check if it is the start of a sequence
+        if (numSet.find(num - 1) == numSet.end()) {
+          int currentNum = num;
+          int currentStreak = 1;
+
+          // Increment currentNum while its next consecutive number is in the
+    set while (numSet.find(currentNum + 1) != numSet.end()) { currentNum++;
+            currentStreak++;
+          }
+
+          // Update the longest streak found
+          longestStreak = max(longestStreak, currentStreak);
+        }
+      }
+
+      return longestStreak;
+    }
+    */
+};
+
+/*
+Encode and Decode Strings - Leetcode 271
+https://www.youtube.com/watch?v=B1k_sxOSgv8
+
+https://algo.monster/liteproblems/271
+*/
+
+class Solution659 {
+public:
+  std::vector<std::string> encodeDecodeString(std::vector<std::string> &words) {
+    std::stringstream ss;
+    for (const auto &word : words) {
+      ss << word.size() << word << "#";
+    }
+    std::cout << ss.str() << std::endl;
+    return std::vector<std::string>();
+  }
+};
+
+/*
+https://leetcode.com/problems/contains-duplicate/description/
+
+217. Contains Duplicate
+*/
+
+class Solution217 {
+public:
+  bool containsDuplicate(vector<int> &nums) {
+
+    return nums.size() !=
+           std::unordered_set<int>(nums.begin(), nums.end()).size();
+
+    // std::unordered_set<int> nums_set(nums.begin(), nums.end());
+
+    // if (nums.size() != nums_set.size())
+    //   return true;
+    // else
+    //   return false;
+  }
+};
+
+/*
+167. Two Sum II - Input Array Is Sorted
+
+there is exactly one solution.
+
+https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/
+
+*/
+class Solution167 {
+public:
+  vector<int> twoSum(vector<int> &numbers, int target) {
+    // there is exactly one solution.
+    // if (numbers.size() < 2)
+    //   return {};
+
+    int numbers_r = numbers.size() - 1;
+    int numbers_l = 0;
+
+    while (numbers_l < numbers_r) {
+      if (target == numbers[numbers_r] + numbers[numbers_l]) {
+        break;
+      } else if (target - numbers[numbers_l] < numbers[numbers_r])
+        numbers_r--;
+      else {
+        numbers_l++;
+      }
+    }
+
+    return {numbers_l + 1, numbers_r + 1};
+  }
+};
+
+/*
+
+https://leetcode.com/problems/3sum/
+15. 3Sum
+
+*/
+
+class Solution15 {
+public:
+  vector<vector<int>> threeSum(vector<int> &nums) {
+
+    // std::map<int, int> nums_map; //(nums.begin(), nums.end());
+    // for (const auto &num : nums) {
+    //   // nums_map.insert(std::pair)
+    //   nums_map[num]++;
+    // }
+
+    // // map is always ordered, now we can do a two sum
+    // int target = 0;
+    // for (const auto &num : nums_map) {
+
+    //   //target = num;
+    // }
+
+    return {{}};
+  }
+};
+
+/*
+https://leetcode.com/problems/trapping-rain-water/description/
+42. Trapping Rain Water
+https://www.youtube.com/watch?v=ZI2z5pq0TqA&t=327s
+
+*/
+
+class Solution42 {
+public:
+  int trap(vector<int> &height) {
+
+    int sum = 0;
+
+    std::vector<int> max_height_lefts(height.size(), 0);
+    std::vector<int> max_height_rights(height.size(), 0);
+
+    int max_height_left = 0;
+    int max_height_right = 0;
+    int max_height_index = 0;
+
+    for (int i = 0; i < max_height_lefts.size(); i++) {
+      if (height[i] > max_height_left) {
+        max_height_left = height[i];
+        max_height_index = i;
+      }
+      max_height_lefts[i] = max_height_index;
+    }
+
+    max_height_right = 0;
+    for (int i = max_height_lefts.size(); i > 0; i--) {
+      if (height[i] > max_height_right) {
+        max_height_right = height[i];
+        max_height_index = i;
+      }
+      max_height_rights[i] = max_height_index;
+    }
+
+    for (const auto &h : max_height_lefts) {
+      std::cout << h << ",";
+    }
+
+    std::cout << std::endl;
+
+    for (const auto &h : max_height_rights) {
+      std::cout << h << ",";
+    }
+
+    std::cout << std::endl;
+
+    // for (int i = 0; i < height.size(); i++) {
+
+    //   int val = std::min(max_height_left, max_height_right) - height[0];
+    //   std::max(0, val);
+    // }
+
+    return sum;
+  }
+};
+
 int main() {
 
   ///////////////////////////// Solution27 /////////////////////////////
@@ -422,7 +713,7 @@ int main() {
 
   std::cout << "length of last word: " << s58.lengthOfLastWord(str) << "\n";
 
-  ///////////////////////////// Solutio88 /////////////////////////////
+  ///////////////////////////// Solution88 /////////////////////////////
 
   Solutio88 s88;
   // std::vector<int> nums1 = {1, 2, 3, 0, 0, 0};
@@ -442,4 +733,60 @@ int main() {
     std::cout << s << " ";
   }
   std::cout << "\n";
+  ///////////////////////////// Solution567 /////////////////////////////
+
+  std::string s1 = "ab";
+  std::string s2 = "eidbaooo";
+  Solution567 s567;
+  s567.checkInclusion(s1, s2);
+
+  ///////////////////////////// Solution128 /////////////////////////////
+
+  Solution128 s128;
+
+  // nums = {100, 4, 200, 1, 3, 2};
+  nums = {0};
+
+  cout << "The length of the longest consecutive elements sequence is "
+       << s128.longestConsecutive(nums) << endl;
+
+  ///////////////////////////// Solution659 /////////////////////////////
+
+  Solution659 s659;
+  std::vector<std::string> input = {"lint", "code", "love", "you"};
+  std::vector<std::string> output = {"lint", "code", "love", "you"};
+
+  s659.encodeDecodeString(input);
+  ///////////////////////////// Solution217 /////////////////////////////
+
+  Solution217 s217;
+  nums = {1, 1, 1, 3, 3, 4, 3, 2, 4, 2};
+
+  // nums = {1, 2, 3, 4};
+  std::cout << std::boolalpha << s217.containsDuplicate(nums) << std::endl;
+
+  ///////////////////////////// Solution167 /////////////////////////////
+
+  Solution167 s167;
+
+  std::vector<int> numbers = {1, 2, 7, 11, 15};
+  // numbers = {2, 3, 4};
+  int target = 9;
+
+  auto twosums = s167.twoSum(numbers, target);
+  std::cout << "Two Sum II:" << twosums[0] << "," << twosums[1] << std::endl;
+
+  ///////////////////////////// Solution15  /////////////////////////////
+
+  Solution15 s15;
+
+  nums = {-1, 0, 1, 2, -1, -4};
+  s15.threeSum(nums);
+
+  ///////////////////////////// Solution42  /////////////////////////////
+  Solution42 s42;
+  std::vector<int> heights = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
+  s42.trap(heights);
+
+  return 0;
 }
