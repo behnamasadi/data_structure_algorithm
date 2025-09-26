@@ -26,6 +26,9 @@ This repository contains my tutorial code for my Data Structure and Algorithm pr
 [Sort Algorithms](src/sort_algorithms/)   
 [Binary Trees, AVL Tree, B/B+ Trees, Search Trees, Tree Traversal](src/trees)  
 
+##  Algorithm Visualizer
+[Algorithm Visualizer](https://algorithm-visualizer.org/)
+
 ## Theory of Computation
 [Regular Languages and Finite Automata](src/theory_of_computation/regular_languages_and_finite_automata/README.md)  
 [Context Free Grammar and Context Free Languages](src/theory_of_computation/context_free_grammar_and_context_free_languages/README.md)  
@@ -36,8 +39,8 @@ This repository contains my tutorial code for my Data Structure and Algorithm pr
 ![alt text](https://img.shields.io/badge/license-BSD-blue.svg)
 
 
-To find all unfinished/ halfway done code, in qt-creator, go to Help > About Plugins and enable the todo plugin. Then After compilation, under todo entries window
-next to compiler output you can find un-completed tasks (click on active project).
+To find all unfinished/ halfway done code, in qt-creator, go to Help > About Plugins and enable the todo plugin. Then, after compilation, under the todo entries window
+Next to the compiler output, you can find uncompleted tasks (click on active project).
 
 
 References:
